@@ -7,11 +7,7 @@ export default function CustomCursor() {
     if (typeof window === "undefined") return;
     if (!window.matchMedia("(min-width: 768px)").matches) return;
 
-    const cursor = document.createElement("img");
-    cursor.id = "custom-cursor";
-    cursor.src = "/Assets/cursor.png";
-    cursor.alt = "";
-    cursor.style.cssText = `
+    const baseStyle = `
       position: fixed;
       width: 32px;
       height: 32px;
@@ -22,7 +18,20 @@ export default function CustomCursor() {
       top: 0;
       left: 0;
     `;
-    document.body.appendChild(cursor);
+
+    const main = document.createElement("img");
+    main.id = "custom-cursor";
+    main.src = "/Assets/cursor.png";
+    main.alt = "";
+    main.style.cssText = baseStyle;
+    document.body.appendChild(main);
+
+    const mirror = document.createElement("img");
+    mirror.id = "custom-cursor-mirror";
+    mirror.src = "/Assets/cursor.png";
+    mirror.alt = "";
+    mirror.style.cssText = baseStyle + "display: none;";
+    document.body.appendChild(mirror);
 
     let raf = 0;
     let lastX = 0;
@@ -33,19 +42,25 @@ export default function CustomCursor() {
       lastY = e.clientY;
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        cursor.style.left = lastX + "px";
-        cursor.style.top = lastY + "px";
-        const el = document.elementFromPoint(lastX, lastY);
-        if (el) {
-          const cs = window.getComputedStyle(el);
-          if (cs.cursor === "pointer") {
-            cursor.style.width = "36px";
-            cursor.style.height = "36px";
-          } else {
-            cursor.style.width = "32px";
-            cursor.style.height = "32px";
-          }
+        main.style.left = lastX + "px";
+        main.style.top = lastY + "px";
+
+        const isHome = document.body.classList.contains("home-route");
+        if (isHome) {
+          mirror.style.display = "block";
+          mirror.style.left = window.innerWidth - lastX + "px";
+          mirror.style.top = window.innerHeight - lastY + "px";
+        } else {
+          mirror.style.display = "none";
         }
+
+        const el = document.elementFromPoint(lastX, lastY);
+        const size = el && window.getComputedStyle(el).cursor === "pointer" ? "36px" : "32px";
+        main.style.width = size;
+        main.style.height = size;
+        mirror.style.width = size;
+        mirror.style.height = size;
+
         raf = 0;
       });
     };
@@ -54,7 +69,8 @@ export default function CustomCursor() {
     return () => {
       document.removeEventListener("mousemove", move);
       if (raf) cancelAnimationFrame(raf);
-      cursor.remove();
+      main.remove();
+      mirror.remove();
     };
   }, []);
 
