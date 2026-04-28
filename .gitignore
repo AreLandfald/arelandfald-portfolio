@@ -1,0 +1,99 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.*
+
+# Build outputs
+/.next/
+/out/
+/build/
+/dist/
+
+# Production
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env*.local
+.env
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+**/.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Legacy source kept locally only
+/_legacy/
+
+# Large source assets not referenced by any page (kept locally, excluded from repo)
+/public/Assets/Diplomis/notater.jpg
+/public/Assets/Diplomis/notater.jpeg
+/public/Assets/Diplomis/notater Small.jpeg
+/public/Assets/Diplomis/historie5 copy.jpg
+/public/Assets/Diplomis/historie 6 copy.jpg
+/public/Assets/Diplomis/historie 7.jpg
+/public/Assets/Diplomis/historie 10.jpg
+/public/Assets/Diplomis/historie 12.jpeg
+/public/Assets/Diplomis/historie 14.jpeg
+/public/Assets/Diplomis/historie4.jpg
+/public/Assets/Diplomis/design copy.png
+/public/Assets/Diplomis/diplomis.mp4
+/public/Assets/Diplomis/gif2.mov
+/public/Assets/Diplomis/ikoniske.mp4
+/public/Assets/Diplomis/klassiske.mp4
+/public/Assets/Diplomis/de_klassiske.gif
+/public/Assets/Diplomis/gifikoniske.gif
+/public/Assets/Diplomis/gifklassiske.gif
+/public/Assets/Diplomis/instagram.diplomis.jpg
+/public/Assets/Diplomis/diplomis.instagram.mockup.png
+/public/Assets/Diplomis/implementering.i.butikk.jpg
+/public/Assets/Diplomis/boksisdesign.jpg
+/public/Assets/Diplomis/farger.png
+/public/Assets/Diplomis/fonter.png
+/public/Assets/Diplomis/arv diplomis.png
+/public/Assets/Diplomis/diplomis gamle logo.jpg
+/public/Assets/Diplomis/diplomis nye logo.png
+/public/Assets/Diplomis/diplomis nye logo 2.png
+/public/Assets/Diplomis/layer 3 png.png
+/public/Assets/Diplomis/støtteelementer.png
+/public/Assets/Diplomis/vaniljetilgif1.jpg
+/public/Assets/Diplomis/vaniljetilgif2.jpg
+/public/Assets/Diplomis/vaniljetilgif3.jpg
+/public/Assets/Diplomis/vaniljetilgif4.jpg
+/public/Assets/Gamedesign/Gamecards/
+/public/Assets/Gamedesign/regler.implementert.png
+/public/Assets/Gamedesign/regler.implementert2.jpg
+/public/Assets/Gamedesign/regler.mockup.png
+/public/Assets/Gamedesign/regler.png
+/public/Assets/Gamedesign/regler.jpg
+/public/Assets/Gamedesign/regler.pdf
+/public/Assets/Gamedesign/eventcards.png
+/public/Assets/Gamedesign/eventkort.bakside.png
+/public/Assets/Gamedesign/eventkort.move.png
+/public/Assets/Gamedesign/eventkort1.png
+/public/Assets/Gamedesign/eventkort2.png
+/public/Assets/Gamedesign/eventkort3.png
+/public/Assets/Gamedesign/kurv.png
+/public/Assets/Gamedesign/prototype1.jpg
+/public/Assets/Gamedesign/prototype4.jpg
+/public/Assets/Gamedesign/brettet.png
+/public/Assets/Sound toys/hovedbilde 2.jpg
+/public/Assets/Sound toys/hovedbilde?.jpg
+/public/Assets/Sound toys/Are instrument_0059.JPG
+/public/Assets/Immersive/illustrasjon stall.png
+
+# High-resolution originals — web-optimized versions are committed
+/public/Assets/Gamedesign/regler.kort.png
+/public/Assets/Immersive/3.nattmannen.video.mp4
