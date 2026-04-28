@@ -24,7 +24,7 @@ export default function VisualIdentityPage() {
           { sectionId: "fonts-section", bodyClass: "yellow-mode" },
           { sectionId: "color-system-section", bodyClass: "yellow-mode" }
         ]}
-        exitSectionId="implementation-section"
+        exitSectionId="shelf-impact-section"
       />
       <SlideMenu activeSlug="visual-identity" />
 
@@ -145,7 +145,7 @@ export default function VisualIdentityPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: "none", padding: 0, marginBottom: 200 }}>
+        <section className="section-full fade-in" style={{ maxWidth: 1400, marginBottom: 200 }}>
           <video autoPlay loop muted playsInline style={{ width: "100%", height: "auto", display: "block" }}>
             <source src="/Assets/Diplomis/twocategories.mp4" type="video/mp4" />
           </video>
@@ -162,27 +162,40 @@ export default function VisualIdentityPage() {
             <p className="font-quicksand-regular" style={{ marginBottom: 40 }}>
               Quicksand Regular: Diplom-Is has been Norway&apos;s favorite ice cream since 1930, crafted with care from the finest dairy. This lighter weight provides clarity and readability for body text and supporting information.
             </p>
-            <div id="color-system-section" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 40 }}>
+            <div id="color-system-section" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginTop: 40, maxWidth: 600 }}>
               {colors.map((c) => (
                 <div key={c.name} className="color-card">
-                  <div className="color-swatch" style={{ backgroundColor: c.hex, width: "100%", aspectRatio: "3/2", border: "1px solid #000" }}></div>
-                  <h3 className="color-name" style={{ fontSize: "1.32rem" }}>{c.name}</h3>
-                  {c.showHex !== false && <p className="color-hex">{c.hex}</p>}
+                  <div className="color-swatch" style={{ backgroundColor: c.hex, width: "100%", aspectRatio: "1/1", border: "1px solid #000" }}></div>
+                  <h3 className="color-name" style={{ fontSize: "0.95rem" }}>{c.name}</h3>
+                  {c.showHex !== false && <p className="color-hex" style={{ fontSize: "0.8rem" }}>{c.hex}</p>}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="implementation-section" className="section-implementation fade-in">
-          <h2>Implementation</h2>
-          <div className="implementation-grid">
-            <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" className="implementation-instagram" />
-            <div className="implementation-text-box">
-              <p>Social media and print advertising materials showcase the refreshed brand identity across various platforms.</p>
-            </div>
+        <section id="shelf-impact-section" className="section-statement fade-in">
+          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
+            Shelf impact meets campaign power.
+          </p>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Marketing</h2>
           </div>
-          <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" className="implementation-poster" />
+          <div className="section-content">
+            <p>
+              Social media and print advertising materials showcase the refreshed brand identity across various platforms.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "80px 40px" }}>
+          <div style={{ display: "flex", gap: 60, alignItems: "flex-start", justifyContent: "space-between", padding: "0 40px", flexWrap: "wrap" }}>
+            <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" style={{ width: "57.75%", height: "auto" }} />
+            <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" style={{ width: "23.1%", height: "auto", marginTop: 280 }} />
+          </div>
         </section>
       </main>
     </>

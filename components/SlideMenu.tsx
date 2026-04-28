@@ -13,6 +13,7 @@ const projects = [
 
 export default function SlideMenu({ activeSlug }: { activeSlug?: string }) {
   const [open, setOpen] = useState(false);
+  const [overImage, setOverImage] = useState(true);
 
   useEffect(() => {
     if (!open) return;
@@ -33,12 +34,33 @@ export default function SlideMenu({ activeSlug }: { activeSlug?: string }) {
     };
   }, [open]);
 
+  useEffect(() => {
+    const hero = document.querySelector(".hero-section") as HTMLElement | null;
+    if (!hero) {
+      setOverImage(false);
+      return;
+    }
+    const update = () => {
+      const rect = hero.getBoundingClientRect();
+      setOverImage(rect.bottom > 60);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const navColor = overImage && !open ? " white-mode" : "";
+
   return (
     <>
       <div className="top-nav">
-        <span className={`nav-brand${open ? " hidden" : ""}`}>AL</span>
+        <span className={`nav-brand${navColor}${open ? " hidden" : ""}`}>AL</span>
         <button
-          className={`hamburger-btn${open ? " active" : ""}`}
+          className={`hamburger-btn${navColor}${open ? " active" : ""}`}
           aria-label="Menu"
           onClick={(e) => {
             e.stopPropagation();
