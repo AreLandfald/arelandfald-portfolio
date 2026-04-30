@@ -94,9 +94,9 @@ export default function VisualIdentityPage() {
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "80px 40px" }}>
-          <div style={{ display: "flex", gap: 60, alignItems: "flex-start", justifyContent: "space-between", padding: "0 40px", flexWrap: "wrap" }}>
-            <img src="/Assets/Diplomis/notater.riktig.jpg" alt="Design notes" style={{ width: "57.75%", height: "auto" }} />
-            <img src="/Assets/Diplomis/design.png" alt="The new Diplom-Is tub design" style={{ width: "23.1%", height: "auto", marginTop: 280 }} />
+          <div className="image-pair-row">
+            <img src="/Assets/Diplomis/notater.riktig.jpg" alt="Design notes" className="image-pair-large" />
+            <img src="/Assets/Diplomis/design.png" alt="The new Diplom-Is tub design" className="image-pair-small image-pair-offset" />
           </div>
         </section>
 
@@ -162,7 +162,7 @@ export default function VisualIdentityPage() {
             <p className="font-quicksand-regular" style={{ marginBottom: 40 }}>
               Quicksand Regular: Diplom-Is has been Norway&apos;s favorite ice cream since 1930, crafted with care from the finest dairy. This lighter weight provides clarity and readability for body text and supporting information.
             </p>
-            <div id="color-system-section" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginTop: 40, maxWidth: 600 }}>
+            <div id="color-system-section" className="color-grid-compact">
               {colors.map((c) => (
                 <div key={c.name} className="color-card">
                   <div className="color-swatch" style={{ backgroundColor: c.hex, width: "100%", aspectRatio: "1/1", border: "1px solid #000" }}></div>
@@ -192,9 +192,9 @@ export default function VisualIdentityPage() {
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "80px 40px" }}>
-          <div style={{ display: "flex", gap: 60, alignItems: "flex-start", justifyContent: "space-between", padding: "0 40px", flexWrap: "wrap" }}>
-            <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" style={{ width: "57.75%", height: "auto" }} />
-            <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" style={{ width: "23.1%", height: "auto", marginTop: 280 }} />
+          <div className="image-pair-row">
+            <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" className="image-pair-large" />
+            <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" className="image-pair-small image-pair-offset" />
           </div>
         </section>
       </main>

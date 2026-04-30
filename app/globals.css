@@ -515,6 +515,17 @@ section h2 {
   margin-top: 40px;
 }
 
+.color-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+  max-width: 600px;
+}
+@media (max-width: 480px) {
+  .color-grid-compact { grid-template-columns: repeat(2, 1fr); }
+}
+
 .color-card { display: flex; flex-direction: column; gap: 12px; }
 .color-swatch { width: 100%; height: 120px; border: 1px solid #000; }
 .color-name { font-size: 1rem; font-weight: normal; margin: 0; letter-spacing: 0.02em; }
@@ -743,6 +754,12 @@ section h2 {
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  width: 100%;
 }
 
 .work-label:hover { opacity: 0.6; }
@@ -754,7 +771,11 @@ section h2 {
   padding-left: 20px;
 }
 
-.menu-work:hover .work-dropdown { max-height: 400px; }
+@media (hover: hover) {
+  .menu-work:hover .work-dropdown { max-height: 400px; }
+}
+
+.menu-work.open .work-dropdown { max-height: 400px; }
 
 .work-item {
   display: block;
@@ -853,6 +874,41 @@ body.about-route .hero-image-full {
   .section-with-heading { padding: 60px 30px; }
   .section-with-heading .section-heading { position: static; margin-bottom: 20px; }
   .heritage-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Safe-area insets — only kick in when installed as PWA / on notched phones */
+@supports (padding: env(safe-area-inset-top)) {
+  .back-link { top: max(20px, env(safe-area-inset-top)); left: max(20px, env(safe-area-inset-left)); }
+  .project-header { top: max(20px, env(safe-area-inset-top)); }
+  .top-nav { top: max(20px, env(safe-area-inset-top)); right: max(20px, env(safe-area-inset-right)); }
+  .menu-content { padding-top: calc(60px + env(safe-area-inset-top)); }
+}
+
+/* Smooth scroll on iOS, prevent text zoom on rotate */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Image pair layout (e.g., notater + design.png) */
+.image-pair-row {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 40px;
+  flex-wrap: wrap;
+}
+.image-pair-large { width: 57.75%; height: auto; }
+.image-pair-small { width: 23.1%; height: auto; }
+.image-pair-offset { margin-top: 0; }
+@media (min-width: 769px) {
+  .image-pair-offset { margin-top: 280px; }
+}
+@media (max-width: 768px) {
+  .image-pair-row { gap: 24px; padding: 0; }
+  .image-pair-large,
+  .image-pair-small { width: 100%; }
 }
 
 @media (max-width: 768px) {

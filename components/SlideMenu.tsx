@@ -13,6 +13,7 @@ const projects = [
 
 export default function SlideMenu({ activeSlug }: { activeSlug?: string }) {
   const [open, setOpen] = useState(false);
+  const [workOpen, setWorkOpen] = useState(false);
   const [overImage, setOverImage] = useState(true);
 
   useEffect(() => {
@@ -78,8 +79,15 @@ export default function SlideMenu({ activeSlug }: { activeSlug?: string }) {
           <Link href="/" className="menu-link" onClick={() => setOpen(false)}>
             Main page
           </Link>
-          <div className="menu-work">
-            <span className="work-label">Work</span>
+          <div className={`menu-work${workOpen ? " open" : ""}`}>
+            <button
+              type="button"
+              className="work-label"
+              aria-expanded={workOpen}
+              onClick={() => setWorkOpen((v) => !v)}
+            >
+              Work
+            </button>
             <div className="work-dropdown">
               {projects.map((p) => (
                 <Link
