@@ -147,7 +147,7 @@ export default function VisualIdentityPage() {
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, marginBottom: 200 }}>
           <video autoPlay loop muted playsInline style={{ width: "100%", height: "auto", display: "block" }}>
-            <source src="/Assets/Diplomis/twocategories.mp4" type="video/mp4" />
+            <source src="/Assets/Diplomis/output.mp4" type="video/mp4" />
           </video>
         </section>
 
