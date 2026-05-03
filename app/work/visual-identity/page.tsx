@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import FadeInObserver from "@/components/FadeInObserver";
 import SlideMenu from "@/components/SlideMenu";
-import ScrollColorMode from "@/components/ScrollColorMode";
 
 export const metadata: Metadata = {
   title: "Visual identity / Diplom-Is",
@@ -19,13 +18,6 @@ export default function VisualIdentityPage() {
   return (
     <>
       <FadeInObserver />
-      <ScrollColorMode
-        rules={[
-          { sectionId: "fonts-section", bodyClass: "yellow-mode" },
-          { sectionId: "color-system-section", bodyClass: "yellow-mode" }
-        ]}
-        exitSectionId="shelf-impact-section"
-      />
       <SlideMenu activeSlug="visual-identity" />
 
       <section className="hero-section">

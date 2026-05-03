@@ -9,6 +9,16 @@ export const metadata: Metadata = {
   description: "Immersive sound experience at Oslo Museum."
 };
 
+const scene2Manuscript = [
+  { time: 21, speaker: "Mr. Thorsen", text: "Who is that?" },
+  { time: 22, speaker: "Jokum", text: "It's my son, Mr. Thorsen. We need more men to get the horse lifted onto the wagon." },
+  { time: 26, speaker: "Mr. Thorsen", text: "Yes. Do your duty, but keep yourself, and that filthy little rascal, at a proper distance. Understood?" },
+  { time: 32, speaker: "Jokum", text: "Yes, Mr. Thorsen." },
+  { time: 35, speaker: "Mr. Thorsen", text: "Here she is. Make sure to skin her and get the rest into the ground before the stench sets in. I can't stand any more of that devilish smell from The Nightman's Mound. Understood?" },
+  { time: 51, speaker: "Narrator", text: "The nightmen were kept outside of all decent company, and people shunned them because their honor was low and their work looked down upon." },
+  { time: 62, speaker: "Jokum", text: "Yes, hurry up. Now take that rope there and tie it around the legs. No, the legs! Yes, that won't do. Useless. Now go clean the toilet so you can be of some use." }
+];
+
 const scene1Manuscript = [
   { time: 14, speaker: "Narrator", text: "You now stand by the nightman's mound, where the earth is filthy and tainted by all that is vile." },
   { time: 22, speaker: "Narrator", text: "Beneath your feet lie unclean remains—carcasses of livestock and the refuse of humanity." },
@@ -94,6 +104,8 @@ export default function ImmersiveSoundPage() {
                 title="Scene 2: The Stable"
                 location="In front of the ancient stone cathedral"
                 description="Church bells echo through the morning mist. The faithful gather for mass, but the nightman's work is far from holy. His presence taints this sacred ground..."
+                audioSrc="/Assets/Immersive/scene 2 copy.mp3"
+                manuscriptLines={scene2Manuscript}
               />
               <StoryCard
                 title="Scene 3: The Outhouse"

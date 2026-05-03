@@ -23,7 +23,7 @@ const projects = [
   {
     cls: "project-3",
     href: "/work/gamedesign",
-    img: "/Assets/Gamedesign/brettet.notater.jpg",
+    img: "/Assets/Gamedesign/brettet.notater.kontrastbrettet.nota.jpg",
     title: "Gamedesign"
   },
   {
