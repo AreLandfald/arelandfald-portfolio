@@ -875,6 +875,17 @@ body.about-route .hero-image-full {
 }
 
 /* ============================================================
+   LIGHT HERO — black text/nav over a bright hero image
+   ============================================================ */
+body.light-hero .project-title-hero,
+body.light-hero .hero-meta-overlay,
+body.light-hero .scroll-indicator { color: #000; }
+body.light-hero .nav-brand,
+body.light-hero .nav-brand.white-mode { color: #000; }
+body.light-hero .hamburger-btn span,
+body.light-hero .hamburger-btn.white-mode span { background: #000; }
+
+/* ============================================================
    MOBILE
    ============================================================ */
 @media (max-width: 1024px) {

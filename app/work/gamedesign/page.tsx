@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BodyClass from "@/components/BodyClass";
 import FadeInObserver from "@/components/FadeInObserver";
 import SlideMenu from "@/components/SlideMenu";
 import ScrollColorMode from "@/components/ScrollColorMode";
@@ -23,6 +24,7 @@ const colors = [
 export default function GamedesignPage() {
   return (
     <>
+      <BodyClass className="light-hero" />
       <FadeInObserver />
       <ScrollColorMode
         rules={[
