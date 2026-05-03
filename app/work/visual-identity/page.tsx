@@ -189,11 +189,9 @@ export default function VisualIdentityPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "80px 40px" }}>
-          <div className="image-pair-row">
-            <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" className="image-pair-large" />
-            <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" className="image-pair-small image-pair-offset" />
-          </div>
+        <section className="image-pair-grid fade-in">
+          <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" className="image-pair-grid-a" />
+          <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" className="image-pair-grid-b" />
         </section>
       </main>
     </>

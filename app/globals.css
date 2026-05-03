@@ -898,27 +898,30 @@ html {
   text-size-adjust: 100%;
 }
 
-/* Image pair grid — refined two-element layout (used for The new tub) */
+/* Image pair grid — two-element layout aligned to page margins */
 section.image-pair-grid {
-  max-width: 1100px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 section.image-pair-grid > .image-pair-grid-a {
   flex: 0 0 60%;
   height: auto;
   display: block;
+  max-width: 60%;
 }
 section.image-pair-grid > .image-pair-grid-b {
-  flex: 0 0 28%;
+  flex: 0 0 30%;
   height: auto;
   display: block;
-  margin-top: 100px;
+  max-width: 30%;
+  margin-top: 80px;
 }
 @media (max-width: 768px) {
   section.image-pair-grid {
@@ -931,6 +934,7 @@ section.image-pair-grid > .image-pair-grid-b {
   section.image-pair-grid > .image-pair-grid-b {
     flex-basis: auto;
     width: 100%;
+    max-width: 100%;
     margin-top: 0;
   }
 }
