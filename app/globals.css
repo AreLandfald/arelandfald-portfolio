@@ -898,6 +898,43 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Image pair grid — refined two-element layout (used for The new tub) */
+section.image-pair-grid {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 60px;
+  padding-right: 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+section.image-pair-grid > .image-pair-grid-a {
+  flex: 0 0 60%;
+  height: auto;
+  display: block;
+}
+section.image-pair-grid > .image-pair-grid-b {
+  flex: 0 0 28%;
+  height: auto;
+  display: block;
+  margin-top: 100px;
+}
+@media (max-width: 768px) {
+  section.image-pair-grid {
+    flex-direction: column;
+    gap: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  section.image-pair-grid > .image-pair-grid-a,
+  section.image-pair-grid > .image-pair-grid-b {
+    flex-basis: auto;
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
 /* Image pair layout (e.g., notater + design.png) */
 .image-pair-row {
   display: flex;
