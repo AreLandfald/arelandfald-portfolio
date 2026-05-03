@@ -9,6 +9,21 @@ export const metadata: Metadata = {
   description: "Immersive sound experience at Oslo Museum."
 };
 
+const scene3Manuscript = [
+  { time: 23, speaker: "Narrator", text: "I know it smells devilish, but now you must finish without causing any more commotion." },
+  { time: 29, speaker: "Narrator", text: "Emptying outhouses was a daily and common task for the nightman, who in the darkness took care of the city's filth and waste to keep the streets clean and the people healthy." },
+  { time: 48, speaker: "Jokum", text: "Are you finished? Okay, then we're leaving now." }
+];
+
+const scene4Manuscript = [
+  { time: 9, speaker: "Jokum", text: "Yes, here is good. People will see it from here." },
+  { time: 15, speaker: "Jokum", text: "Okay, I'll set up the stakes, and you go fetch the heads." },
+  { time: 21, speaker: "Narrator", text: "In Kristiania, it was customary for the head or limbs of the condemned to be placed on stakes. This was done as a warning example, so people would see what punishment awaited those who broke the king's law." },
+  { time: 36, speaker: "Jokum", text: "Turn the heads so they're visible from the road. The master wanted to look him in the eyes while the ravens took him." },
+  { time: 41, speaker: "Jokum", text: "Don't make those kinds of faces. He was a thief. That's what the executioner said. He stole grain from the farm where he worked as a servant." },
+  { time: 51, speaker: "Jokum", text: "*Sigh* Yes, I've said too much. We won't speak any more about this, all right? If anyone hears us, it might be that… A nightman doesn't talk about his work." }
+];
+
 const scene2Manuscript = [
   { time: 21, speaker: "Mr. Thorsen", text: "Who is that?" },
   { time: 22, speaker: "Jokum", text: "It's my son, Mr. Thorsen. We need more men to get the horse lifted onto the wagon." },
@@ -111,12 +126,15 @@ export default function ImmersiveSoundPage() {
                 title="Scene 3: The Outhouse"
                 location="Behind the merchant's house, near the old stables"
                 description="The smell of hay and horses fills the air. A dead animal lies in the corner — another job only the nightman will touch. Society's outcasts doing society's dirty work..."
-                audioSrc="/Assets/Immersive/i stallen.m4a"
+                audioSrc="/Assets/Immersive/scene 3 copy.mp3"
+                manuscriptLines={scene3Manuscript}
               />
               <StoryCard
                 title="Scene 4: Gallows Hill"
                 location="At the edge of town, where justice is served"
                 description="A crowd gathers in grim silence. The executioner prepares his tools, and beside him stands his assistant — the nightman. Together, they carry out the city's darkest duty..."
+                audioSrc="/Assets/Immersive/scene 4 copy.mp3"
+                manuscriptLines={scene4Manuscript}
               />
             </div>
           </div>
