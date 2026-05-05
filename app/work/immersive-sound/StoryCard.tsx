@@ -4,6 +4,13 @@ import { useEffect, useRef, useState } from "react";
 
 type Line = { time: number; speaker: string; text: string };
 
+function format(t: number) {
+  if (!isFinite(t) || t < 0) return "0:00";
+  const m = Math.floor(t / 60);
+  const s = Math.floor(t % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
 export default function StoryCard({
   title,
   location,
@@ -20,31 +27,58 @@ export default function StoryCard({
   manuscriptLines?: Line[];
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [expanded, setExpanded] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [time, setTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
 
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !manuscriptLines?.length) return;
-
-    const onUpdate = () => {
-      const t = audio.currentTime;
-      let idx = -1;
-      for (let i = 0; i < manuscriptLines.length; i++) {
-        const cur = manuscriptLines[i].time;
-        const nxt = manuscriptLines[i + 1]?.time ?? Infinity;
-        if (t >= cur && t < nxt) {
-          idx = i;
-          break;
+    if (!audio) return;
+    const onTime = () => {
+      setTime(audio.currentTime);
+      if (manuscriptLines?.length) {
+        const t = audio.currentTime;
+        let idx = -1;
+        for (let i = 0; i < manuscriptLines.length; i++) {
+          const cur = manuscriptLines[i].time;
+          const nxt = manuscriptLines[i + 1]?.time ?? Infinity;
+          if (t >= cur && t < nxt) {
+            idx = i;
+            break;
+          }
         }
+        setActiveIndex(idx);
       }
-      setActiveIndex(idx);
     };
-    audio.addEventListener("timeupdate", onUpdate);
-    return () => audio.removeEventListener("timeupdate", onUpdate);
+    const onLoaded = () => setDuration(audio.duration);
+    const onEnd = () => setPlaying(false);
+    audio.addEventListener("timeupdate", onTime);
+    audio.addEventListener("loadedmetadata", onLoaded);
+    audio.addEventListener("ended", onEnd);
+    return () => {
+      audio.removeEventListener("timeupdate", onTime);
+      audio.removeEventListener("loadedmetadata", onLoaded);
+      audio.removeEventListener("ended", onEnd);
+    };
   }, [manuscriptLines]);
 
-  const toggle = () => {
+  useEffect(() => {
+    if (!expanded) return;
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeOverlay();
+    };
+    document.addEventListener("keydown", onEsc);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onEsc);
+      document.body.style.overflow = "";
+    };
+  }, [expanded]);
+
+  const togglePlay = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     const audio = audioRef.current;
     if (!audio) return;
     if (audio.paused) {
@@ -59,74 +93,93 @@ export default function StoryCard({
     }
   };
 
+  const seek = (e: React.MouseEvent<HTMLDivElement>) => {
+    const audio = audioRef.current;
+    if (!audio || !duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = ratio * duration;
+  };
+
+  const closeOverlay = () => {
+    setExpanded(false);
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      setPlaying(false);
+    }
+  };
+
+  const pct = duration ? (time / duration) * 100 : 0;
+
   return (
-    <div className="story-card">
-      <div className="story-card-image-container">
-        {imageSrc ? (
-          <img src={imageSrc} alt={title} className="story-card-image" />
-        ) : (
-          <div
-            className="story-card-image"
-            style={{ background: "linear-gradient(135deg, #d0d0d0 0%, #e8e8e8 100%)" }}
-          />
-        )}
-        {audioSrc && (
-          <button
-            className={`story-card-play-btn${playing ? " playing" : ""}`}
-            onClick={toggle}
-            aria-label={playing ? "Pause" : "Play"}
-            style={{
-              position: "absolute",
-              bottom: 15,
-              left: 15,
-              width: 50,
-              height: 50,
-              background: "rgba(255,255,255,0.95)",
-              border: "1px solid #000",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              zIndex: 2,
-              fontSize: 16
-            }}
-          >
-            {playing ? "❚❚" : "▶"}
-          </button>
-        )}
-      </div>
-      <div className="story-card-content">
-        <h3 className="story-card-title">{title}</h3>
-        <p className="story-card-location">{location}</p>
-        <p className="story-card-description">{description}</p>
+    <>
+      <button
+        type="button"
+        className="story-card-modern"
+        onClick={() => setExpanded(true)}
+      >
+        <div className="story-card-cover">
+          {imageSrc ? (
+            <img src={imageSrc} alt={title} />
+          ) : (
+            <div className="story-card-cover-placeholder" />
+          )}
+          {audioSrc && <span className="story-card-play-icon">▶</span>}
+        </div>
+        <div className="story-card-meta">
+          <h3 dangerouslySetInnerHTML={{ __html: title }} />
+          <p>{location}</p>
+        </div>
+      </button>
 
-        {manuscriptLines && playing && (
-          <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid #e0e0e0" }}>
-            {manuscriptLines.map((line, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: "6px 0",
-                  opacity: i === activeIndex ? 1 : 0.4,
-                  transition: "opacity 0.3s"
-                }}
-              >
-                <div style={{ fontSize: "0.75rem", fontWeight: "bold", textTransform: "uppercase", opacity: 0.7 }}>
-                  {line.speaker}
+      {expanded && (
+        <div className="story-overlay-modern" onClick={closeOverlay} role="dialog" aria-modal="true">
+          <div className="story-overlay-content" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="overlay-close" aria-label="Close" onClick={closeOverlay}>
+              ×
+            </button>
+
+            {imageSrc && (
+              <img src={imageSrc} alt={title} className="overlay-cover" />
+            )}
+
+            <h2 className="overlay-title" dangerouslySetInnerHTML={{ __html: title }} />
+            <p className="overlay-location">{location}</p>
+            <p className="overlay-description">{description}</p>
+
+            {audioSrc && (
+              <>
+                <div className="overlay-progress" onClick={seek}>
+                  <div className="overlay-progress-fill" style={{ width: `${pct}%` }} />
                 </div>
-                <div style={{ fontSize: "0.9rem", lineHeight: 1.6 }}>{line.text}</div>
-              </div>
-            ))}
-          </div>
-        )}
+                <div className="overlay-controls">
+                  <button type="button" className="overlay-play-btn" onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>
+                    {playing ? "❚❚" : "▶"}
+                  </button>
+                  <span className="overlay-time">
+                    {format(time)} <span className="overlay-time-divider">/</span> {format(duration)}
+                  </span>
+                </div>
+                <audio ref={audioRef} preload="metadata">
+                  <source src={audioSrc} />
+                </audio>
+              </>
+            )}
 
-        {audioSrc && (
-          <audio ref={audioRef} preload="none" onEnded={() => setPlaying(false)}>
-            <source src={audioSrc} />
-          </audio>
-        )}
-      </div>
-    </div>
+            {manuscriptLines && manuscriptLines.length > 0 && (
+              <div className="overlay-manuscript">
+                {manuscriptLines.map((line, i) => (
+                  <div key={i} className={`overlay-manuscript-line${i === activeIndex ? " active" : ""}`}>
+                    <span className="overlay-manuscript-speaker">{line.speaker}</span>
+                    <span className="overlay-manuscript-text">{line.text}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

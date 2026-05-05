@@ -111,7 +111,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 1: The Nightman&apos;s Mound"
                 location="Near the old town hall, where merchants once gathered"
                 description="As twilight settles over the nightman's mound, the air hangs heavy with rot and buried filth. Jokum stands bent over his shovel, carving into the black earth, while at his feet lies a pale, lifeless man marked by the noose. He calls you closer — there is more work to be done."
-                imageSrc="/Assets/Immersive/scene1.png"
+                imageSrc="/Assets/Immersive/scene1.cover.png"
                 audioSrc="/Assets/Immersive/scene 1 til portfølje copy.mp3"
                 manuscriptLines={scene1Manuscript}
               />
@@ -119,6 +119,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 2: The Stable"
                 location="In front of the ancient stone cathedral"
                 description="Church bells echo through the morning mist. The faithful gather for mass, but the nightman's work is far from holy. His presence taints this sacred ground..."
+                imageSrc="/Assets/Immersive/scene2.cover.png"
                 audioSrc="/Assets/Immersive/scene 2 copy.mp3"
                 manuscriptLines={scene2Manuscript}
               />
@@ -126,6 +127,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 3: The Outhouse"
                 location="Behind the merchant's house, near the old stables"
                 description="The smell of hay and horses fills the air. A dead animal lies in the corner — another job only the nightman will touch. Society's outcasts doing society's dirty work..."
+                imageSrc="/Assets/Immersive/scene3.cover.png"
                 audioSrc="/Assets/Immersive/scene 3 copy.mp3"
                 manuscriptLines={scene3Manuscript}
               />
@@ -133,6 +135,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 4: Gallows Hill"
                 location="At the edge of town, where justice is served"
                 description="A crowd gathers in grim silence. The executioner prepares his tools, and beside him stands his assistant — the nightman. Together, they carry out the city's darkest duty..."
+                imageSrc="/Assets/Immersive/scene4.cover.png"
                 audioSrc="/Assets/Immersive/scene 4 copy.mp3"
                 manuscriptLines={scene4Manuscript}
               />

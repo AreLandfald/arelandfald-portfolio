@@ -1,69 +1,105 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import BodyClass from "@/components/BodyClass";
 
-const projects = [
+type Tile = { slug: string; href: string; title: string; img: string; bg: string };
+
+const tiles: Tile[] = [
   {
-    cls: "project-0",
-    href: "/work/visual-identity",
-    img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg",
-    title: "Visual identity"
-  },
-  {
-    cls: "project-1",
-    href: "/work/website",
-    img: "/Assets/Grammars of noice/Groise.hovedside.png",
-    title: "Website"
-  },
-  {
-    cls: "project-2",
-    href: "/work/immersive-sound",
-    img: "/Assets/Immersive/3.moodboard nattmannen.jpeg",
-    title: "Immersive sound experience"
-  },
-  {
-    cls: "project-3",
-    href: "/work/gamedesign",
-    img: "/Assets/Gamedesign/brettet.notater.kontrastbrettet.nota.jpg",
-    title: "Gamedesign"
-  },
-  {
-    cls: "project-4",
+    slug: "musical-instrument",
     href: "/work/musical-instrument",
+    title: "Musical instrument",
     img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg",
-    title: "Musical instrument"
+    bg: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg"
+  },
+  {
+    slug: "visual-identity",
+    href: "/work/visual-identity",
+    title: "Visual identity",
+    img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg",
+    bg: "/Assets/Diplomis/diplomis plakat mockup copy.jpg"
+  },
+  {
+    slug: "immersive-sound",
+    href: "/work/immersive-sound",
+    title: "Immersive sound experience",
+    img: "/Assets/Immersive/3.moodboard nattmannen.jpeg",
+    bg: "/Assets/Immersive/3.moodboard nattmannen.jpeg"
+  },
+  {
+    slug: "website",
+    href: "/work/website",
+    title: "Website",
+    img: "/Assets/Grammars of noice/Groise.hovedside.png",
+    bg: "/Assets/Grammars of noice/Groise.hovedside.png"
+  },
+  {
+    slug: "gamedesign",
+    href: "/work/gamedesign",
+    title: "Gamedesign",
+    img: "/Assets/Gamedesign/brettet.notater.med.farger.png",
+    bg: "/Assets/Gamedesign/brettet.notater.med.farger.png"
+  },
+  {
+    slug: "about",
+    href: "/about",
+    title: "About me",
+    img: "/Assets/bilde-av-meg-til-portefolje.jpg",
+    bg: "/Assets/bilde-av-meg-til-portefolje.jpg"
   }
 ];
 
 export default function HomePage() {
+  const [hovered, setHovered] = useState<string | null>(null);
+  const titleOrder = [...tiles].reverse();
+  const hoveredTile = tiles.find((t) => t.slug === hovered) ?? null;
+
   return (
     <>
       <BodyClass className="home-route" />
+
+      <div
+        className={`home-hover-bg${hovered ? " active" : ""}`}
+        style={{ backgroundImage: hoveredTile ? `url("${hoveredTile.bg}")` : undefined }}
+        aria-hidden="true"
+      />
 
       <div className="intro-text">
         <h1 className="intro-name">ARE LANDFALD</h1>
         <p className="intro-subtitle">PORTFOLIO</p>
       </div>
 
-      <main className="projects-container">
-        {projects.map((p) => (
-          <div key={p.cls} className={`project ${p.cls}`}>
-            <Link href={p.href} className="project-image">
-              <img src={p.img} alt={p.title} />
-            </Link>
-            <Link href={p.href} className="project-title-link">
-              {p.title}
-            </Link>
-          </div>
+      <main className="projects-grid">
+        {tiles.map((t) => (
+          <Link
+            key={`img-${t.slug}`}
+            href={t.href}
+            className="grid-tile grid-tile-img"
+            onMouseEnter={() => setHovered(t.slug)}
+            onMouseLeave={() => setHovered(null)}
+            onFocus={() => setHovered(t.slug)}
+            onBlur={() => setHovered(null)}
+            aria-label={t.title}
+          >
+            <img src={t.img} alt={t.title} />
+          </Link>
         ))}
 
-        <div className="project project-about">
-          <Link href="/about" className="project-image about-image">
-            <img src="/Assets/bilde-av-meg-til-portefolje.jpg" alt="Are Landfald" />
+        {titleOrder.map((t) => (
+          <Link
+            key={`title-${t.slug}`}
+            href={t.href}
+            className="grid-tile grid-tile-title"
+            onMouseEnter={() => setHovered(t.slug)}
+            onMouseLeave={() => setHovered(null)}
+            onFocus={() => setHovered(t.slug)}
+            onBlur={() => setHovered(null)}
+          >
+            <span>{t.title}</span>
           </Link>
-          <Link href="/about" className="project-title-link about-title">
-            About me
-          </Link>
-        </div>
+        ))}
       </main>
     </>
   );

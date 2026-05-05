@@ -36,7 +36,7 @@ export default function GamedesignPage() {
       <SlideMenu activeSlug="gamedesign" />
 
       <section className="hero-section">
-        <img className="hero-image-full" src="/Assets/Gamedesign/brettet.notater.kontrastbrettet.nota.jpg" alt="Beredt — the prepper game" />
+        <img className="hero-image-full" src="/Assets/Gamedesign/brettet.notater.med.farger.png" alt="Beredt — the prepper game" />
         <div className="hero-title-overlay">
           <h1 className="project-title-hero">Gamedesign</h1>
         </div>
