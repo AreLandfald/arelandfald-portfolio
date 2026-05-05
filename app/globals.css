@@ -146,7 +146,7 @@ body.home-route {
 /* New landscape grid (6×2 mirrored, flush) */
 .projects-grid {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   display: grid;
@@ -633,13 +633,354 @@ section h2 {
 .font-quicksand-medium { font-family: 'Quicksand', sans-serif; font-weight: 500; font-size: 1.32rem; line-height: 1.8; }
 .font-quicksand-regular { font-family: 'Quicksand', sans-serif; font-weight: 400; font-size: 1.32rem; line-height: 1.8; }
 
-/* Modern story cards (NRK Radio inspired) */
+/* Immersive story cards — cinematic 2x2 grid */
 .story-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-top: 40px;
 }
+@media (max-width: 768px) {
+  .story-cards-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.immersive-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 16px;
+  background: #1a1a1a;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: #fff;
+  text-align: left;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+.immersive-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+.immersive-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.immersive-card-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.92) 100%);
+  pointer-events: none;
+}
+.immersive-card-meta {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 26px;
+  pointer-events: none;
+}
+.immersive-card-meta h3 {
+  font-family: 'GeistRegular', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0 0 6px;
+  color: #fff;
+  letter-spacing: 0;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+}
+.immersive-card-meta p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+.immersive-card-play {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding-left: 3px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.immersive-card:hover .immersive-card-play,
+.immersive-card:focus-visible .immersive-card-play {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cinematic overlay */
+.immersive-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  animation: immersiveFadeIn 0.35s ease;
+}
+@keyframes immersiveFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.immersive-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3015;
+  transition: background 0.2s ease;
+}
+.immersive-close:hover { background: rgba(255,255,255,0.22); }
+
+.immersive-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 720px;
+  z-index: 3005;
+  animation: immersivePop 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes immersivePop {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.immersive-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 64vh;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+  background: #111;
+}
+.immersive-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.immersive-cover-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.92) 100%);
+}
+.immersive-cover-meta {
+  position: absolute;
+  left: 36px;
+  right: 36px;
+  bottom: 36px;
+  color: #fff;
+}
+.immersive-cover-meta h2 {
+  font-family: 'GeistRegular', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  margin: 0 0 8px;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+}
+.immersive-cover-meta p {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Controls under cover */
+.immersive-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  padding: 0 4px;
+}
+.immersive-play-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+.immersive-play-btn:hover { transform: scale(1.06); }
+
+.immersive-cc-btn {
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 19px;
+  border: 1px solid rgba(255,255,255,0.32);
+  background: transparent;
+  color: #fff;
+  font-family: 'GeistMono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.immersive-cc-btn:hover { background: rgba(255,255,255,0.1); }
+.immersive-cc-btn.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.immersive-time {
+  font-family: 'GeistMono', monospace;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  margin-left: auto;
+}
+.immersive-time-sep { opacity: 0.5; margin: 0 4px; }
+
+/* Thin progress bar pinned to bottom of overlay */
+.immersive-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.12);
+  cursor: pointer;
+  z-index: 3010;
+}
+.immersive-progress-fill {
+  height: 100%;
+  background: #fff;
+  transition: width 0.1s linear;
+}
+
+/* Sliding subtitles panel from right */
+.immersive-subs {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 560px;
+  padding: 80px 56px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 3008;
+}
+.immersive-subs.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.immersive-subs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow: hidden;
+}
+
+.immersive-subs-prev {
+  animation: subPrevIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.immersive-subs-current {
+  animation: subCurrentIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes subPrevIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 0.45; transform: translateY(0); }
+}
+@keyframes subCurrentIn {
+  from { opacity: 0; transform: translateY(48px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.immersive-subs-prev,
+.immersive-subs-current {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #fff;
+}
+.immersive-subs-prev { opacity: 0.45; }
+
+.immersive-subs-speaker {
+  font-family: 'GeistMono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.immersive-subs-prev .immersive-subs-text {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.7);
+}
+.immersive-subs-current .immersive-subs-text {
+  font-size: 1.55rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #fff;
+}
+.immersive-subs-hint {
+  font-family: 'GeistMono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.45);
+}
+
+@media (max-width: 768px) {
+  .immersive-overlay { padding: 40px 20px; }
+  .immersive-stage { max-width: 100%; }
+  .immersive-cover { max-height: 50vh; }
+  .immersive-cover-meta h2 { font-size: 1.4rem; }
+  .immersive-subs {
+    width: 100%;
+    max-width: none;
+    padding: 80px 24px 100px;
+  }
+  .immersive-subs-current .immersive-subs-text { font-size: 1.2rem; }
+  .immersive-controls { flex-wrap: wrap; }
+  .immersive-time { margin-left: 0; }
+}
+
+/* === Old NRK-style overlay (unused but kept harmless) === */
 
 .story-card-modern {
   display: flex;

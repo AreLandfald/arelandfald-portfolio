@@ -32,6 +32,7 @@ export default function StoryCard({
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [subsOpen, setSubsOpen] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -75,6 +76,7 @@ export default function StoryCard({
       document.removeEventListener("keydown", onEsc);
       document.body.style.overflow = "";
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded]);
 
   const togglePlay = (e?: React.MouseEvent) => {
@@ -103,6 +105,7 @@ export default function StoryCard({
 
   const closeOverlay = () => {
     setExpanded(false);
+    setSubsOpen(false);
     const audio = audioRef.current;
     if (audio) {
       audio.pause();
@@ -111,73 +114,102 @@ export default function StoryCard({
   };
 
   const pct = duration ? (time / duration) * 100 : 0;
+  const prevLine = activeIndex > 0 && manuscriptLines ? manuscriptLines[activeIndex - 1] : null;
+  const currentLine = activeIndex >= 0 && manuscriptLines ? manuscriptLines[activeIndex] : null;
 
   return (
     <>
-      <button
-        type="button"
-        className="story-card-modern"
-        onClick={() => setExpanded(true)}
-      >
-        <div className="story-card-cover">
-          {imageSrc ? (
-            <img src={imageSrc} alt={title} />
-          ) : (
-            <div className="story-card-cover-placeholder" />
-          )}
-          {audioSrc && <span className="story-card-play-icon">▶</span>}
-        </div>
-        <div className="story-card-meta">
+      <button type="button" className="immersive-card" onClick={() => setExpanded(true)}>
+        {imageSrc && <img src={imageSrc} alt="" className="immersive-card-img" />}
+        <div className="immersive-card-shade" aria-hidden="true" />
+        <div className="immersive-card-meta">
           <h3 dangerouslySetInnerHTML={{ __html: title }} />
           <p>{location}</p>
         </div>
+        {audioSrc && <span className="immersive-card-play" aria-hidden="true">▶</span>}
       </button>
 
       {expanded && (
-        <div className="story-overlay-modern" onClick={closeOverlay} role="dialog" aria-modal="true">
-          <div className="story-overlay-content" onClick={(e) => e.stopPropagation()}>
-            <button type="button" className="overlay-close" aria-label="Close" onClick={closeOverlay}>
-              ×
-            </button>
+        <div className="immersive-overlay" onClick={closeOverlay} role="dialog" aria-modal="true">
+          <button type="button" className="immersive-close" onClick={closeOverlay} aria-label="Close">
+            ×
+          </button>
 
-            {imageSrc && (
-              <img src={imageSrc} alt={title} className="overlay-cover" />
-            )}
-
-            <h2 className="overlay-title" dangerouslySetInnerHTML={{ __html: title }} />
-            <p className="overlay-location">{location}</p>
-            <p className="overlay-description">{description}</p>
-
-            {audioSrc && (
-              <>
-                <div className="overlay-progress" onClick={seek}>
-                  <div className="overlay-progress-fill" style={{ width: `${pct}%` }} />
-                </div>
-                <div className="overlay-controls">
-                  <button type="button" className="overlay-play-btn" onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>
-                    {playing ? "❚❚" : "▶"}
-                  </button>
-                  <span className="overlay-time">
-                    {format(time)} <span className="overlay-time-divider">/</span> {format(duration)}
-                  </span>
-                </div>
-                <audio ref={audioRef} preload="metadata">
-                  <source src={audioSrc} />
-                </audio>
-              </>
-            )}
-
-            {manuscriptLines && manuscriptLines.length > 0 && (
-              <div className="overlay-manuscript">
-                {manuscriptLines.map((line, i) => (
-                  <div key={i} className={`overlay-manuscript-line${i === activeIndex ? " active" : ""}`}>
-                    <span className="overlay-manuscript-speaker">{line.speaker}</span>
-                    <span className="overlay-manuscript-text">{line.text}</span>
-                  </div>
-                ))}
+          <div className="immersive-stage" onClick={(e) => e.stopPropagation()}>
+            <div className="immersive-cover">
+              {imageSrc && <img src={imageSrc} alt="" className="immersive-cover-img" />}
+              <div className="immersive-cover-shade" aria-hidden="true" />
+              <div className="immersive-cover-meta">
+                <h2 dangerouslySetInnerHTML={{ __html: title }} />
+                <p>{location}</p>
               </div>
-            )}
+            </div>
+
+            <div className="immersive-controls">
+              {audioSrc && (
+                <button
+                  type="button"
+                  className="immersive-play-btn"
+                  onClick={togglePlay}
+                  aria-label={playing ? "Pause" : "Play"}
+                >
+                  {playing ? "❚❚" : "▶"}
+                </button>
+              )}
+              {manuscriptLines && manuscriptLines.length > 0 && (
+                <button
+                  type="button"
+                  className={`immersive-cc-btn${subsOpen ? " active" : ""}`}
+                  onClick={() => setSubsOpen((s) => !s)}
+                  aria-pressed={subsOpen}
+                >
+                  CC English
+                </button>
+              )}
+              {audioSrc && (
+                <span className="immersive-time">
+                  {format(time)} <span className="immersive-time-sep">/</span> {format(duration)}
+                </span>
+              )}
+            </div>
           </div>
+
+          {audioSrc && (
+            <>
+              <audio ref={audioRef} preload="metadata">
+                <source src={audioSrc} />
+              </audio>
+              <div className="immersive-progress" onClick={seek}>
+                <div className="immersive-progress-fill" style={{ width: `${pct}%` }} />
+              </div>
+            </>
+          )}
+
+          {manuscriptLines && manuscriptLines.length > 0 && (
+            <aside
+              className={`immersive-subs${subsOpen ? " open" : ""}`}
+              onClick={(e) => e.stopPropagation()}
+              aria-hidden={!subsOpen}
+            >
+              <div className="immersive-subs-stack">
+                {prevLine && (
+                  <div className="immersive-subs-prev" key={`p-${activeIndex}`}>
+                    <span className="immersive-subs-speaker">{prevLine.speaker}</span>
+                    <span className="immersive-subs-text">{prevLine.text}</span>
+                  </div>
+                )}
+                {currentLine && (
+                  <div className="immersive-subs-current" key={`c-${activeIndex}`}>
+                    <span className="immersive-subs-speaker">{currentLine.speaker}</span>
+                    <span className="immersive-subs-text">{currentLine.text}</span>
+                  </div>
+                )}
+                {!currentLine && (
+                  <div className="immersive-subs-hint">Press play to begin.</div>
+                )}
+              </div>
+            </aside>
+          )}
         </div>
       )}
     </>
