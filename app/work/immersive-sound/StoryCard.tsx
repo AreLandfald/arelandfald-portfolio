@@ -119,14 +119,14 @@ export default function StoryCard({
 
   return (
     <>
-      <button type="button" className="immersive-card" onClick={() => setExpanded(true)}>
-        {imageSrc && <img src={imageSrc} alt="" className="immersive-card-img" />}
-        <div className="immersive-card-shade" aria-hidden="true" />
+      <button type="button" className="immersive-card-wrapper" onClick={() => setExpanded(true)}>
+        <div className="immersive-card">
+          {imageSrc && <img src={imageSrc} alt="" className="immersive-card-img" />}
+        </div>
         <div className="immersive-card-meta">
           <h3 dangerouslySetInnerHTML={{ __html: title }} />
           <p>{location}</p>
         </div>
-        {audioSrc && <span className="immersive-card-play" aria-hidden="true">▶</span>}
       </button>
 
       {expanded && (
@@ -138,11 +138,10 @@ export default function StoryCard({
           <div className="immersive-stage" onClick={(e) => e.stopPropagation()}>
             <div className="immersive-cover">
               {imageSrc && <img src={imageSrc} alt="" className="immersive-cover-img" />}
-              <div className="immersive-cover-shade" aria-hidden="true" />
-              <div className="immersive-cover-meta">
-                <h2 dangerouslySetInnerHTML={{ __html: title }} />
-                <p>{location}</p>
-              </div>
+            </div>
+            <div className="immersive-cover-meta">
+              <h2 dangerouslySetInnerHTML={{ __html: title }} />
+              <p>{location}</p>
             </div>
 
             <div className="immersive-controls">

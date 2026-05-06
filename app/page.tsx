@@ -40,7 +40,11 @@ export default function HomePage() {
         <ImgTile tile={T.gamedesign} />
 
         {/* Row 2 */}
-        <div className="hg-tile hg-brand">ARE LANDFALD</div>
+        <div className="hg-tile hg-brand">
+          <span>
+            Are<br />Landfald
+          </span>
+        </div>
         <ImgTile tile={T.website} />
         <ImgTile tile={T.service} />
         <ImgTile tile={T.about} />
@@ -49,7 +53,9 @@ export default function HomePage() {
         <TextTile tile={T.about} />
         <TextTile tile={T.service} />
         <TextTile tile={T.website} />
-        <div className="hg-tile hg-brand">PORTFOLIO</div>
+        <div className="hg-tile hg-brand">
+          <span>Portfolio</span>
+        </div>
 
         {/* Row 4 — texts */}
         <TextTile tile={T.gamedesign} />
