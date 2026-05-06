@@ -8,7 +8,8 @@ const projects = [
   { slug: "website", label: "Website" },
   { slug: "immersive-sound", label: "Immersive sound experience" },
   { slug: "gamedesign", label: "Gamedesign" },
-  { slug: "musical-instrument", label: "Musical instrument" }
+  { slug: "musical-instrument", label: "Musical instrument" },
+  { slug: "service-design", label: "Service design" }
 ];
 
 export default function SlideMenu({ activeSlug }: { activeSlug?: string }) {
