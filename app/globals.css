@@ -675,7 +675,7 @@ section h2 {
 }
 .immersive-card-wrapper:hover { transform: translateY(-6px); }
 
-/* Card container: width 100%, height determined naturally by the image inside. */
+/* Card container: bare wrapper, no padding/margin/background. */
 .immersive-card {
   position: relative;
   display: block;
@@ -683,16 +683,14 @@ section h2 {
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 16px;
-  background: #f0ece4;
-  overflow: hidden;
+  background: transparent;
   transition: box-shadow 0.4s ease;
 }
 .immersive-card-wrapper:hover .immersive-card {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
-/* Image: relative flow, full width at natural proportions, no cropping. */
+/* Image: full width at natural proportions, rounded corners on the image itself. */
 .immersive-card-img {
   position: relative;
   width: 100%;
@@ -702,6 +700,7 @@ section h2 {
   margin: 0;
   padding: 0;
   border: 0;
+  border-radius: 16px;
 }
 .immersive-card-meta {
   margin-top: 16px;
