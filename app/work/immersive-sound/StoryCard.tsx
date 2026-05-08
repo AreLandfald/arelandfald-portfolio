@@ -94,12 +94,10 @@ export default function StoryCard({
     }
   };
 
-  const seek = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audio = audioRef.current;
-    if (!audio || !duration) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    audio.currentTime = ratio * duration;
+    if (!audio) return;
+    audio.currentTime = parseFloat(e.target.value);
   };
 
   const closeOverlay = () => {
@@ -146,9 +144,17 @@ export default function StoryCard({
                 >
                   {playing ? "❚❚" : "▶"}
                 </button>
-                <div className="immersive-progress" onClick={seek}>
-                  <div className="immersive-progress-fill" style={{ width: `${pct}%` }} />
-                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={duration || 0}
+                  step={0.05}
+                  value={time}
+                  onChange={onSeek}
+                  className="immersive-progress"
+                  style={{ ["--progress" as string]: `${pct}%` }}
+                  aria-label="Seek"
+                />
                 <span className="immersive-time">
                   {format(time)} <span className="immersive-time-sep">/</span> {format(duration)}
                 </span>
