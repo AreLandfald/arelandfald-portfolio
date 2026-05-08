@@ -88,6 +88,9 @@ export default function StoryCard({
       });
       audio.play().catch(() => {});
       setPlaying(true);
+      if (audio.duration && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      }
     } else {
       audio.pause();
       setPlaying(false);
@@ -158,29 +161,29 @@ export default function StoryCard({
                 <span className="immersive-time">
                   {format(time)} <span className="immersive-time-sep">/</span> {format(duration)}
                 </span>
-                <audio ref={audioRef} preload="metadata">
+                <audio ref={audioRef} preload="auto">
                   <source src={audioSrc} />
                 </audio>
               </div>
             )}
-
-            {manuscriptLines && manuscriptLines.length > 0 && (
-              <div className="immersive-manuscript">
-                {prevLine && (
-                  <div className="ms-line ms-prev" key={`p-${activeIndex}`}>
-                    <span className="ms-speaker">{prevLine.speaker}:</span>
-                    <span className="ms-text">{prevLine.text}</span>
-                  </div>
-                )}
-                {currentLine && (
-                  <div className="ms-line ms-current" key={`c-${activeIndex}`}>
-                    <span className="ms-speaker">{currentLine.speaker}:</span>
-                    <span className="ms-text">{currentLine.text}</span>
-                  </div>
-                )}
-              </div>
-            )}
           </div>
+
+          {manuscriptLines && manuscriptLines.length > 0 && (
+            <div className="immersive-manuscript" onClick={(e) => e.stopPropagation()}>
+              {prevLine && (
+                <div className="ms-line ms-prev" key={`p-${activeIndex}`}>
+                  <span className="ms-speaker">{prevLine.speaker}:</span>
+                  {prevLine.text}
+                </div>
+              )}
+              {currentLine && (
+                <div className="ms-line ms-current" key={`c-${activeIndex}`}>
+                  <span className="ms-speaker">{currentLine.speaker}:</span>
+                  {currentLine.text}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </>

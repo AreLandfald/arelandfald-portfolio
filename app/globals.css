@@ -888,48 +888,42 @@ section h2 {
 }
 .immersive-time-sep { opacity: 0.5; margin: 0 4px; }
 
-/* Synced manuscript — auto-shown, large headline typography */
+/* Synced manuscript — anchored to the bottom of the overlay */
 .immersive-manuscript {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  text-align: center;
+  position: absolute;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  padding: 0 40px;
+  text-align: left;
   color: #fff;
-  min-height: 200px;
-  justify-content: flex-start;
-  margin-top: 8px;
+  pointer-events: none;
 }
 .ms-line {
   font-family: 'GeistRegular', sans-serif;
-  line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  line-height: 1.35;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .ms-speaker {
   display: block;
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin-bottom: 4px;
   font-family: 'GeistRegular', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
-.ms-text {
-  display: block;
-  font-family: 'GeistRegular', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.4;
 }
 .ms-prev {
   opacity: 0.3;
-  animation: msPrevIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  font-family: 'GeistRegular', sans-serif;
+  animation: msPrevIn 0.5s ease;
 }
 .ms-current {
   opacity: 1;
-  animation: msCurrentIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'GeistRegular', sans-serif;
+  animation: msCurrentIn 0.5s ease;
 }
 @keyframes msPrevIn {
   from { opacity: 0; transform: translateY(40px); }
@@ -941,8 +935,9 @@ section h2 {
 }
 
 @media (max-width: 600px) {
-  .ms-text { font-size: 1.2rem; }
-  .ms-speaker { font-size: 0.75rem; }
+  .immersive-manuscript { padding: 0 20px; bottom: 100px; }
+  .ms-prev { font-size: 1.1rem; margin-bottom: 10px; }
+  .ms-current { font-size: 1.5rem; }
   .immersive-stage { gap: 24px; }
   .immersive-cover-img { max-height: 40vh; }
 }
