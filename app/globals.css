@@ -675,7 +675,8 @@ section h2 {
 }
 .immersive-card-wrapper:hover { transform: translateY(-6px); }
 
-/* Card container: bare wrapper, no padding/margin/background. */
+/* Card container: bare wrapper, no padding/margin/background.
+   border-radius matches the image so the box-shadow follows the rounded shape. */
 .immersive-card {
   position: relative;
   display: block;
@@ -684,10 +685,11 @@ section h2 {
   padding: 0;
   border: 0;
   background: transparent;
+  border-radius: 16px;
   transition: box-shadow 0.4s ease;
 }
 .immersive-card-wrapper:hover .immersive-card {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 /* Image: full width at natural proportions, rounded corners on the image itself. */
@@ -723,18 +725,22 @@ section h2 {
   line-height: 1.4;
 }
 
-/* Cinematic overlay */
+/* Cinematic overlay — fullscreen fixed position regardless of scroll */
 .immersive-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.78);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   z-index: 3000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 40px;
+  padding: 40px 24px;
+  overflow-y: auto;
   animation: immersiveFadeIn 0.35s ease;
 }
 @keyframes immersiveFadeIn {
@@ -764,9 +770,11 @@ section h2 {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  gap: 32px;
   width: 100%;
-  max-width: 720px;
+  max-width: 700px;
+  margin: auto;
   z-index: 3005;
   animation: immersivePop 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -775,110 +783,121 @@ section h2 {
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.immersive-cover {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  max-height: 60vh;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 40px 120px rgba(0,0,0,0.7);
-  background: #111;
-}
+/* Standalone cover image inside the overlay — natural proportions, centered */
 .immersive-cover-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.immersive-cover-meta {
-  margin-top: 24px;
-  color: #fff;
-  padding: 0 4px;
-}
-.immersive-cover-meta h2 {
-  font-family: 'GeistRegular', sans-serif;
-  font-size: 1.7rem;
-  font-weight: 400;
-  margin: 0 0 6px;
-  color: #fff;
-}
-.immersive-cover-meta p {
-  font-size: 0.95rem;
-  margin: 0;
-  opacity: 0.7;
-  color: #fff;
+  display: block;
+  max-width: 100%;
+  max-height: 50vh;
+  width: auto;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
 }
 
-/* Controls under cover */
+/* Inline audio controls under the cover image */
 .immersive-controls {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 28px;
-  padding: 0 4px;
+  width: 100%;
 }
 .immersive-play-btn {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: none;
   background: #fff;
   color: #000;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   flex-shrink: 0;
   transition: transform 0.15s ease;
 }
 .immersive-play-btn:hover { transform: scale(1.06); }
 
-.immersive-cc-btn {
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 19px;
-  border: 1px solid rgba(255,255,255,0.32);
-  background: transparent;
-  color: #fff;
-  font-family: 'GeistMono', monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.05em;
+.immersive-progress {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  overflow: hidden;
 }
-.immersive-cc-btn:hover { background: rgba(255,255,255,0.1); }
-.immersive-cc-btn.active {
+.immersive-progress-fill {
+  height: 100%;
   background: #fff;
-  color: #000;
-  border-color: #fff;
+  border-radius: 2px;
+  transition: width 0.1s linear;
 }
 
 .immersive-time {
   font-family: 'GeistMono', monospace;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
-  margin-left: auto;
+  color: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
 }
 .immersive-time-sep { opacity: 0.5; margin: 0 4px; }
 
-/* Thin progress bar pinned to bottom of overlay */
-.immersive-progress {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  background: rgba(255,255,255,0.12);
-  cursor: pointer;
-  z-index: 3010;
+/* Synced manuscript — auto-shown, large headline typography */
+.immersive-manuscript {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+  color: #fff;
+  min-height: 200px;
+  justify-content: flex-start;
+  margin-top: 8px;
 }
-.immersive-progress-fill {
-  height: 100%;
-  background: #fff;
-  transition: width 0.1s linear;
+.ms-line {
+  font-family: 'GeistRegular', sans-serif;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ms-speaker {
+  display: block;
+  font-family: 'GeistRegular', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.ms-text {
+  display: block;
+  font-family: 'GeistRegular', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+.ms-prev {
+  opacity: 0.3;
+  animation: msPrevIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ms-current {
+  opacity: 1;
+  animation: msCurrentIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes msPrevIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 0.3; transform: translateY(0); }
+}
+@keyframes msCurrentIn {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Sliding subtitles panel from right */
+@media (max-width: 600px) {
+  .ms-text { font-size: 1.2rem; }
+  .ms-speaker { font-size: 0.75rem; }
+  .immersive-stage { gap: 24px; }
+  .immersive-cover-img { max-height: 40vh; }
+}
+
+/* Old sliding subtitles panel — kept harmless, no longer rendered */
 .immersive-subs {
   position: fixed;
   top: 0;
