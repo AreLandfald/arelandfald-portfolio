@@ -675,14 +675,11 @@ section h2 {
 }
 .immersive-card-wrapper:hover { transform: translateY(-6px); }
 
-/* Card container: relative with 1:1 aspect-ratio so the absolutely-positioned
-   image always has a sized parent to fill. */
+/* Card container: width 100%, height determined naturally by the image inside. */
 .immersive-card {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
   margin: 0;
   padding: 0;
   border: 0;
@@ -695,16 +692,12 @@ section h2 {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
-/* Image: absolute, sits inside the card with object-fit contain so the full
-   cover artwork is always visible (no cropping). */
+/* Image: relative flow, full width at natural proportions, no cropping. */
 .immersive-card-img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  height: auto;
+  object-fit: unset;
   display: block;
   margin: 0;
   padding: 0;
