@@ -735,7 +735,7 @@ section h2 {
   align-items: center;
   justify-content: center;
   padding: 40px 24px;
-  overflow-y: auto;
+  overflow: hidden;
   animation: immersiveFadeIn 0.35s ease;
 }
 @keyframes immersiveFadeIn {
@@ -761,16 +761,20 @@ section h2 {
 }
 .immersive-close:hover { background: rgba(255,255,255,0.22); }
 
-/* Stage = the cover image with gradient + manuscript + controls overlaid on it */
+/* Stage = vertical flex column: cover image → manuscript → controls */
 .immersive-stage {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 90vh;
+  max-width: min(90vw, 560px);
+  width: 100%;
+  margin: auto;
+  background: #000;
   border-radius: 14px;
   overflow: hidden;
-  max-width: 100%;
-  max-height: 90vh;
-  margin: auto;
-  font-size: 0;
   z-index: 3005;
   animation: immersivePop 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -779,41 +783,30 @@ section h2 {
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Cover image: natural proportions, fills the stage */
+/* Cover image: natural proportions, fills the stage width */
 .immersive-cover-img {
   display: block;
-  max-width: 100%;
-  max-height: 90vh;
-  width: auto;
+  width: 100%;
   height: auto;
+  max-height: 55vh;
+  object-fit: contain;
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: top;
 }
 
-/* Gradient overlay on the lower 70% of the cover image */
-.immersive-cover-shade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 70%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.97) 100%);
-  pointer-events: none;
-}
-
-/* Audio controls overlaid at the very bottom of the cover */
+/* Audio controls — flow naturally at the bottom of the flex column */
 .immersive-controls {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  bottom: auto;
+  width: 100%;
+  margin-top: 12px;
   padding: 12px 20px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 14px;
+  background: rgba(0, 0, 0, 0);
 }
 .immersive-play-btn {
   width: 34px;
@@ -859,16 +852,15 @@ section h2 {
   letter-spacing: 0.02em;
 }
 
-/* Synced manuscript — sits inside the cover gradient zone */
+/* Synced manuscript — flows below the cover in the stage column */
 .immersive-manuscript {
-  position: absolute;
-  bottom: 72px;
-  left: 0;
-  right: 0;
-  padding: 0 24px;
+  position: relative;
+  bottom: auto;
+  margin-top: auto;
+  width: 100%;
+  padding: 16px 24px 0;
   text-align: left;
   color: #fff;
-  pointer-events: none;
   font-size: 14px;
 }
 .ms-line {

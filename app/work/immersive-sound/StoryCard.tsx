@@ -138,7 +138,6 @@ export default function StoryCard({
 
           <div className="immersive-stage" onClick={(e) => e.stopPropagation()}>
             {imageSrc && <img src={imageSrc} alt="" className="immersive-cover-img" />}
-            <div className="immersive-cover-shade" aria-hidden="true" />
 
             {manuscriptLines && manuscriptLines.length > 0 && (
               <div className="immersive-manuscript">
