@@ -26,13 +26,12 @@ export default function StoryCard({
   manuscriptLines?: Line[];
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [expanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  /* ── audio event listeners ── */
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -63,19 +62,17 @@ export default function StoryCard({
       audio.removeEventListener("durationchange", onLoaded);
       audio.removeEventListener("ended", onEnd);
     };
-  }, [manuscriptLines]);
+  }, [manuscriptLines, open]);
 
-  /* ── lock scroll + ESC when open ── */
-  useEffect(() => {
-    if (!expanded) return;
-    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
-    document.addEventListener("keydown", onEsc);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onEsc);
-      document.body.style.overflow = "";
-    };
-  }, [expanded]);
+  const playFromStart = () => {
+    setOpen(true);
+    const audio = audioRef.current;
+    if (!audio) return;
+    document.querySelectorAll("audio").forEach((a) => { if (a !== audio) a.pause(); });
+    audio.play().catch(() => {});
+    setPlaying(true);
+    if (audio.duration && isFinite(audio.duration)) setDuration(audio.duration);
+  };
 
   const togglePlay = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -100,20 +97,23 @@ export default function StoryCard({
     audio.currentTime = ratio * audio.duration;
   };
 
-  const close = () => {
-    setExpanded(false);
-    const audio = audioRef.current;
-    if (audio) { audio.pause(); setPlaying(false); }
-  };
-
   const pct = duration ? (time / duration) * 100 : 0;
   const prevLine = activeIndex > 0 && manuscriptLines ? manuscriptLines[activeIndex - 1] : null;
   const currentLine = activeIndex >= 0 && manuscriptLines ? manuscriptLines[activeIndex] : null;
 
+  const speakerStyle: React.CSSProperties = {
+    display: "block",
+    fontFamily: "'GeistRegular', sans-serif",
+    fontSize: "0.65rem",
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    color: "#000",
+    marginBottom: 4,
+  };
+
   return (
-    <>
-      {/* ── card ── */}
-      <button type="button" className="immersive-card-wrapper" onClick={() => setExpanded(true)}>
+    <div>
+      <button type="button" className="immersive-card-wrapper" onClick={playFromStart}>
         <div className="immersive-card">
           {imageSrc && <img src={imageSrc} alt="" className="immersive-card-img" />}
         </div>
@@ -123,175 +123,111 @@ export default function StoryCard({
         </div>
       </button>
 
-      {/* ── overlay ── */}
-      {expanded && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.93)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            animation: "immersiveFadeIn 0.35s ease",
-          }}
-          onClick={close}
-        >
-          {/* close button */}
-          <button
-            type="button"
-            onClick={close}
-            aria-label="Close"
-            style={{
-              position: "fixed",
-              top: 24,
-              right: 28,
-              width: 44,
-              height: 44,
-              borderRadius: "50%",
-              border: "none",
-              background: "rgba(255,255,255,0.1)",
-              color: "#fff",
-              fontSize: 26,
-              cursor: "pointer",
-              zIndex: 10000,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            ×
-          </button>
-
-          {/* stage — stops click propagation */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              position: "relative",
-              width: "min(90vw, 520px)",
-              borderRadius: 14,
-              overflow: "hidden",
-              background: "#111",
-              animation: "immersivePop 0.45s cubic-bezier(0.16,1,0.3,1)",
-            }}
-          >
-            {/* cover image */}
-            {imageSrc && (
-              <img
-                src={imageSrc}
-                alt=""
-                style={{ display: "block", width: "100%", height: "auto" }}
-              />
-            )}
-
-            {/* dark gradient over lower 70% */}
-            <div
-              aria-hidden
+      {open && audioSrc && (
+        <div style={{ marginTop: 16, padding: "0 4px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+            <button
+              type="button"
+              onClick={togglePlay}
+              aria-label={playing ? "Pause" : "Play"}
               style={{
-                position: "absolute",
-                left: 0, right: 0, bottom: 0,
-                height: "70%",
-                background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.97) 100%)",
-                pointerEvents: "none",
+                width: 34,
+                height: 34,
+                borderRadius: "50%",
+                border: "none",
+                background: "#000",
+                color: "#fff",
+                fontSize: 11,
+                cursor: "pointer",
+                flexShrink: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-            />
+            >
+              {playing ? "❚❚" : "▶"}
+            </button>
 
-            {/* manuscript */}
-            {manuscriptLines && manuscriptLines.length > 0 && (
+            <div
+              onClick={onProgressClick}
+              style={{
+                flex: 1,
+                height: 3,
+                background: "rgba(0,0,0,0.15)",
+                borderRadius: 2,
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
               <div
                 style={{
-                  position: "absolute",
-                  left: 0, right: 0,
-                  bottom: 72,
-                  padding: "0 24px",
-                  pointerEvents: "none",
+                  height: "100%",
+                  width: `${pct}%`,
+                  background: "#fff",
+                  borderRadius: 2,
+                  transition: "width 0.1s linear",
                 }}
-              >
-                {prevLine && (
-                  <div key={`p-${activeIndex}`} style={{ marginBottom: 12, opacity: 0.28, animation: "msPrevIn 0.5s ease" }}>
-                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
-                      {prevLine.speaker}
-                    </span>
-                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "0.9rem", color: "#fff", lineHeight: 1.35 }}>
-                      {prevLine.text}
-                    </span>
-                  </div>
-                )}
-                {currentLine && (
-                  <div key={`c-${activeIndex}`} style={{ opacity: 1, animation: "msCurrentSlideUp 0.55s cubic-bezier(0.16,1,0.3,1)" }}>
-                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
-                      {currentLine.speaker}
-                    </span>
-                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "1.25rem", color: "#fff", lineHeight: 1.35 }}>
-                      {currentLine.text}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+              />
+            </div>
 
-            {/* controls */}
-            {audioSrc && (
-              <div
-                style={{
-                  position: "absolute",
-                  left: 0, right: 0, bottom: 0,
-                  padding: "12px 20px 16px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={togglePlay}
-                  aria-label={playing ? "Pause" : "Play"}
-                  style={{
-                    width: 34, height: 34,
-                    borderRadius: "50%",
-                    border: "none",
-                    background: "rgba(255,255,255,0.15)",
-                    color: "#fff",
-                    fontSize: 11,
-                    cursor: "pointer",
-                    flexShrink: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {playing ? "❚❚" : "▶"}
-                </button>
-
-                {/* progress bar */}
-                <div
-                  onClick={onProgressClick}
-                  style={{
-                    flex: 1,
-                    height: 3,
-                    background: "rgba(255,255,255,0.2)",
-                    borderRadius: 2,
-                    cursor: "pointer",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  <div style={{ height: "100%", width: `${pct}%`, background: "#fff", borderRadius: 2, transition: "width 0.1s linear" }} />
-                </div>
-
-                <span style={{ fontFamily: "'GeistMono', monospace", fontSize: "0.72rem", color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap" }}>
-                  {format(time)} / {format(duration)}
-                </span>
-
-                <audio ref={audioRef} preload="auto">
-                  <source src={audioSrc} />
-                </audio>
-              </div>
-            )}
+            <span
+              style={{
+                fontFamily: "'GeistMono', monospace",
+                fontSize: "0.72rem",
+                color: "rgba(0,0,0,0.65)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {format(time)} / {format(duration)}
+            </span>
           </div>
+
+          {manuscriptLines && manuscriptLines.length > 0 && (
+            <div>
+              {prevLine && (
+                <div style={{ marginBottom: 12, opacity: 0.3 }}>
+                  <span style={speakerStyle}>{prevLine.speaker}</span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'GeistRegular', sans-serif",
+                      fontSize: "0.9rem",
+                      color: "#000",
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {prevLine.text}
+                  </span>
+                </div>
+              )}
+              {currentLine && (
+                <div
+                  key={`c-${activeIndex}`}
+                  style={{ opacity: 1, animation: "msCurrentSlideUp 0.55s cubic-bezier(0.16,1,0.3,1)" }}
+                >
+                  <span style={speakerStyle}>{currentLine.speaker}</span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'GeistRegular', sans-serif",
+                      fontSize: "1.25rem",
+                      color: "#000",
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {currentLine.text}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          <audio ref={audioRef} preload="auto">
+            <source src={audioSrc} />
+          </audio>
         </div>
       )}
-    </>
+    </div>
   );
 }
