@@ -111,7 +111,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 1: The Nightman&apos;s Mound"
                 location="Near the old town hall, where merchants once gathered"
                 description="As twilight settles over the nightman's mound, the air hangs heavy with rot and buried filth. Jokum stands bent over his shovel, carving into the black earth, while at his feet lies a pale, lifeless man marked by the noose. He calls you closer — there is more work to be done."
-                imageSrc="/Assets/Immersive/scene1.cover.png"
+                imageSrc="/Assets/Immersive/cover-til-lytteropplevelse.jpg"
                 audioSrc="/Assets/Immersive/scene 1 til portfølje copy.mp3"
                 manuscriptLines={scene1Manuscript}
               />
@@ -119,7 +119,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 2: The Stable"
                 location="In front of the ancient stone cathedral"
                 description="Church bells echo through the morning mist. The faithful gather for mass, but the nightman's work is far from holy. His presence taints this sacred ground..."
-                imageSrc="/Assets/Immersive/scene2.cover.png"
+                imageSrc="/Assets/Immersive/cover-til-lytteropplevelse2.jpg"
                 audioSrc="/Assets/Immersive/scene 2 copy.mp3"
                 manuscriptLines={scene2Manuscript}
               />
@@ -127,7 +127,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 3: The Outhouse"
                 location="Behind the merchant's house, near the old stables"
                 description="The smell of hay and horses fills the air. A dead animal lies in the corner — another job only the nightman will touch. Society's outcasts doing society's dirty work..."
-                imageSrc="/Assets/Immersive/scene3.cover.png"
+                imageSrc="/Assets/Immersive/cover-til-lytteropplevelse3.jpg"
                 audioSrc="/Assets/Immersive/scene 3 copy.mp3"
                 manuscriptLines={scene3Manuscript}
               />
@@ -135,7 +135,7 @@ export default function ImmersiveSoundPage() {
                 title="Scene 4: Gallows Hill"
                 location="At the edge of town, where justice is served"
                 description="A crowd gathers in grim silence. The executioner prepares his tools, and beside him stands his assistant — the nightman. Together, they carry out the city's darkest duty..."
-                imageSrc="/Assets/Immersive/scene4.cover.png"
+                imageSrc="/Assets/Immersive/cover-til-lytteropplevelse4.jpg"
                 audioSrc="/Assets/Immersive/scene 4 copy.mp3"
                 manuscriptLines={scene4Manuscript}
               />
@@ -185,53 +185,6 @@ export default function ImmersiveSoundPage() {
           <img src="/Assets/Immersive/bilde fra prototype.png" alt="Prototype screenshot" style={{ width: "100%", height: "auto", display: "block" }} />
         </section>
 
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Trailer</h2>
-          </div>
-          <div className="section-content">
-            <p>A short trailer captured the prototype&apos;s atmosphere and pacing.</p>
-          </div>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <video controls playsInline style={{ width: "100%", height: "auto", display: "block" }}>
-            <source src="/Assets/Immersive/3.nattmannen.video-web.mp4" type="video/mp4" />
-          </video>
-        </section>
-
-        <section className="section-statement fade-in">
-          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            From newspaper to street to phone.
-          </p>
-        </section>
-
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Marketing</h2>
-          </div>
-          <div className="section-content">
-            <p>
-              Marketing materials, wayfinding signage, a companion website and the Echos.xyz delivery app — all tuned to the same hushed, period-correct tone.
-            </p>
-          </div>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <div className="image-grid">
-            <img src="/Assets/Immersive/avisen.4.png" alt="Newspaper advertisement for Nattmannen" />
-            <img src="/Assets/Immersive/henge.plakater.utenoutline.png" alt="Hanging posters for Nattmannen" />
-          </div>
-          <div className="image-grid">
-            <img src="/Assets/Immersive/veiviser321.png" alt="Wayfinding signage" />
-            <img src="/Assets/Immersive/veivisere3.png" alt="Directional signage" />
-          </div>
-          <div className="image-grid">
-            <img src="/Assets/nattmannen.nettside1.png" alt="Nattmannen website — homepage" />
-            <img src="/Assets/nattmannen.nettside2.png" alt="Nattmannen website — content page" />
-          </div>
-          <img src="/Assets/Immersive/3.echoes.png" alt="Echos.xyz app interface" style={{ width: "100%", display: "block", marginTop: "2rem" }} />
-        </section>
       </main>
     </>
   );

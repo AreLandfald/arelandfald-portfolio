@@ -31,6 +31,7 @@ export default function StoryCard({
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [subsOn, setSubsOn] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -98,24 +99,39 @@ export default function StoryCard({
   };
 
   const pct = duration ? (time / duration) * 100 : 0;
-  const prevLine = activeIndex > 0 && manuscriptLines ? manuscriptLines[activeIndex - 1] : null;
+  const firstLineTime = manuscriptLines?.[0]?.time ?? Infinity;
+  const beforeFirstLine = activeIndex < 0 && time < firstLineTime;
   const currentLine = activeIndex >= 0 && manuscriptLines ? manuscriptLines[activeIndex] : null;
-
-  const speakerStyle: React.CSSProperties = {
-    display: "block",
-    fontFamily: "'GeistRegular', sans-serif",
-    fontSize: "0.65rem",
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    color: "#000",
-    marginBottom: 4,
-  };
 
   return (
     <div>
       <button type="button" className="immersive-card-wrapper" onClick={playFromStart}>
         <div className="immersive-card">
-          {imageSrc && <img src={imageSrc} alt="" className="immersive-card-img" />}
+          {imageSrc && (
+            <div className="immersive-card-image-wrap">
+              <img src={imageSrc} alt="" className="immersive-card-img" />
+              {open && subsOn && (
+                <>
+                  <div className="immersive-subs-dim" aria-hidden="true" />
+                  <div className="immersive-subs-overlay">
+                    {beforeFirstLine && (
+                      <div className="immersive-subs-dots" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    )}
+                    {currentLine && (
+                      <div key={`c-${activeIndex}`} className="immersive-subs-line">
+                        <span className="immersive-subs-speaker">{currentLine.speaker}</span>
+                        <span className="immersive-subs-text">{currentLine.text}</span>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
         </div>
         <div className="immersive-card-meta">
           <h3 dangerouslySetInnerHTML={{ __html: title }} />
@@ -125,7 +141,7 @@ export default function StoryCard({
 
       {open && audioSrc && (
         <div style={{ marginTop: 16, padding: "0 4px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
             <button
               type="button"
               onClick={togglePlay}
@@ -153,7 +169,7 @@ export default function StoryCard({
               style={{
                 flex: 1,
                 height: 3,
-                background: "rgba(0,0,0,0.15)",
+                background: "rgba(0,0,0,0.12)",
                 borderRadius: 2,
                 cursor: "pointer",
                 position: "relative",
@@ -164,7 +180,7 @@ export default function StoryCard({
                 style={{
                   height: "100%",
                   width: `${pct}%`,
-                  background: "#fff",
+                  background: "#000",
                   borderRadius: 2,
                   transition: "width 0.1s linear",
                 }}
@@ -184,43 +200,15 @@ export default function StoryCard({
           </div>
 
           {manuscriptLines && manuscriptLines.length > 0 && (
-            <div>
-              {prevLine && (
-                <div style={{ marginBottom: 12, opacity: 0.3 }}>
-                  <span style={speakerStyle}>{prevLine.speaker}</span>
-                  <span
-                    style={{
-                      display: "block",
-                      fontFamily: "'GeistRegular', sans-serif",
-                      fontSize: "0.9rem",
-                      color: "#000",
-                      lineHeight: 1.35,
-                    }}
-                  >
-                    {prevLine.text}
-                  </span>
-                </div>
-              )}
-              {currentLine && (
-                <div
-                  key={`c-${activeIndex}`}
-                  style={{ opacity: 1, animation: "msCurrentSlideUp 0.55s cubic-bezier(0.16,1,0.3,1)" }}
-                >
-                  <span style={speakerStyle}>{currentLine.speaker}</span>
-                  <span
-                    style={{
-                      display: "block",
-                      fontFamily: "'GeistRegular', sans-serif",
-                      fontSize: "1.25rem",
-                      color: "#000",
-                      lineHeight: 1.35,
-                    }}
-                  >
-                    {currentLine.text}
-                  </span>
-                </div>
-              )}
-            </div>
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); setSubsOn((v) => !v); }}
+              className="immersive-subs-toggle"
+              aria-pressed={subsOn}
+            >
+              <span className="immersive-subs-toggle-icon" aria-hidden="true">CC</span>
+              <span>{subsOn ? "Hide subtitles" : "English subtitles"}</span>
+            </button>
           )}
 
           <audio ref={audioRef} preload="auto">
