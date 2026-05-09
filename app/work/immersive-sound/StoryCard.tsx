@@ -97,10 +97,12 @@ export default function StoryCard({
     }
   };
 
-  const onSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const audio = audioRef.current;
-    if (!audio) return;
-    audio.currentTime = parseFloat(e.target.value);
+    if (!audio || !audio.duration || !isFinite(audio.duration)) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = Math.max(0, Math.min(1, ratio)) * audio.duration;
   };
 
   const closeOverlay = () => {
@@ -136,6 +138,24 @@ export default function StoryCard({
 
           <div className="immersive-stage" onClick={(e) => e.stopPropagation()}>
             {imageSrc && <img src={imageSrc} alt="" className="immersive-cover-img" />}
+            <div className="immersive-cover-shade" aria-hidden="true" />
+
+            {manuscriptLines && manuscriptLines.length > 0 && (
+              <div className="immersive-manuscript">
+                {prevLine && (
+                  <div className="ms-line ms-prev" key={`p-${activeIndex}`}>
+                    <span className="ms-speaker">{prevLine.speaker}</span>
+                    <div className="ms-text">{prevLine.text}</div>
+                  </div>
+                )}
+                {currentLine && (
+                  <div className="ms-line ms-current" key={`c-${activeIndex}`}>
+                    <span className="ms-speaker">{currentLine.speaker}</span>
+                    <div className="ms-text">{currentLine.text}</div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {audioSrc && (
               <div className="immersive-controls">
@@ -147,19 +167,19 @@ export default function StoryCard({
                 >
                   {playing ? "❚❚" : "▶"}
                 </button>
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 0}
-                  step={0.05}
-                  value={time}
-                  onChange={onSeek}
+                <div
                   className="immersive-progress"
-                  style={{ ["--progress" as string]: `${pct}%` }}
-                  aria-label="Seek"
-                />
+                  onClick={onProgressClick}
+                  role="slider"
+                  aria-valuemin={0}
+                  aria-valuemax={duration || 0}
+                  aria-valuenow={time}
+                  tabIndex={0}
+                >
+                  <div className="immersive-progress-fill" style={{ width: `${pct}%` }} />
+                </div>
                 <span className="immersive-time">
-                  {format(time)} <span className="immersive-time-sep">/</span> {format(duration)}
+                  {format(time)} / {format(duration)}
                 </span>
                 <audio ref={audioRef} preload="auto">
                   <source src={audioSrc} />
@@ -167,23 +187,6 @@ export default function StoryCard({
               </div>
             )}
           </div>
-
-          {manuscriptLines && manuscriptLines.length > 0 && (
-            <div className="immersive-manuscript" onClick={(e) => e.stopPropagation()}>
-              {prevLine && (
-                <div className="ms-line ms-prev" key={`p-${activeIndex}`}>
-                  <span className="ms-speaker">{prevLine.speaker}:</span>
-                  {prevLine.text}
-                </div>
-              )}
-              {currentLine && (
-                <div className="ms-line ms-current" key={`c-${activeIndex}`}>
-                  <span className="ms-speaker">{currentLine.speaker}:</span>
-                  {currentLine.text}
-                </div>
-              )}
-            </div>
-          )}
         </div>
       )}
     </>
