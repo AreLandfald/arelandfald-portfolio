@@ -55,8 +55,8 @@ export default function ImmersiveSoundPage() {
 
       <section className="hero-section">
         <img
-          src="/Assets/Immersive/3.moodboard nattmannen.jpeg"
-          alt="Moodboard for Nattmannen project"
+          src="/Assets/Immersive/immersive.herobilde.jpg"
+          alt="Immersive sound — Nattmannen"
           className="hero-image-full"
         />
         <div className="hero-title-overlay">
