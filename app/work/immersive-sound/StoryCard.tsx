@@ -14,14 +14,13 @@ function format(t: number) {
 export default function StoryCard({
   title,
   location,
-  description,
   imageSrc,
   audioSrc,
-  manuscriptLines
+  manuscriptLines,
 }: {
   title: string;
   location: string;
-  description: string;
+  description?: string;
   imageSrc?: string;
   audioSrc?: string;
   manuscriptLines?: Line[];
@@ -33,9 +32,11 @@ export default function StoryCard({
   const [duration, setDuration] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  /* ── audio event listeners ── */
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
     const onTime = () => {
       setTime(audio.currentTime);
       if (manuscriptLines?.length) {
@@ -44,38 +45,36 @@ export default function StoryCard({
         for (let i = 0; i < manuscriptLines.length; i++) {
           const cur = manuscriptLines[i].time;
           const nxt = manuscriptLines[i + 1]?.time ?? Infinity;
-          if (t >= cur && t < nxt) {
-            idx = i;
-            break;
-          }
+          if (t >= cur && t < nxt) { idx = i; break; }
         }
         setActiveIndex(idx);
       }
     };
     const onLoaded = () => setDuration(audio.duration);
     const onEnd = () => setPlaying(false);
+
     audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("loadedmetadata", onLoaded);
+    audio.addEventListener("durationchange", onLoaded);
     audio.addEventListener("ended", onEnd);
     return () => {
       audio.removeEventListener("timeupdate", onTime);
       audio.removeEventListener("loadedmetadata", onLoaded);
+      audio.removeEventListener("durationchange", onLoaded);
       audio.removeEventListener("ended", onEnd);
     };
   }, [manuscriptLines]);
 
+  /* ── lock scroll + ESC when open ── */
   useEffect(() => {
     if (!expanded) return;
-    const onEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeOverlay();
-    };
+    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
     document.addEventListener("keydown", onEsc);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onEsc);
       document.body.style.overflow = "";
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded]);
 
   const togglePlay = (e?: React.MouseEvent) => {
@@ -83,14 +82,10 @@ export default function StoryCard({
     const audio = audioRef.current;
     if (!audio) return;
     if (audio.paused) {
-      document.querySelectorAll("audio").forEach((a) => {
-        if (a !== audio) a.pause();
-      });
+      document.querySelectorAll("audio").forEach((a) => { if (a !== audio) a.pause(); });
       audio.play().catch(() => {});
       setPlaying(true);
-      if (audio.duration && isFinite(audio.duration)) {
-        setDuration(audio.duration);
-      }
+      if (audio.duration && isFinite(audio.duration)) setDuration(audio.duration);
     } else {
       audio.pause();
       setPlaying(false);
@@ -101,17 +96,14 @@ export default function StoryCard({
     const audio = audioRef.current;
     if (!audio || !audio.duration || !isFinite(audio.duration)) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    audio.currentTime = Math.max(0, Math.min(1, ratio)) * audio.duration;
+    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    audio.currentTime = ratio * audio.duration;
   };
 
-  const closeOverlay = () => {
+  const close = () => {
     setExpanded(false);
     const audio = audioRef.current;
-    if (audio) {
-      audio.pause();
-      setPlaying(false);
-    }
+    if (audio) { audio.pause(); setPlaying(false); }
   };
 
   const pct = duration ? (time / duration) * 100 : 0;
@@ -120,6 +112,7 @@ export default function StoryCard({
 
   return (
     <>
+      {/* ── card ── */}
       <button type="button" className="immersive-card-wrapper" onClick={() => setExpanded(true)}>
         <div className="immersive-card">
           {imageSrc && <img src={imageSrc} alt="" className="immersive-card-img" />}
@@ -130,56 +123,167 @@ export default function StoryCard({
         </div>
       </button>
 
+      {/* ── overlay ── */}
       {expanded && (
-        <div className="immersive-overlay" onClick={closeOverlay} role="dialog" aria-modal="true">
-          <button type="button" className="immersive-close" onClick={closeOverlay} aria-label="Close">
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(0,0,0,0.93)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            animation: "immersiveFadeIn 0.35s ease",
+          }}
+          onClick={close}
+        >
+          {/* close button */}
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close"
+            style={{
+              position: "fixed",
+              top: 24,
+              right: 28,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              border: "none",
+              background: "rgba(255,255,255,0.1)",
+              color: "#fff",
+              fontSize: 26,
+              cursor: "pointer",
+              zIndex: 10000,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             ×
           </button>
 
-          <div className="immersive-stage" onClick={(e) => e.stopPropagation()}>
-            {imageSrc && <img src={imageSrc} alt="" className="immersive-cover-img" />}
+          {/* stage — stops click propagation */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "relative",
+              width: "min(90vw, 520px)",
+              borderRadius: 14,
+              overflow: "hidden",
+              background: "#111",
+              animation: "immersivePop 0.45s cubic-bezier(0.16,1,0.3,1)",
+            }}
+          >
+            {/* cover image */}
+            {imageSrc && (
+              <img
+                src={imageSrc}
+                alt=""
+                style={{ display: "block", width: "100%", height: "auto" }}
+              />
+            )}
 
+            {/* dark gradient over lower 70% */}
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                left: 0, right: 0, bottom: 0,
+                height: "70%",
+                background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.97) 100%)",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* manuscript */}
             {manuscriptLines && manuscriptLines.length > 0 && (
-              <div className="immersive-manuscript">
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0, right: 0,
+                  bottom: 72,
+                  padding: "0 24px",
+                  pointerEvents: "none",
+                }}
+              >
                 {prevLine && (
-                  <div className="ms-line ms-prev" key={`p-${activeIndex}`}>
-                    <span className="ms-speaker">{prevLine.speaker}</span>
-                    <div className="ms-text">{prevLine.text}</div>
+                  <div key={`p-${activeIndex}`} style={{ marginBottom: 12, opacity: 0.28, animation: "msPrevIn 0.5s ease" }}>
+                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
+                      {prevLine.speaker}
+                    </span>
+                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "0.9rem", color: "#fff", lineHeight: 1.35 }}>
+                      {prevLine.text}
+                    </span>
                   </div>
                 )}
                 {currentLine && (
-                  <div className="ms-line ms-current" key={`c-${activeIndex}`}>
-                    <span className="ms-speaker">{currentLine.speaker}</span>
-                    <div className="ms-text">{currentLine.text}</div>
+                  <div key={`c-${activeIndex}`} style={{ opacity: 1, animation: "msCurrentSlideUp 0.55s cubic-bezier(0.16,1,0.3,1)" }}>
+                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
+                      {currentLine.speaker}
+                    </span>
+                    <span style={{ display: "block", fontFamily: "'GeistRegular', sans-serif", fontSize: "1.25rem", color: "#fff", lineHeight: 1.35 }}>
+                      {currentLine.text}
+                    </span>
                   </div>
                 )}
               </div>
             )}
 
+            {/* controls */}
             {audioSrc && (
-              <div className="immersive-controls">
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0, right: 0, bottom: 0,
+                  padding: "12px 20px 16px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                }}
+              >
                 <button
                   type="button"
-                  className="immersive-play-btn"
                   onClick={togglePlay}
                   aria-label={playing ? "Pause" : "Play"}
+                  style={{
+                    width: 34, height: 34,
+                    borderRadius: "50%",
+                    border: "none",
+                    background: "rgba(255,255,255,0.15)",
+                    color: "#fff",
+                    fontSize: 11,
+                    cursor: "pointer",
+                    flexShrink: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
                   {playing ? "❚❚" : "▶"}
                 </button>
+
+                {/* progress bar */}
                 <div
-                  className="immersive-progress"
                   onClick={onProgressClick}
-                  role="slider"
-                  aria-valuemin={0}
-                  aria-valuemax={duration || 0}
-                  aria-valuenow={time}
-                  tabIndex={0}
+                  style={{
+                    flex: 1,
+                    height: 3,
+                    background: "rgba(255,255,255,0.2)",
+                    borderRadius: 2,
+                    cursor: "pointer",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
                 >
-                  <div className="immersive-progress-fill" style={{ width: `${pct}%` }} />
+                  <div style={{ height: "100%", width: `${pct}%`, background: "#fff", borderRadius: 2, transition: "width 0.1s linear" }} />
                 </div>
-                <span className="immersive-time">
+
+                <span style={{ fontFamily: "'GeistMono', monospace", fontSize: "0.72rem", color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap" }}>
                   {format(time)} / {format(duration)}
                 </span>
+
                 <audio ref={audioRef} preload="auto">
                   <source src={audioSrc} />
                 </audio>
