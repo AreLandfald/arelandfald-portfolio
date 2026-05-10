@@ -171,11 +171,8 @@ export default function ImmersiveSoundPage() {
             <p>
               Wearing a pair of custom-designed glasses inspired by medieval eyewear signals entry into another time. It deepens immersion and creates a shared identity among visitors, turning the audience itself into part of the experience. And a group of people wearing funny-looking glasses tends to make outsiders stop and wonder.
             </p>
+            <img src="/Assets/Immersive/bilde fra prototype.png" alt="Prototype on-site with custom glasses" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400, marginBottom: 200 }}>
-          <img src="/Assets/Immersive/bilde fra prototype.png" alt="Prototype on-site with custom glasses" style={{ width: "75%", height: "auto", display: "block", margin: "0 auto" }} />
         </section>
 
         <section className="section-statement fade-in">
@@ -191,18 +188,15 @@ export default function ImmersiveSoundPage() {
               The posters were designed as a 1700s news article reporting on the Nightmen and a royal decree making it punishable to call them by their slang names. Those slurs are still in everyday use today. Most people who say them have no idea they are quoting a 300-year-old insult aimed at one of Oslo&apos;s most stigmatized groups.
             </p>
             <p>The aim was to catch people&apos;s attention through recognition.</p>
+            <img src="/Assets/Immersive/henge.plakater.utenoutline.png" alt="Hanging poster campaign" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400, marginBottom: 200 }}>
-          <img src="/Assets/Immersive/henge.plakater.utenoutline.png" alt="Hanging poster campaign" style={{ width: "75%", height: "auto", display: "block", margin: "0 auto" }} />
         </section>
 
         <section className="section-statement fade-in">
           <h2 className="statement-text section-tabloid-heading">Jokum Was Real.</h2>
         </section>
 
-        <section className="section-with-heading fade-in" style={{ marginBottom: 0, paddingBottom: 40 }}>
+        <section className="section-with-heading fade-in">
           <div className="section-heading">
             <h2>Sources &amp; Background</h2>
           </div>
@@ -210,13 +204,10 @@ export default function ImmersiveSoundPage() {
             <p>
               We chose the story of the Nightmen because we believed it would resonate with a younger audience, in line with Oslo Museum&apos;s ambition to broaden its reach. The narrative design is based on real accounts, and Jokum is a real person. Our research draws on two primary sources: <em>Fra nattmann til Renholdsverk</em> and <em>De reisende i byen</em>.
             </p>
-          </div>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px", marginBottom: 200 }}>
-          <div style={{ width: "75%", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            <img src="/Assets/Immersive/fra.nattmann.til.renholdsverk.png" alt="Fra nattmann til Renholdsverk" style={{ width: "100%", height: "auto", display: "block", margin: 0 }} />
-            <img src="/Assets/Immersive/de.reisende.i.byen.png" alt="De reisende i byen" style={{ width: "100%", height: "auto", display: "block", margin: 0 }} />
+            <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+              <img src="/Assets/Immersive/fra.nattmann.til.renholdsverk.png" alt="Fra nattmann til Renholdsverk" style={{ width: "100%", height: 420, objectFit: "cover", display: "block", margin: 0 }} />
+              <img src="/Assets/Immersive/de.reisende.i.byen.png" alt="De reisende i byen" style={{ width: "100%", height: 420, objectFit: "cover", display: "block", margin: 0 }} />
+            </div>
           </div>
         </section>
 
