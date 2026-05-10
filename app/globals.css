@@ -516,6 +516,24 @@ section h2 {
   letter-spacing: -0.02em;
 }
 
+/* Tabloid-style heading: bigger and heavier than a regular statement —
+   used to introduce a new chapter on the page (e.g. "Onboarding"). */
+.section-tabloid-heading {
+  font-family: 'GeistRegular', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: none;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .section-tabloid-heading { font-size: 3.5rem; }
+}
+@media (max-width: 480px) {
+  .section-tabloid-heading { font-size: 2.6rem; }
+}
+
 .section-with-heading {
   position: relative;
   margin: 0 0 200px 0;
