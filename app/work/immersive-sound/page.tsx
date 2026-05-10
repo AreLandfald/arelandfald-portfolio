@@ -81,7 +81,7 @@ export default function ImmersiveSoundPage() {
           </p>
         </section>
 
-        <section className="section-with-heading fade-in">
+        <section className="section-with-heading fade-in" style={{ marginBottom: 0, paddingBottom: 40 }}>
           <div className="section-heading">
             <h2>Background</h2>
           </div>
@@ -95,23 +95,20 @@ export default function ImmersiveSoundPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", alignItems: "center" }}>
-            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ height: 480, width: "auto", display: "block" }} />
-            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ height: 480, width: "auto", display: "block" }} />
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px", marginBottom: 200 }}>
+          <div style={{ display: "flex", gap: 32, justifyContent: "center", alignItems: "center" }}>
+            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ height: 480, width: "auto", display: "block", margin: 0 }} />
+            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ height: 480, width: "auto", display: "block", margin: 0 }} />
           </div>
         </section>
 
         <section className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            Four scenes from Oslo year 1684. <em>Sound on</em>.
+            Fragments of four scenes from Oslo year 1684. <em>Sound on</em>.
           </p>
         </section>
 
         <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Fragments of scenes</h2>
-          </div>
           <div className="section-content" style={{ maxWidth: 1100 }}>
             <div className="story-cards-grid">
               <StoryCard
