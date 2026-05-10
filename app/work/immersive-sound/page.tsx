@@ -96,9 +96,9 @@ export default function ImmersiveSoundPage() {
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ width: "100%", height: "auto", display: "block" }} />
-            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ width: "100%", height: "auto", display: "block" }} />
+          <div style={{ display: "flex", gap: 16, justifyContent: "center", alignItems: "center" }}>
+            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ height: 480, width: "auto", display: "block" }} />
+            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ height: 480, width: "auto", display: "block" }} />
           </div>
         </section>
 
