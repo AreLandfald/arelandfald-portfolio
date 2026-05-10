@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import SlideMenu from "@/components/SlideMenu";
 import FadeInObserver from "@/components/FadeInObserver";
 import StoryCard from "./StoryCard";
-import AudioPlayer from "./AudioPlayer";
 
 export const metadata: Metadata = {
   title: "Immersive Sound Experience",
@@ -97,8 +96,8 @@ export default function ImmersiveSoundPage() {
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px", marginBottom: 200 }}>
           <div style={{ display: "flex", gap: 32, justifyContent: "center", alignItems: "center" }}>
-            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ height: 480, width: "auto", display: "block", margin: 0 }} />
-            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ height: 480, width: "auto", display: "block", margin: 0 }} />
+            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ height: 528, width: "auto", display: "block", margin: 0 }} />
+            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ height: 528, width: "auto", display: "block", margin: 0 }} />
           </div>
         </section>
 
@@ -147,6 +146,17 @@ export default function ImmersiveSoundPage() {
           </div>
         </section>
 
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>About the project</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              «Nattmannen» — or the nightman, also known as the executioner&apos;s assistant — handled the city&apos;s most unpleasant tasks in the 17th and 18th centuries: emptying latrines, removing dead animals, and assisting with executions. Seen as impure and dishonorable, he and his family lived isolated from society.
+            </p>
+          </div>
+        </section>
+
         <section className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
             &laquo;Welcome&hellip; Put on your glasses.&raquo;
@@ -168,29 +178,6 @@ export default function ImmersiveSoundPage() {
           <img src="/Assets/Immersive/bilde fra prototype.png" alt="Prototype on-site with custom glasses" style={{ width: "75%", height: "auto", display: "block", margin: "0 auto" }} />
         </section>
 
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Introduction</h2>
-          </div>
-          <div className="section-content">
-            <AudioPlayer src="/Assets/Immersive/nattmannen intro.m4a" />
-            <p>
-              The year is 1684. Here you will meet the city&apos;s most hated yet most essential workers: the nightmen. Under the cover of darkness, they emptied toilets, carried away dead animals, and took care of what no one else would touch. Scorned by the public, cast out from respectable society — and yet vital to the city&apos;s health and order.
-            </p>
-          </div>
-        </section>
-
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>About the project</h2>
-          </div>
-          <div className="section-content">
-            <p>
-              «Nattmannen» — or the nightman, also known as the executioner&apos;s assistant — handled the city&apos;s most unpleasant tasks in the 17th and 18th centuries: emptying latrines, removing dead animals, and assisting with executions. Seen as impure and dishonorable, he and his family lived isolated from society.
-            </p>
-          </div>
-        </section>
-
         <section className="section-statement fade-in">
           <h2 className="statement-text section-tabloid-heading">Onboarding</h2>
         </section>
@@ -207,8 +194,44 @@ export default function ImmersiveSoundPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px" }}>
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px", marginBottom: 200 }}>
           <img src="/Assets/Immersive/henge.plakater.utenoutline.png" alt="Hanging poster campaign" style={{ width: "75%", height: "auto", display: "block", margin: "0 auto" }} />
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading">Jokum Was Real.</h2>
+        </section>
+
+        <section className="section-with-heading fade-in" style={{ marginBottom: 0, paddingBottom: 40 }}>
+          <div className="section-heading">
+            <h2>Sources &amp; Background</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              We chose the story of the Nightmen because we believed it would resonate with a younger audience, in line with Oslo Museum&apos;s ambition to broaden its reach. The narrative design is based on real accounts, and Jokum is a real person. Our research draws on two primary sources: <em>Fra nattmann til Renholdsverk</em> and <em>De reisende i byen</em>.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px", marginBottom: 200 }}>
+          <div style={{ width: "75%", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            <img src="/Assets/Immersive/fra.nattmann.til.renholdsverk.png" alt="Fra nattmann til Renholdsverk" style={{ width: "100%", height: "auto", display: "block", margin: 0 }} />
+            <img src="/Assets/Immersive/de.reisende.i.byen.png" alt="De reisende i byen" style={{ width: "100%", height: "auto", display: "block", margin: 0 }} />
+          </div>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Credits</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              This was a group effort. My contributions included graphic design for the covers, narrative design, manuscript writing, casting, concept development, and location scouting.
+            </p>
+            <p style={{ marginTop: 40, fontSize: "0.95rem", opacity: 0.75 }}>
+              A huge thank you to Nora Smidesang, Edvin Ekholt, Teo Songstaver, and Enesa Cojocaru.
+            </p>
+          </div>
         </section>
 
       </main>
