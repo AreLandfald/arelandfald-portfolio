@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const projects = [
   { slug: "visual-identity", label: "Visual identity" },
   { slug: "website", label: "Website" },
-  { slug: "immersive-sound", label: "Immersive sound experience" },
+  { slug: "immersive-sound", label: "Immersive Sound Experience" },
   { slug: "gamedesign", label: "Gamedesign" },
   { slug: "musical-instrument", label: "Musical instrument" },
   { slug: "service-design", label: "Service design" }

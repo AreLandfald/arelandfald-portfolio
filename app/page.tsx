@@ -4,7 +4,7 @@ import BodyClass from "@/components/BodyClass";
 const T = {
   musical: { href: "/work/musical-instrument", title: "Musical instrument", img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg" },
   visual: { href: "/work/visual-identity", title: "Visual identity", img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg" },
-  immersive: { href: "/work/immersive-sound", title: "Immersive sound experience", img: "/Assets/Immersive/3.moodboard nattmannen.jpeg" },
+  immersive: { href: "/work/immersive-sound", title: "Immersive Sound Experience", img: "/Assets/Immersive/cover.immersive.jpg" },
   gamedesign: { href: "/work/gamedesign", title: "Gamedesign", img: "/Assets/Gamedesign/brettet.notater.med.farger.png" },
   website: { href: "/work/website", title: "Website", img: "/Assets/Grammars of noice/Groise.hovedside.png" },
   service: { href: "/work/service-design", title: "Service design", img: null as string | null },

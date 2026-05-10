@@ -5,8 +5,8 @@ import StoryCard from "./StoryCard";
 import AudioPlayer from "./AudioPlayer";
 
 export const metadata: Metadata = {
-  title: "Immersive sound experience",
-  description: "Immersive sound experience at Oslo Museum."
+  title: "Immersive Sound Experience",
+  description: "Immersive Sound Experience at Oslo Museum."
 };
 
 const scene3Manuscript = [
@@ -55,12 +55,12 @@ export default function ImmersiveSoundPage() {
 
       <section className="hero-section">
         <img
-          src="/Assets/Immersive/immersive.herobilde.jpg"
-          alt="Immersive sound — Nattmannen"
+          src="/Assets/Immersive/cover.immersive.jpg"
+          alt="Immersive Sound Experience — Nattmannen"
           className="hero-image-full"
         />
         <div className="hero-title-overlay">
-          <h1 className="project-title-hero">Immersive sound</h1>
+          <h1 className="project-title-hero">Immersive Sound Experience</h1>
         </div>
         <div className="hero-meta-overlay">
           <span>Type: Sound Installation</span>
@@ -95,9 +95,16 @@ export default function ImmersiveSoundPage() {
           </div>
         </section>
 
+        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <img src="/Assets/Immersive/mockup.echoes.png" alt="Echoes mockup" style={{ width: "100%", height: "auto", display: "block" }} />
+            <img src="/Assets/Immersive/mockup.echoes2.png" alt="Echoes mockup 2" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+        </section>
+
         <section className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            Four scenes from 1684.
+            Four scenes from Oslo year 1684. <em>Sound on</em>.
           </p>
         </section>
 
