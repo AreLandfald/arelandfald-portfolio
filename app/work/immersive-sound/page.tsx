@@ -165,7 +165,7 @@ export default function ImmersiveSoundPage() {
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px", marginBottom: 200 }}>
-          <img src="/Assets/Immersive/bilde fra prototype.png" alt="Prototype on-site with custom glasses" style={{ width: "100%", height: "auto", display: "block", margin: 0 }} />
+          <img src="/Assets/Immersive/bilde fra prototype.png" alt="Prototype on-site with custom glasses" style={{ width: "75%", height: "auto", display: "block", margin: "0 auto" }} />
         </section>
 
         <section className="section-with-heading fade-in">
@@ -208,7 +208,7 @@ export default function ImmersiveSoundPage() {
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px 80px" }}>
-          <img src="/Assets/Immersive/henge.plakater.utenoutline.png" alt="Hanging poster campaign" style={{ width: "100%", height: "auto", display: "block", margin: 0 }} />
+          <img src="/Assets/Immersive/henge.plakater.utenoutline.png" alt="Hanging poster campaign" style={{ width: "75%", height: "auto", display: "block", margin: "0 auto" }} />
         </section>
 
       </main>
