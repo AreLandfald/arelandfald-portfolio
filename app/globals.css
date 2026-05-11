@@ -517,15 +517,17 @@ section h2 {
 }
 
 /* Tabloid-style heading: bigger and heavier than a regular statement —
-   used to introduce a new chapter on the page (e.g. "Onboarding"). */
+   used to introduce a new chapter on the page (e.g. "Onboarding").
+   Sentence-length headings can override font-size inline. */
 .section-tabloid-heading {
   font-family: 'GeistRegular', sans-serif;
   font-size: 5.5rem;
   font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   text-transform: none;
   margin: 0;
+  max-width: 1200px;
 }
 @media (max-width: 768px) {
   .section-tabloid-heading { font-size: 3.5rem; }
