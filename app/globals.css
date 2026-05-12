@@ -564,6 +564,30 @@ section h2 {
 .section-content p { margin-bottom: 20px; }
 .section-content img { margin-top: 40px; }
 
+/* Service design — We have met circles + image grid */
+.we-have-met-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.we-have-met-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.we-have-met-images img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .we-have-met-grid { grid-template-columns: 1fr; gap: 24px; max-width: 320px; margin: 0 auto; }
+  .we-have-met-images { grid-template-columns: 1fr; }
+}
+
 /* Heritage grid */
 .heritage-grid {
   display: grid;

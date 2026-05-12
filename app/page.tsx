@@ -7,7 +7,7 @@ const T = {
   immersive: { href: "/work/immersive-sound", title: "Immersive Sound Experience", img: "/Assets/Immersive/cover.immersive.jpg" },
   gamedesign: { href: "/work/gamedesign", title: "Gamedesign", img: "/Assets/Gamedesign/brettet.notater.med.farger.png" },
   website: { href: "/work/website", title: "Website", img: "/Assets/Grammars of noice/Groise.hovedside.png" },
-  service: { href: "/work/service-design", title: "Service design", img: null as string | null },
+  service: { href: "/work/service-design", title: "Service design", img: "/Assets/Ostensjo/ostensjo.forsidebilde.jpg" },
   about: { href: "/about", title: "About me", img: "/Assets/bilde-av-meg-til-portefolje.jpg" }
 };
 

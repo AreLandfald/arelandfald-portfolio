@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SlideMenu from "@/components/SlideMenu";
 import FadeInObserver from "@/components/FadeInObserver";
+import BodyClass from "@/components/BodyClass";
 
 export const metadata: Metadata = {
   title: "Service design",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function ServiceDesignPage() {
   return (
     <>
+      <BodyClass className="light-hero" />
       <FadeInObserver />
       <SlideMenu activeSlug="service-design" />
 
@@ -56,6 +58,53 @@ export default function ServiceDesignPage() {
           <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
             Design a service for early retirees (60&ndash;75) in Østensjø, aimed at encouraging physical activity to help them stay independent from public healthcare for as long as possible.
           </h2>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Research by visiting Østensjø, and meeting:
+          </h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", marginBottom: 200 }}>
+          <h2 style={{ fontFamily: "GeistRegular, sans-serif", fontSize: "1.32rem", fontWeight: 400, margin: "0 0 60px", textAlign: "left" }}>
+            We have met
+          </h2>
+          <div className="we-have-met-grid">
+            {[
+              { n: 6, label: "Employees from organized training groups for retirees" },
+              { n: 7, label: "Users from target group" },
+              { n: 20, label: "Informal conversations with target group" }
+            ].map((c) => (
+              <div
+                key={c.n}
+                style={{
+                  aspectRatio: "1 / 1",
+                  borderRadius: "50%",
+                  background: "#F4FFAD",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  padding: "12%",
+                  color: "#3D4A00"
+                }}
+              >
+                <div style={{ fontSize: "clamp(3.5rem, 9vw, 6rem)", fontWeight: 700, lineHeight: 1 }}>{c.n}</div>
+                <div style={{ fontSize: "clamp(0.85rem, 1.1vw, 1.05rem)", marginTop: 16, lineHeight: 1.35 }}>{c.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", marginBottom: 200 }}>
+          <div className="we-have-met-images">
+            <img src="/Assets/Ostensjo/we.have.met.jpg" alt="Visit at Østensjø" />
+            <img src="/Assets/Ostensjo/we.have.met2.jpg" alt="Visit at Østensjø" />
+            <img src="/Assets/Ostensjo/we.have.met3.jpg" alt="Visit at Østensjø" />
+            <img src="/Assets/Ostensjo/we.have.met4.jpg" alt="Visit at Østensjø" />
+          </div>
         </section>
       </main>
     </>
