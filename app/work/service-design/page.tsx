@@ -138,6 +138,35 @@ export default function ServiceDesignPage() {
             ))}
           </div>
         </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Free activities exist, yet many retirees never join.
+          </h2>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>DNT + Østensjø = &lt;3</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Although many free activities already existed, they remained underused. Our solution was to connect public exercise programs for retirees with DNT to create a more engaging and socially motivating service.
+            </p>
+            <p>
+              DNT holds a strong position in Norwegian culture and is widely associated with nature, community, and an active lifestyle. For many, it represents an organization they aspire to be part of &mdash; something that can feel more inspiring and identity-building than a publicly funded exercise program for older adults.
+            </p>
+            <div className="dnt-concept-diagram">
+              <div className="dnt-concept-item">
+                <img src="/Assets/Ostensjo/dnt.logo.png" alt="DNT logo" />
+              </div>
+              <div className="dnt-concept-plus" aria-hidden="true">+</div>
+              <div className="dnt-concept-item">
+                <img src="/Assets/Ostensjo/ostensjo.kart.png" alt="Map of Østensjø" />
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

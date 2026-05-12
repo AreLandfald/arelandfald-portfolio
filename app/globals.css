@@ -645,6 +645,46 @@ section h2 {
   .findings-card { min-height: 0; }
 }
 
+/* Service design — DNT + Østensjø concept diagram */
+.dnt-concept-diagram {
+  margin: 80px 0 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 80px);
+  background: #fff;
+  width: 100%;
+}
+.dnt-concept-item {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.dnt-concept-item img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  display: block;
+}
+.dnt-concept-plus {
+  flex: 0 0 auto;
+  font-family: 'GeistRegular', sans-serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1;
+  color: #000;
+  user-select: none;
+}
+@media (max-width: 600px) {
+  .dnt-concept-diagram { margin-top: 56px; gap: 14px; }
+  .dnt-concept-item img { max-height: 140px; }
+}
+
 /* Heritage grid */
 .heritage-grid {
   display: grid;
