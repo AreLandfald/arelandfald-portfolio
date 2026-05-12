@@ -39,7 +39,7 @@ export default function ServiceDesignPage() {
       <main className="project-main">
         <section className="section-statement fade-in">
           <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
-            A project about physical activity, volunteering, and local community pride.
+            Design a service for early retirees (60&ndash;75) in Østensjø, aimed at facilitating organised physical activity to help them stay independent from public healthcare for as long as possible &mdash; with one constraint: no budget.
           </h2>
         </section>
 
@@ -56,20 +56,11 @@ export default function ServiceDesignPage() {
 
         <section className="section-statement fade-in">
           <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
-            Design a service for early retirees (60&ndash;75) in Østensjø, aimed at encouraging physical activity to help them stay independent from public healthcare for as long as possible.
-          </h2>
-        </section>
-
-        <section className="section-statement fade-in">
-          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
             Research by visiting Østensjø, and meeting:
           </h2>
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", marginBottom: 200 }}>
-          <h2 style={{ fontFamily: "GeistRegular, sans-serif", fontSize: "1.32rem", fontWeight: 400, margin: "0 0 60px", textAlign: "left" }}>
-            We have met
-          </h2>
           <div className="we-have-met-grid">
             {[
               { n: 6, label: "Employees from organized training groups for retirees" },
@@ -98,12 +89,53 @@ export default function ServiceDesignPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", marginBottom: 200 }}>
+        <section className="section-full fade-in" style={{ maxWidth: 800, padding: "0 40px", marginBottom: 200 }}>
           <div className="we-have-met-images">
             <img src="/Assets/Ostensjo/we.have.met.jpg" alt="Visit at Østensjø" />
             <img src="/Assets/Ostensjo/we.have.met2.jpg" alt="Visit at Østensjø" />
             <img src="/Assets/Ostensjo/we.have.met3.jpg" alt="Visit at Østensjø" />
             <img src="/Assets/Ostensjo/we.have.met4.jpg" alt="Visit at Østensjø" />
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            The research revealed four key findings that shaped the design of our solution.
+          </h2>
+        </section>
+
+        <section className="section-full fade-in findings-section">
+          <div className="findings-grid">
+            {[
+              {
+                title: "Community",
+                text: "Social connection is a primary motivation for attending organised training groups.",
+                img: "/Assets/Ostensjo/nokkelfunn1.png"
+              },
+              {
+                title: "Information",
+                text: "Communication should not only provide information, but also help the target group feel both reached and seen.",
+                img: "/Assets/Ostensjo/nokkelfunn2.png"
+              },
+              {
+                title: "Prevention",
+                text: "Recommendations for physical activity are often introduced only after people begin experiencing health issues.",
+                img: "/Assets/Ostensjo/nokkelfunn3.png"
+              },
+              {
+                title: "Identity",
+                text: "The target group needs to feel represented.",
+                img: "/Assets/Ostensjo/nokkelfunn4.png"
+              }
+            ].map((f) => (
+              <article key={f.title} className="findings-card">
+                <h3 className="findings-card-title">{f.title}</h3>
+                <p className="findings-card-text">{f.text}</p>
+                <div className="findings-card-image">
+                  <img src={f.img} alt={f.title} />
+                </div>
+              </article>
+            ))}
           </div>
         </section>
       </main>
