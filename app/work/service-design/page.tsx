@@ -355,6 +355,86 @@ export default function ServiceDesignPage() {
             </p>
           </div>
         </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Collaboration &mdash; seamless transition between DNT and local activity houses.
+          </h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 800, padding: "0 40px", margin: "0 auto 80px" }}>
+          <img
+            src="/Assets/Ostensjo/collaboration1.png"
+            alt="Collaboration between DNT and local activity houses"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Relationship between services</h2>
+          </div>
+          <div className="section-content">
+            <ol style={{ paddingLeft: "1.4em", margin: 0 }}>
+              <li style={{ marginBottom: 20 }}>
+                DNT uses available spaces in local activity houses to host events and activities.
+              </li>
+              <li>
+                Participants experience the activity houses firsthand, helping them form a positive impression and feel more comfortable using them as they grow older.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", margin: "0 auto 80px" }}>
+          <img
+            src="/Assets/Ostensjo/overgang.png"
+            alt="Transition between DNT and local activity houses"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Transition</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Those who need additional support are referred to local activity houses, while those who do not require individual follow-up can participate in DNT&apos;s programs.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            An exchange of resources.
+          </h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", margin: "0 auto 80px" }}>
+          <img
+            src="/Assets/Ostensjo/samarbeid.nettside.png"
+            alt="Partnership between DNT and Østensjø district"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Sponsoring</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              The collaboration would work as a partnership between DNT and Østensjø district.
+            </p>
+            <p>
+              Selected DNT activities would be sponsored by the district and offered free of charge to residents aged 60&ndash;75.
+            </p>
+            <p>
+              Municipal staff confirmed that the district could contribute facilities, recruitment, equipment, and marketing in return. BUA&apos;s existing partnership with DNT also suggests that this type of collaboration is feasible.
+            </p>
+          </div>
+        </section>
       </main>
     </>
   );
