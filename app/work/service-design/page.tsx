@@ -167,6 +167,114 @@ export default function ServiceDesignPage() {
             </div>
           </div>
         </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Our solution.
+          </h2>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>The concept.</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Our concept includes onboarding, collaboration, a structured transition, rebranding, community events, and volunteer hiking hosts.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-full fade-in findings-section findings-section--3col">
+          <div className="findings-grid findings-grid--3col">
+            {[
+              { title: "Rebranding", img: "/Assets/Ostensjo/nokkelfunn4.png" },
+              { title: "Onboarding", img: "/Assets/Ostensjo/onboarding1.png" },
+              { title: "Collaboration", img: "/Assets/Ostensjo/Collaboration.png" }
+            ].map((c) => (
+              <article key={c.title} className="findings-card">
+                <h3 className="findings-card-title">{c.title}</h3>
+                <div className="findings-card-image">
+                  <img src={c.img} alt={c.title} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Rebranding &mdash; <em>Those who need the services the most are often the least likely to use them.</em>
+          </h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 800, padding: "0 40px", margin: "0 auto 80px" }}>
+          <img
+            src="/Assets/Ostensjo/rebranding.png"
+            alt="DNT rebranding"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>DNT More Approachable</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              We redesigned DNT to feel more welcoming and less intimidating to people with little experience in physical activity.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Renaming the Program</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              We renamed DNT Senior to DNT Godt Voksen to create a more inspiring identity that the target group would want to be part of.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Posters embody DNT&apos;s rebranded identity.
+          </h2>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Posters for activities</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              The activities are offered at different levels of difficulty and social intensity. Some are designed to appeal to more introverted participants, while others emphasize community and social connection.
+            </p>
+            <div className="poster-row">
+              <img src="/Assets/Ostensjo/poster.aktivitet2.png" alt="Activity poster" />
+              <img src="/Assets/Ostensjo/poster.aktivitet1.png" alt="Activity poster" />
+              <img src="/Assets/Ostensjo/poster.aktivitet3.png" alt="Activity poster" />
+            </div>
+          </div>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Posters for individual training</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Not everyone is comfortable joining group activities. We therefore designed multilingual posters near local walking routes to introduce walking as an accessible form of physical activity, particularly relevant in Østensjø, where many residents have minority backgrounds.
+            </p>
+            <div className="poster-row">
+              <img src="/Assets/Ostensjo/poster.fast1.png" alt="Walking poster" />
+              <img src="/Assets/Ostensjo/poster.fast2.png" alt="Walking poster" />
+              <img src="/Assets/Ostensjo/poster.fast3.png" alt="Walking poster" />
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
