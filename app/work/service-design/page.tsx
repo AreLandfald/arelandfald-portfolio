@@ -8,6 +8,34 @@ export const metadata: Metadata = {
   description: "Service design project for Østensjø — Municipality of Oslo."
 };
 
+const userJourney = [
+  {
+    title: "1. Home",
+    text: "User is isolated and physically inactive.",
+    img: "/Assets/Ostensjo/brukerreise1.png"
+  },
+  {
+    title: "2. Onboarding",
+    text: "The user receives information where they are, through both analog and digital channels. Their doctor recommends publicly funded exercise programs.",
+    img: "/Assets/Ostensjo/onboarding1.png"
+  },
+  {
+    title: "3. DNT",
+    text: "The user is welcomed by DNT\u2019s volunteers and introduced to a wide range of activities that meet different social and physical needs.",
+    img: "/Assets/Ostensjo/dnt.logo.png"
+  },
+  {
+    title: "4. Collaboration",
+    text: "When users need assisted training, they are referred to the district\u2019s activity houses \u2014 places they already know through DNT events hosted there.",
+    img: "/Assets/Ostensjo/Collaboration.png"
+  },
+  {
+    title: "5. Activity House",
+    text: "Associated with activity, not care.",
+    img: "/Assets/Ostensjo/brukerreise5.png"
+  }
+];
+
 export default function ServiceDesignPage() {
   return (
     <>
@@ -207,6 +235,20 @@ export default function ServiceDesignPage() {
               >
                 {label}
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-full fade-in findings-section findings-section--5col">
+          <div className="findings-grid findings-grid--5col">
+            {userJourney.map((step) => (
+              <article key={step.title} className="findings-card">
+                <h3 className="findings-card-title">{step.title}</h3>
+                <p className="findings-card-text">{step.text}</p>
+                <div className="findings-card-image">
+                  <img src={step.img} alt={step.title} />
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -432,6 +474,40 @@ export default function ServiceDesignPage() {
             </p>
             <p>
               Municipal staff confirmed that the district could contribute facilities, recruitment, equipment, and marketing in return. BUA&apos;s existing partnership with DNT also suggests that this type of collaboration is feasible.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            A dramatic build-up to a physically active retirement in Østensjø.
+          </h2>
+        </section>
+
+        <section className="section-full fade-in findings-section findings-section--5col">
+          <div className="findings-grid findings-grid--5col">
+            {userJourney.map((step) => (
+              <article key={`journey2-${step.title}`} className="findings-card">
+                <h3 className="findings-card-title">{step.title}</h3>
+                <p className="findings-card-text">{step.text}</p>
+                <div className="findings-card-image">
+                  <img src={step.img} alt={step.title} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Credits</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              My contributions included service design, concept development, interviews, client meetings, drawing user journeys, and the final presentation.
+            </p>
+            <p style={{ marginTop: 40, fontSize: "0.95rem", opacity: 0.75 }}>
+              A huge thank you to Kester Hvattum-Hermansen, Ingeborg Tangen, and Frida Braathen.
             </p>
           </div>
         </section>

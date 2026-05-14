@@ -694,6 +694,15 @@ section h2 {
   .findings-grid--3col { grid-template-columns: 1fr; }
 }
 
+/* Service design — 5-column user-journey grid (mirrors findings-grid styling) */
+.findings-grid--5col { grid-template-columns: repeat(5, 1fr); gap: 32px; }
+@media (max-width: 1200px) {
+  .findings-grid--5col { grid-template-columns: repeat(3, 1fr); gap: 48px; }
+}
+@media (max-width: 700px) {
+  .findings-grid--5col { grid-template-columns: 1fr; gap: 48px; }
+}
+
 /* Service design — poster rows inside text-content columns */
 .poster-row {
   display: grid;
