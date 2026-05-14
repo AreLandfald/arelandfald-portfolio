@@ -263,7 +263,7 @@ export default function ServiceDesignPage() {
           <img
             src="/Assets/Ostensjo/rebranding.png"
             alt="DNT rebranding"
-            style={{ width: "100%", height: "auto", display: "block" }}
+            style={{ width: "85%", height: "auto", display: "block", margin: "0 auto" }}
           />
         </section>
 
@@ -337,7 +337,7 @@ export default function ServiceDesignPage() {
           <img
             src="/Assets/Ostensjo/man57.png"
             alt="Rebranded senior activity center"
-            style={{ width: "100%", height: "auto", display: "block" }}
+            style={{ width: "85%", height: "auto", display: "block", margin: "0 auto" }}
           />
         </section>
 
@@ -365,7 +365,7 @@ export default function ServiceDesignPage() {
           </div>
         </section>
 
-        <section className="section-with-heading section-with-heading--tight fade-in">
+        <section className="section-with-heading section-with-heading--ultra-tight fade-in">
           <div className="section-heading">
             <h2>Analog marketing</h2>
           </div>
@@ -376,7 +376,7 @@ export default function ServiceDesignPage() {
           </div>
         </section>
 
-        <section className="section-with-heading section-with-heading--tight section-with-heading--tight-top fade-in">
+        <section className="section-with-heading section-with-heading--ultra-tight section-with-heading--ultra-tight-top fade-in">
           <div className="section-heading">
             <h2>Prescription on exercise</h2>
           </div>
@@ -387,7 +387,7 @@ export default function ServiceDesignPage() {
           </div>
         </section>
 
-        <section className="section-with-heading section-with-heading--tight-top fade-in">
+        <section className="section-with-heading section-with-heading--ultra-tight-top fade-in">
           <div className="section-heading">
             <h2>Staff training</h2>
           </div>
@@ -406,9 +406,9 @@ export default function ServiceDesignPage() {
 
         <section className="section-full fade-in" style={{ maxWidth: 800, padding: "0 40px", margin: "0 auto 80px" }}>
           <img
-            src="/Assets/Ostensjo/collaboration1.png"
+            src="/Assets/Ostensjo/Collaboration.png"
             alt="Collaboration between DNT and local activity houses"
-            style={{ width: "100%", height: "auto", display: "block" }}
+            style={{ width: "85%", height: "auto", display: "block", margin: "0 auto" }}
           />
         </section>
 
@@ -480,7 +480,7 @@ export default function ServiceDesignPage() {
 
         <section className="section-statement fade-in">
           <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
-            A dramatic build-up to a physically active retirement in Østensjø.
+            We have made dramatic build-up to a physically active retirement in Østensjø.
           </h2>
         </section>
 

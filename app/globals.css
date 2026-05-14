@@ -696,6 +696,19 @@ section h2 {
 
 /* Service design — 5-column user-journey grid (mirrors findings-grid styling) */
 .findings-grid--5col { grid-template-columns: repeat(5, 1fr); gap: 32px; }
+.findings-grid--5col .findings-card-image {
+  height: 160px;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+.findings-grid--5col .findings-card-image img {
+  height: 160px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+}
 @media (max-width: 1200px) {
   .findings-grid--5col { grid-template-columns: repeat(3, 1fr); gap: 48px; }
 }
@@ -723,19 +736,21 @@ section h2 {
 
 /* Service design — 2-image side-by-side row at text-box width */
 .image-pair {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
+  gap: 0;
 }
 .image-pair img {
-  width: 100%;
+  width: 45%;
   height: auto;
   display: block;
   object-fit: contain;
 }
 @media (max-width: 600px) {
   .image-pair { gap: 10px; }
+  .image-pair img { width: 48%; }
 }
 
 /* Service design — tighter spacing for consecutive section-with-heading blocks */
@@ -748,6 +763,16 @@ section h2 {
 }
 .section-with-heading.section-with-heading--tight-top .section-heading {
   top: 40px;
+}
+.section-with-heading.section-with-heading--ultra-tight {
+  margin-bottom: 0;
+  padding-bottom: 12px;
+}
+.section-with-heading.section-with-heading--ultra-tight-top {
+  padding-top: 12px;
+}
+.section-with-heading.section-with-heading--ultra-tight-top .section-heading {
+  top: 12px;
 }
 
 /* Heritage grid */
