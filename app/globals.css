@@ -712,6 +712,35 @@ section h2 {
   .poster-row { gap: 10px; }
 }
 
+/* Service design — 2-image side-by-side row at text-box width */
+.image-pair {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+.image-pair img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+@media (max-width: 600px) {
+  .image-pair { gap: 10px; }
+}
+
+/* Service design — tighter spacing for consecutive section-with-heading blocks */
+.section-with-heading.section-with-heading--tight {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+}
+.section-with-heading.section-with-heading--tight-top {
+  padding-top: 40px;
+}
+.section-with-heading.section-with-heading--tight-top .section-heading {
+  top: 40px;
+}
+
 /* Heritage grid */
 .heritage-grid {
   display: grid;

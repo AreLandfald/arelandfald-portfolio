@@ -185,19 +185,28 @@ export default function ServiceDesignPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in findings-section findings-section--3col">
-          <div className="findings-grid findings-grid--3col">
-            {[
-              { title: "Rebranding", img: "/Assets/Ostensjo/nokkelfunn4.png" },
-              { title: "Onboarding", img: "/Assets/Ostensjo/onboarding1.png" },
-              { title: "Collaboration", img: "/Assets/Ostensjo/Collaboration.png" }
-            ].map((c) => (
-              <article key={c.title} className="findings-card">
-                <h3 className="findings-card-title">{c.title}</h3>
-                <div className="findings-card-image">
-                  <img src={c.img} alt={c.title} />
-                </div>
-              </article>
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", marginBottom: 200 }}>
+          <div className="we-have-met-grid">
+            {["Rebranding", "Onboarding", "Collaboration"].map((label) => (
+              <div
+                key={label}
+                style={{
+                  aspectRatio: "1 / 1",
+                  borderRadius: "50%",
+                  background: "#F4FFAD",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  padding: "12%",
+                  color: "#3D4A00",
+                  fontSize: "clamp(1.5rem, 2.6vw, 2.4rem)",
+                  fontWeight: 700,
+                  lineHeight: 1.1
+                }}
+              >
+                {label}
+              </div>
             ))}
           </div>
         </section>
@@ -216,7 +225,7 @@ export default function ServiceDesignPage() {
           />
         </section>
 
-        <section className="section-with-heading fade-in">
+        <section className="section-with-heading section-with-heading--tight fade-in">
           <div className="section-heading">
             <h2>DNT More Approachable</h2>
           </div>
@@ -227,7 +236,7 @@ export default function ServiceDesignPage() {
           </div>
         </section>
 
-        <section className="section-with-heading fade-in">
+        <section className="section-with-heading section-with-heading--tight-top fade-in">
           <div className="section-heading">
             <h2>Renaming the Program</h2>
           </div>
@@ -273,6 +282,77 @@ export default function ServiceDesignPage() {
               <img src="/Assets/Ostensjo/poster.fast2.png" alt="Walking poster" />
               <img src="/Assets/Ostensjo/poster.fast3.png" alt="Walking poster" />
             </div>
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Rebranding &mdash; public senior centers for exercise.
+          </h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 800, padding: "0 40px", margin: "0 auto 80px" }}>
+          <img
+            src="/Assets/Ostensjo/man57.png"
+            alt="Rebranded senior activity center"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Changing associations</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              To make the service feel more relevant, we renamed Oppsal Treffsenter 60+, a municipal training center for older adults, to Oppsal Activity House. Together with a broader range of activities and small adjustments to the daily schedule, this could help attract more retirees in need of assisted exercise.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading" style={{ fontSize: "3rem" }}>
+            Onboarding &mdash; <em>reaching more inactive early retirees and including them in public activity programs.</em>
+          </h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 800, padding: "0 40px", margin: "0 auto 80px" }}>
+          <div className="image-pair">
+            <img src="/Assets/Ostensjo/poster.aktivitet2.png" alt="Activity poster" />
+            <img src="/Assets/Ostensjo/lege.png" alt="Doctor referral" />
+          </div>
+        </section>
+
+        <section className="section-with-heading section-with-heading--tight fade-in">
+          <div className="section-heading">
+            <h2>Analog marketing</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Promote the service through printed materials in places where the target group already spends time, such as GP clinics, shopping centers, hair salons, grocery stores, and pharmacies.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-with-heading section-with-heading--tight section-with-heading--tight-top fade-in">
+          <div className="section-heading">
+            <h2>Prescription on exercise</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Introduce a more systematic way for doctors to share information about local exercise programs, for example by handing out brochures to all patients over 60.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-with-heading section-with-heading--tight-top fade-in">
+          <div className="section-heading">
+            <h2>Staff training</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              Train doctors and other health professionals to refer older adults to DNT or local activity houses based on their physical ability and needs.
+            </p>
           </div>
         </section>
       </main>
