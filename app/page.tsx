@@ -3,20 +3,28 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import BodyClass from "@/components/BodyClass";
+import CustomCursor from "@/components/CustomCursor";
+import SlideMenu from "@/components/SlideMenu";
 
 /**
  * Landing page — 3×4 mirrored grid.
  *
- * Image cells follow this pattern (■ = image, · = label):
- *   row 0:  ■ · ■
- *   row 1:  · ■ ·
+ *   row 0:  ■ · ■           ■ = image cell (link)
+ *   row 1:  · ■ ·           · = label cell (link to same project)
  *   row 2:  ■ · ■
  *   row 3:  · ■ ·
  *
- * Each label cell is the point-symmetric partner of an image cell —
- * (row, col) ↔ (3 - row, 2 - col) — and shows that project's title.
- * Hovering an image lights up its mirror label and swaps the intro
- * line above the grid for that project's commentary.
+ * Each label is the point-symmetric partner of an image —
+ * (row, col) ↔ (3-row, 2-col). Hovering either cell of a project
+ * lights up the label and swaps the intro line for that project's
+ * commentary.
+ *
+ * Corners mirror the same point-symmetric pattern:
+ *   "Are Landfald" (top-left)  ↔  "About me" (bottom-right)  → /about
+ *   hamburger     (top-right)  ↔  "Menu"     (bottom-left)   → opens SlideMenu
+ *
+ * CustomCursor is mounted here (not in the root layout) so the
+ * mirrored ghost cursor only appears on the landing page.
  */
 
 type Project = {
@@ -30,6 +38,7 @@ type Project = {
 };
 
 const INTRO = "Are Landfald is a design student from Oslo";
+const TYPE_INTERVAL_MS = 55;
 
 const PROJECTS: Project[] = [
   { id: "musical",   href: "/work/musical-instrument", title: "Musical Instrument", img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg", comment: "[placeholder — musical instrument]", imgRow: 0, imgCol: 0 },
@@ -50,14 +59,25 @@ function getCell(row: number, col: number): Cell {
   return null;
 }
 
-const TYPE_INTERVAL_MS = 55;
+const cornerBase: React.CSSProperties = {
+  position: "fixed",
+  fontFamily: "'GeistRegular', sans-serif",
+  fontWeight: 400,
+  fontSize: "0.85rem",
+  letterSpacing: "0.01em",
+  color: "#000",
+  textDecoration: "none",
+  background: "transparent",
+  border: 0,
+  padding: 0,
+  zIndex: 2000
+};
 
 export default function HomePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
 
-  // Typewriter for the intro line. Restarts from zero each time the
-  // user leaves an image; pauses (and clears) while one is hovered.
+  // Typewriter. Restarts from char 0 each time hover ends.
   useEffect(() => {
     if (hoveredId) return;
     setTyped("");
@@ -72,16 +92,41 @@ export default function HomePage() {
 
   const hoveredProject = hoveredId ? PROJECTS.find(p => p.id === hoveredId) ?? null : null;
   const topLine = hoveredProject ? hoveredProject.comment : typed;
-  const year = new Date().getFullYear();
+
+  const openMenu = () => {
+    (document.querySelector(".hamburger-btn") as HTMLButtonElement | null)?.click();
+  };
 
   const cells: Array<{ key: string; data: Cell }> = [];
   for (let r = 0; r < 4; r++) {
     for (let c = 0; c < 3; c++) cells.push({ key: `${r}-${c}`, data: getCell(r, c) });
   }
 
+  const onEnter = (id: string) => () => setHoveredId(id);
+  const onLeave = () => setHoveredId(null);
+
   return (
     <>
       <BodyClass className="home-route" />
+      <CustomCursor />
+      <SlideMenu />
+
+      {/* Four corners */}
+      <Link href="/about" style={{ ...cornerBase, top: "28px", left: "28px" }}>
+        Are Landfald
+      </Link>
+      <button
+        type="button"
+        onClick={openMenu}
+        style={{ ...cornerBase, bottom: "28px", left: "28px", cursor: "pointer" }}
+      >
+        Menu
+      </button>
+      <Link href="/about" style={{ ...cornerBase, bottom: "28px", right: "28px" }}>
+        About me
+      </Link>
+
+      {/* Main canvas */}
       <div
         style={{
           position: "fixed",
@@ -92,28 +137,17 @@ export default function HomePage() {
           fontWeight: 400,
           display: "flex",
           flexDirection: "column",
-          padding: "1.4rem 2rem"
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px 32px"
         }}
       >
-        <header
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: "0.85rem",
-            letterSpacing: "0.01em"
-          }}
-        >
-          <span>Are Landfald</span>
-          <span>Portfolio</span>
-        </header>
-
         <div
           style={{
             textAlign: "center",
-            fontSize: "1.05rem",
-            margin: "3.25rem 0 2.25rem",
+            fontSize: "1rem",
             minHeight: "1.5em",
+            marginBottom: "1.5rem",
             letterSpacing: "0.005em",
             whiteSpace: "pre-wrap"
           }}
@@ -123,91 +157,72 @@ export default function HomePage() {
 
         <div
           style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: 0
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateRows: "repeat(4, 1fr)",
+            gap: 0,
+            aspectRatio: "1 / 1",
+            width: "min(calc(100vh - 140px), 92vw, 1200px)"
           }}
         >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gridTemplateRows: "repeat(4, 1fr)",
-              gap: 0,
-              aspectRatio: "1 / 1",
-              height: "100%",
-              maxHeight: "100%",
-              maxWidth: "100%"
-            }}
-          >
-            {cells.map(({ key, data }) => {
-              if (!data) return <div key={key} />;
-              const { kind, project } = data;
-              const isActive = hoveredId === project.id;
+          {cells.map(({ key, data }) => {
+            if (!data) return <div key={key} />;
+            const { kind, project } = data;
+            const isActive = hoveredId === project.id;
 
-              if (kind === "image") {
-                return (
-                  <Link
-                    key={key}
-                    href={project.href}
-                    aria-label={project.title}
-                    onMouseEnter={() => setHoveredId(project.id)}
-                    onMouseLeave={() => setHoveredId(null)}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      height: "100%",
-                      overflow: "hidden",
-                      textDecoration: "none",
-                      color: "inherit"
-                    }}
-                  >
-                    <img
-                      src={project.img}
-                      alt=""
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    />
-                  </Link>
-                );
-              }
-
+            if (kind === "image") {
               return (
-                <div
+                <Link
                   key={key}
+                  href={project.href}
+                  aria-label={project.title}
+                  onMouseEnter={onEnter(project.id)}
+                  onMouseLeave={onLeave}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "0.95rem",
-                    textAlign: "center",
-                    padding: "0 0.75rem",
-                    userSelect: "none",
-                    opacity: isActive ? 1 : 0.55,
-                    transition: "opacity 0.25s ease"
+                    display: "block",
+                    width: "100%",
+                    height: "100%",
+                    overflow: "hidden",
+                    textDecoration: "none",
+                    color: "inherit"
                   }}
                 >
-                  {project.title}
-                </div>
+                  <img
+                    src={project.img}
+                    alt=""
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </Link>
               );
-            })}
-          </div>
-        </div>
+            }
 
-        <footer
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: "0.85rem",
-            letterSpacing: "0.01em"
-          }}
-        >
-          <span>Oslo School of Architecture and Design</span>
-          <span>{year}</span>
-        </footer>
+            return (
+              <Link
+                key={key}
+                href={project.href}
+                onMouseEnter={onEnter(project.id)}
+                onMouseLeave={onLeave}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  padding: "0 0.75rem",
+                  fontSize: "0.95rem",
+                  fontWeight: 400,
+                  color: "#000",
+                  textDecoration: "none",
+                  opacity: isActive ? 1 : 0.5,
+                  transition: "opacity 0.25s ease"
+                }}
+              >
+                {project.title}
+              </Link>
+            );
+          })}
+        </div>
       </div>
+
     </>
   );
 }

@@ -98,10 +98,14 @@ body { -ms-overflow-style: none; }
    HOME PAGE LAYOUT
    ============================================================ */
 body.home-route {
-  font-family: 'GeistMono', monospace;
+  font-family: 'GeistRegular', sans-serif;
   overflow: hidden;
   height: 100vh;
 }
+
+/* The SlideMenu renders an "AL" brand next to the hamburger; the landing
+   page already has "Are Landfald" in the top-left, so hide it there. */
+body.home-route .nav-brand { display: none; }
 
 .intro-text {
   position: fixed;

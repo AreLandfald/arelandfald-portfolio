@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -49,7 +48,6 @@ export default function RootLayout({
   return (
     <html lang="no">
       <body>
-        <CustomCursor />
         {children}
       </body>
     </html>
