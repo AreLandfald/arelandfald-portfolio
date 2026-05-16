@@ -107,6 +107,10 @@ body.home-route {
    page already has "Are Landfald" in the top-left, so hide it there. */
 body.home-route .nav-brand { display: none; }
 
+/* Match the hamburger's corner offset to the landing page's other three
+   corner items (28px from edges). Project pages keep the default 20px. */
+body.home-route .top-nav { top: 28px; right: 28px; }
+
 .intro-text {
   position: fixed;
   top: 50%;

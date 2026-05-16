@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import BodyClass from "@/components/BodyClass";
 import CustomCursor from "@/components/CustomCursor";
@@ -15,38 +15,33 @@ import SlideMenu from "@/components/SlideMenu";
  *   row 3:  · ■ ·
  *
  * Each label is the point-symmetric partner of an image —
- * (row, col) ↔ (3-row, 2-col). Hovering either cell of a project
- * lights up the label and swaps the intro line for that project's
- * commentary.
+ * (row, col) ↔ (3-row, 2-col).
  *
- * Corners mirror the same point-symmetric pattern:
- *   "Are Landfald" (top-left)  ↔  "About me" (bottom-right)  → /about
- *   hamburger     (top-right)  ↔  "Menu"     (bottom-left)   → opens SlideMenu
+ * Cells are 16:9 to match the project-page hero proportions, so the
+ * whole 3×4 grid sums to a 4:3 landscape rectangle.
  *
- * CustomCursor is mounted here (not in the root layout) so the
- * mirrored ghost cursor only appears on the landing page.
+ * Hovering any cell of a project keeps that pair at full opacity and
+ * dims every other cell. CustomCursor is mounted here (not in the root
+ * layout) so the mirrored ghost cursor only appears on the landing page.
  */
 
 type Project = {
   id: string;
   href: string;
   title: string;
+  year: string;
   img: string;
-  comment: string;
   imgRow: number;
   imgCol: number;
 };
 
-const INTRO = "Are Landfald is a design student from Oslo";
-const TYPE_INTERVAL_MS = 55;
-
 const PROJECTS: Project[] = [
-  { id: "musical",   href: "/work/musical-instrument", title: "Musical Instrument", img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg", comment: "[placeholder — musical instrument]", imgRow: 0, imgCol: 0 },
-  { id: "visual",    href: "/work/visual-identity",    title: "Visual Identity",    img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg",       comment: "[placeholder — visual identity]",    imgRow: 0, imgCol: 2 },
-  { id: "immersive", href: "/work/immersive-sound",    title: "Immersive Sound",    img: "/Assets/Immersive/cover.immersive.jpg",                  comment: "[placeholder — immersive sound]",    imgRow: 1, imgCol: 1 },
-  { id: "game",      href: "/work/gamedesign",         title: "Game Design",        img: "/Assets/Gamedesign/brettet.notater.med.farger.png",      comment: "[placeholder — game design]",        imgRow: 2, imgCol: 0 },
-  { id: "site",      href: "/work/website",            title: "Grammars of Noice",  img: "/Assets/Grammars of noice/Groise.hovedside.png",         comment: "[placeholder — website]",            imgRow: 2, imgCol: 2 },
-  { id: "service",   href: "/work/service-design",     title: "Service Design",     img: "/Assets/Ostensjo/ostensjo.forsidebilde.jpg",             comment: "[placeholder — service design]",     imgRow: 3, imgCol: 1 }
+  { id: "musical",   href: "/work/musical-instrument", title: "Musical Instrument", year: "2024", img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg", imgRow: 0, imgCol: 0 },
+  { id: "visual",    href: "/work/visual-identity",    title: "Visual Identity",    year: "2024", img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg",       imgRow: 0, imgCol: 2 },
+  { id: "immersive", href: "/work/immersive-sound",    title: "Immersive Sound",    year: "2024", img: "/Assets/Immersive/cover.immersive.jpg",                  imgRow: 1, imgCol: 1 },
+  { id: "game",      href: "/work/gamedesign",         title: "Game Design",        year: "2025", img: "/Assets/Gamedesign/brettet.notater.med.farger.png",      imgRow: 2, imgCol: 0 },
+  { id: "site",      href: "/work/website",            title: "Grammars of Noice",  year: "2025", img: "/Assets/Grammars of noice/Groise.hovedside.png",         imgRow: 2, imgCol: 2 },
+  { id: "service",   href: "/work/service-design",     title: "Service Design",     year: "2025", img: "/Assets/Ostensjo/ostensjo.forsidebilde.jpg",             imgRow: 3, imgCol: 1 }
 ];
 
 type Cell = { kind: "image" | "label"; project: Project } | null;
@@ -73,25 +68,11 @@ const cornerBase: React.CSSProperties = {
   zIndex: 2000
 };
 
+const DIMMED_OPACITY = 0.35;
+const OPACITY_TRANSITION = "opacity 0.3s ease";
+
 export default function HomePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [typed, setTyped] = useState("");
-
-  // Typewriter. Restarts from char 0 each time hover ends.
-  useEffect(() => {
-    if (hoveredId) return;
-    setTyped("");
-    let i = 0;
-    const id = window.setInterval(() => {
-      i += 1;
-      setTyped(INTRO.slice(0, i));
-      if (i >= INTRO.length) window.clearInterval(id);
-    }, TYPE_INTERVAL_MS);
-    return () => window.clearInterval(id);
-  }, [hoveredId]);
-
-  const hoveredProject = hoveredId ? PROJECTS.find(p => p.id === hoveredId) ?? null : null;
-  const topLine = hoveredProject ? hoveredProject.comment : typed;
 
   const openMenu = () => {
     (document.querySelector(".hamburger-btn") as HTMLButtonElement | null)?.click();
@@ -104,6 +85,8 @@ export default function HomePage() {
 
   const onEnter = (id: string) => () => setHoveredId(id);
   const onLeave = () => setHoveredId(null);
+  const opacityFor = (id: string) =>
+    hoveredId === null || hoveredId === id ? 1 : DIMMED_OPACITY;
 
   return (
     <>
@@ -111,7 +94,6 @@ export default function HomePage() {
       <CustomCursor />
       <SlideMenu />
 
-      {/* Four corners */}
       <Link href="/about" style={{ ...cornerBase, top: "28px", left: "28px" }}>
         Are Landfald
       </Link>
@@ -126,7 +108,6 @@ export default function HomePage() {
         About me
       </Link>
 
-      {/* Main canvas */}
       <div
         style={{
           position: "fixed",
@@ -136,39 +117,25 @@ export default function HomePage() {
           fontFamily: "'GeistRegular', sans-serif",
           fontWeight: 400,
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "40px 32px"
+          padding: "90px 40px"
         }}
       >
-        <div
-          style={{
-            textAlign: "center",
-            fontSize: "1rem",
-            minHeight: "1.5em",
-            marginBottom: "1.5rem",
-            letterSpacing: "0.005em",
-            whiteSpace: "pre-wrap"
-          }}
-        >
-          {topLine}
-        </div>
-
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gridTemplateRows: "repeat(4, 1fr)",
             gap: 0,
-            aspectRatio: "1 / 1",
-            width: "min(calc(100vh - 140px), 92vw, 1200px)"
+            aspectRatio: "4 / 3",
+            width: "min(calc((100vh - 220px) * 4 / 3), 92vw, 1400px)"
           }}
         >
           {cells.map(({ key, data }) => {
             if (!data) return <div key={key} />;
             const { kind, project } = data;
-            const isActive = hoveredId === project.id;
+            const op = opacityFor(project.id);
 
             if (kind === "image") {
               return (
@@ -184,7 +151,9 @@ export default function HomePage() {
                     height: "100%",
                     overflow: "hidden",
                     textDecoration: "none",
-                    color: "inherit"
+                    color: "inherit",
+                    opacity: op,
+                    transition: OPACITY_TRANSITION
                   }}
                 >
                   <img
@@ -204,25 +173,25 @@ export default function HomePage() {
                 onMouseLeave={onLeave}
                 style={{
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   textAlign: "center",
                   padding: "0 0.75rem",
-                  fontSize: "0.95rem",
-                  fontWeight: 400,
                   color: "#000",
                   textDecoration: "none",
-                  opacity: isActive ? 1 : 0.5,
-                  transition: "opacity 0.25s ease"
+                  opacity: op,
+                  transition: OPACITY_TRANSITION,
+                  gap: "0.25rem"
                 }}
               >
-                {project.title}
+                <span style={{ fontSize: "0.95rem", fontWeight: 400 }}>{project.title}</span>
+                <span style={{ fontSize: "0.75rem", color: "#888" }}>{project.year}</span>
               </Link>
             );
           })}
         </div>
       </div>
-
     </>
   );
 }
