@@ -94,11 +94,6 @@ h1, h2, h3, h4, h5, h6 { text-align: left; font-family: 'GeistThin', sans-serif;
 * { scrollbar-width: none; }
 body { -ms-overflow-style: none; }
 
-/* Custom cursor */
-@media (min-width: 768px) {
-  *, html, body { cursor: none !important; }
-}
-
 /* ============================================================
    HOME PAGE LAYOUT
    ============================================================ */
