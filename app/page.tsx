@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import BodyClass from "@/components/BodyClass";
 import CustomCursor from "@/components/CustomCursor";
 import SlideMenu from "@/components/SlideMenu";
@@ -69,7 +70,6 @@ const cornerBase: React.CSSProperties = {
 };
 
 const DIMMED_OPACITY = 0.35;
-const OPACITY_TRANSITION = "opacity 0.3s ease";
 
 export default function HomePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -145,21 +145,25 @@ export default function HomePage() {
                   aria-label={project.title}
                   onMouseEnter={onEnter(project.id)}
                   onMouseLeave={onLeave}
+                  className="landing-cell"
                   style={{
                     display: "block",
+                    position: "relative",
                     width: "100%",
                     height: "100%",
                     overflow: "hidden",
                     textDecoration: "none",
                     color: "inherit",
-                    opacity: op,
-                    transition: OPACITY_TRANSITION
+                    opacity: op
                   }}
                 >
-                  <img
+                  <Image
                     src={project.img}
                     alt=""
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    style={{ objectFit: "cover" }}
                   />
                 </Link>
               );
@@ -171,6 +175,7 @@ export default function HomePage() {
                 href={project.href}
                 onMouseEnter={onEnter(project.id)}
                 onMouseLeave={onLeave}
+                className="landing-cell"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -181,7 +186,6 @@ export default function HomePage() {
                   color: "#000",
                   textDecoration: "none",
                   opacity: op,
-                  transition: OPACITY_TRANSITION,
                   gap: "0.25rem"
                 }}
               >

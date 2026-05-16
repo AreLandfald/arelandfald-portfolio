@@ -111,6 +111,14 @@ body.home-route .nav-brand { display: none; }
    corner items (28px from edges). Project pages keep the default 20px. */
 body.home-route .top-nav { top: 28px; right: 28px; }
 
+/* Landing grid cells: define the opacity transition once and force each
+   cell onto its own GPU layer so dimming composites without repainting. */
+.landing-cell {
+  will-change: transform;
+  transform: translateZ(0);
+  transition: opacity 0.3s ease;
+}
+
 .intro-text {
   position: fixed;
   top: 50%;
