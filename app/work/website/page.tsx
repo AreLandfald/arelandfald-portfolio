@@ -4,8 +4,9 @@ import SlideMenu from "@/components/SlideMenu";
 import ScrollColorMode from "@/components/ScrollColorMode";
 
 export const metadata: Metadata = {
-  title: "Website / A self-portrait of ChatGPT-5",
-  description: "A self-portrait website made by ChatGPT-5."
+  title: "Course in Creative AI-coding",
+  description:
+    "A four-week course at AHO (2025) on prompting as a craft — and on the questions that opened up along the way."
 };
 
 export default function WebsitePage() {
@@ -23,21 +24,49 @@ export default function WebsitePage() {
           <source src="/Assets/Grammars of noice/groise.herovideo.mp4" type="video/mp4" />
         </video>
         <div className="hero-title-overlay">
-          <h1 className="project-title-hero">Website</h1>
+          <h1 className="project-title-hero">Course in Creative AI-coding</h1>
         </div>
         <div className="hero-meta-overlay">
-          <span>Type: Website</span>
+          <span>Type: Course</span>
           <span className="meta-divider">|</span>
-          <span>Year: 2025 (1 week)</span>
+          <span>Year: 2025 (4 weeks)</span>
           <span className="meta-divider">|</span>
-          <span>Role: Artist &amp; Developer</span>
+          <span>Role: Student</span>
           <span className="meta-divider">|</span>
-          <span>Client: Personal Project</span>
+          <span>School: AHO</span>
         </div>
         <div className="scroll-indicator">↓</div>
       </section>
 
       <main className="project-main">
+        <section className="section-statement fade-in">
+          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
+            Prompting as stonecutting.
+          </p>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Background</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              <em>Creative Coding AI-edition</em> &mdash; a four-week course at AHO. The premise: prompting is a craft. You begin with a rough block of language and chip away, one instruction, one revision, toward something precise.
+            </p>
+            <p>
+              We tested the personalities of different language models &mdash; what each one wants, what it resists, how it can be pushed. We learned to use them, and at times to manipulate them, to get what we were after.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
+          <img
+            src="/Assets/Grammars of noice/grammars.of.noice.png"
+            alt="Grammars of Noise"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </section>
+
         <section className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
             Can a language model paint its own portrait?
@@ -46,25 +75,20 @@ export default function WebsitePage() {
 
         <section className="section-with-heading fade-in">
           <div className="section-heading">
-            <h2>About the project</h2>
+            <h2>The final project</h2>
           </div>
           <div className="section-content">
             <p>
-              The website{" "}
+              <em>Grammars of Noise</em> &mdash;{" "}
               <a href="https://al.groise.no/" target="_blank" rel="noopener noreferrer">
                 al.groise.no
-              </a>{" "}
-              engages with two intertwined questions: how a large language model like ChatGPT&nbsp;5.0 might produce a visual self-representation, and how the website itself can operate as a medium for the construction of a self-portrait.
+              </a>
+              . The brief I set myself: get ChatGPT&nbsp;5.0 to make a self-portrait of itself.
+            </p>
+            <p>
+              A second question ran beneath it: can a website function as a medium for a self-portrait? I hadn&apos;t seen it done.
             </p>
           </div>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <img
-            src="/Assets/Grammars of noice/grammars.of.noice.png"
-            alt="Grammars of Noice"
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "80px 40px" }}>
@@ -80,7 +104,7 @@ export default function WebsitePage() {
 
         <section id="results-section" className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            The experiment ultimately proves impossible.
+            The experiment proves impossible.
           </p>
         </section>
 
@@ -90,7 +114,24 @@ export default function WebsitePage() {
           </div>
           <div className="section-content">
             <p>
-              A large language model is designed to interpret and satisfy the user&apos;s expectations. Any &ldquo;self-portrait&rdquo; it produces will therefore inevitably become a reflection of what it thinks the user wants it to identify as, rather than the expression of an identity of its own.
+              A language model is built to satisfy. Any &ldquo;self-portrait&rdquo; it produces is a guess at what the user wants it to be &mdash; not the expression of an identity of its own. The failure was the finding.
+            </p>
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
+            Hours buy what years used to.
+          </p>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Reflection</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              The course raised harder questions than it answered. About class &mdash; about what it means that someone with money for AI credits can now compress years of craft into hours. About the design profession, and what is left of it when the chisel changes hands.
             </p>
           </div>
         </section>
