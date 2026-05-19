@@ -41,7 +41,7 @@ const PROJECTS: Project[] = [
   { id: "visual",    href: "/work/visual-identity",    title: "Visual Identity",    year: "2024", img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg",       imgRow: 0, imgCol: 2 },
   { id: "immersive", href: "/work/immersive-sound",    title: "Immersive Sound",    year: "2024", img: "/Assets/Immersive/cover.immersive.jpg",                  imgRow: 1, imgCol: 1 },
   { id: "game",      href: "/work/gamedesign",         title: "Game Design",        year: "2025", img: "/Assets/Gamedesign/brettet.notater.med.farger.png",      imgRow: 2, imgCol: 0 },
-  { id: "site",      href: "/work/website",            title: "Course in Creative AI-coding", year: "2025", img: "/Assets/Grammars of noice/Groise.hovedside.png",         imgRow: 2, imgCol: 2 },
+  { id: "site",      href: "/work/website",            title: "Course in Creative AI-coding", year: "2025", img: "/Assets/Grammars of noice/klasserommet.JPG",             imgRow: 2, imgCol: 2 },
   { id: "service",   href: "/work/service-design",     title: "Service Design",     year: "2025", img: "/Assets/Ostensjo/ostensjo.forsidebilde.jpg",             imgRow: 3, imgCol: 1 }
 ];
 

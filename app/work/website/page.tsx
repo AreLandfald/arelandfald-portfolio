@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import FadeInObserver from "@/components/FadeInObserver";
 import SlideMenu from "@/components/SlideMenu";
-import ScrollColorMode from "@/components/ScrollColorMode";
 
 export const metadata: Metadata = {
   title: "Course in Creative AI-coding",
@@ -13,16 +12,14 @@ export default function WebsitePage() {
   return (
     <>
       <FadeInObserver />
-      <ScrollColorMode
-        rules={[{ sectionId: "results-section", bodyClass: "dark-mode", threshold: 0.5 }]}
-        rootMargin="-10% 0px"
-      />
       <SlideMenu activeSlug="website" />
 
       <section className="hero-section">
-        <video className="hero-image-full" autoPlay loop muted playsInline>
-          <source src="/Assets/Grammars of noice/groise.herovideo.mp4" type="video/mp4" />
-        </video>
+        <img
+          src="/Assets/Grammars of noice/klasserommet.JPG"
+          alt="Classroom — Creative Coding AI-edition at AHO"
+          className="hero-image-full"
+        />
         <div className="hero-title-overlay">
           <h1 className="project-title-hero">Course in Creative AI-coding</h1>
         </div>
@@ -73,6 +70,19 @@ export default function WebsitePage() {
           </p>
         </section>
 
+        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
+          <video
+            className="hero-image-full"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: "100%", height: "auto", display: "block" }}
+          >
+            <source src="/Assets/Grammars of noice/groise.herovideo.mp4" type="video/mp4" />
+          </video>
+        </section>
+
         <section className="section-with-heading fade-in">
           <div className="section-heading">
             <h2>The final project</h2>
@@ -102,7 +112,7 @@ export default function WebsitePage() {
           </div>
         </section>
 
-        <section id="results-section" className="section-statement fade-in">
+        <section className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
             The experiment proves impossible.
           </p>
@@ -147,6 +157,17 @@ export default function WebsitePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 30 }}>
             <img src="/Assets/Grammars of noice/match1.JPG" alt="Match 1" style={{ width: "100%", height: "auto", display: "block" }} />
             <img src="/Assets/Grammars of noice/match2.JPG" alt="Match 2" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Credits</h2>
+          </div>
+          <div className="section-content">
+            <p style={{ fontSize: "0.95rem", opacity: 0.75 }}>
+              Course taught by Enrique Encinas at AHO. Thank you.
+            </p>
           </div>
         </section>
       </main>
