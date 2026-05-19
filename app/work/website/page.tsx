@@ -38,7 +38,7 @@ export default function WebsitePage() {
       <main className="project-main">
         <section className="section-statement fade-in">
           <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            Prompting as stonecutting.
+            Prompting as a medium.
           </p>
         </section>
 
@@ -48,7 +48,7 @@ export default function WebsitePage() {
           </div>
           <div className="section-content">
             <p>
-              <em>Creative Coding AI-edition</em> &mdash; a four-week course at AHO. The premise: prompting is a craft. You begin with a rough block of language and chip away, one instruction, one revision, toward something precise.
+              <em>Creative Coding AI-edition</em> &mdash; a four-week course at AHO. The premise: prompting is a craft.
             </p>
             <p>
               We tested the personalities of different language models &mdash; what each one wants, what it resists, how it can be pushed. We learned to use them, and at times to manipulate them, to get what we were after.
@@ -146,11 +146,8 @@ export default function WebsitePage() {
           </div>
         </section>
 
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Presentation day</h2>
-          </div>
-          <div className="section-content" />
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading">Presentation day</h2>
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
@@ -165,8 +162,8 @@ export default function WebsitePage() {
             <h2>Credits</h2>
           </div>
           <div className="section-content">
-            <p style={{ fontSize: "0.95rem", opacity: 0.75 }}>
-              Course taught by Enrique Encinas at AHO. Thank you.
+            <p>
+              Course taught by talented professor Enrique Encinas at AHO. Thank you.
             </p>
           </div>
         </section>
