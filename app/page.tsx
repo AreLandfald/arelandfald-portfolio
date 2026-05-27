@@ -37,7 +37,7 @@ type Project = {
 };
 
 const PROJECTS: Project[] = [
-  { id: "musical",   href: "/work/musical-instrument", title: "Musical Instrument", year: "2024", img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg", imgRow: 0, imgCol: 0 },
+  { id: "musical",   href: "/work/musical-instrument", title: "Synthesizer", year: "2024", img: "/Assets/Sound toys/soundtoys.hovedbildeinstrument.h.jpg", imgRow: 0, imgCol: 0 },
   { id: "visual",    href: "/work/visual-identity",    title: "Visual Identity",    year: "2024", img: "/Assets/Diplomis/diplomis plakat mockup copy.jpg",       imgRow: 0, imgCol: 2 },
   { id: "immersive", href: "/work/immersive-sound",    title: "Immersive Sound",    year: "2024", img: "/Assets/Immersive/cover.immersive.jpg",                  imgRow: 1, imgCol: 1 },
   { id: "game",      href: "/work/gamedesign",         title: "Game Design",        year: "2025", img: "/Assets/Gamedesign/brettet.notater.med.farger.png",      imgRow: 2, imgCol: 0 },

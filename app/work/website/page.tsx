@@ -57,11 +57,15 @@ export default function WebsitePage() {
         </section>
 
         <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <img
-            src="/Assets/Grammars of noice/grammars.of.noice.png"
-            alt="Grammars of Noise"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             style={{ width: "100%", height: "auto", display: "block" }}
-          />
+          >
+            <source src="/Assets/Grammars of noice/groise.eksempel.mp4" type="video/mp4" />
+          </video>
         </section>
 
         <section className="section-statement fade-in">
