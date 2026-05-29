@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import BodyClass from "@/components/BodyClass";
 import FadeInObserver from "@/components/FadeInObserver";
 import SlideMenu from "@/components/SlideMenu";
-import ScrollColorMode from "@/components/ScrollColorMode";
 
 export const metadata: Metadata = {
-  title: "Gamedesign",
-  description: "A board game about prepping for the apocalypse."
+  title: "Game as experience",
+  description: "A two-week board game project turning emergency preparedness into play."
 };
 
 const colors = [
@@ -26,19 +25,12 @@ export default function GamedesignPage() {
     <>
       <BodyClass className="light-hero" />
       <FadeInObserver />
-      <ScrollColorMode
-        rules={[
-          { sectionId: "fonts-section", bodyClass: "gamedesign-dark" },
-          { sectionId: "color-section", bodyClass: "blue-mode" }
-        ]}
-        exitSectionId="testing-section"
-      />
       <SlideMenu activeSlug="gamedesign" />
 
       <section className="hero-section">
-        <img className="hero-image-full" src="/Assets/Gamedesign/brettet.notater.med.farger.png" alt="Beredt — the prepper game" />
+        <img className="hero-image-full" src="/Assets/Gamedesign/brettet.jpeg" alt="Game as experience — board" />
         <div className="hero-title-overlay">
-          <h1 className="project-title-hero">Gamedesign</h1>
+          <h1 className="project-title-hero">Game as experience</h1>
         </div>
         <div className="hero-meta-overlay">
           <span>Type: Board Game</span>
@@ -65,19 +57,22 @@ export default function GamedesignPage() {
           </div>
           <div className="section-content">
             <p>
-              In Beredt, players scramble to follow Norway&apos;s official survival plans — stocking water, canned food, and crispbread for at least a week.
+              In Beredt, players scramble to follow Norway&apos;s official survival plans &mdash; stocking water, canned food, and crispbread for at least a week.
             </p>
             <p>
               But hidden Nihilists have lost all hope of survival, craving one final feast of wine, games, and cheese before doomsday.
             </p>
             <p>Who will secure the supplies before the war erupts?</p>
+            <img
+              src="/Assets/Gamedesign/skannede elementer/the.board.jpg"
+              alt="The board"
+              style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
+            />
           </div>
         </section>
 
         <section className="section-statement fade-in">
-          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            A game that turns preparedness into play.
-          </p>
+          <h2 className="statement-text section-tabloid-heading">How to play</h2>
         </section>
 
         <section className="section-with-heading fade-in">
@@ -85,14 +80,32 @@ export default function GamedesignPage() {
             <h2>Rules</h2>
           </div>
           <div className="section-content">
+            <p>Hand out one secret roll-card to each person.</p>
+            <p>Ps: there are 3 nihilists, and 4 preppers.</p>
+            <p>Once everyone has their card the game is ready to begin.</p>
+            <p>Everyone close your eyes.</p>
+            <p>Nihilists, open your eyes and acknowledge each other, and close your eyes again.</p>
             <p>
-              The game introduces players to government emergency preparedness recommendations through gameplay — turning a serious political context into a shared moment of humour.
+              Everyone opens their eyes. All players start in the yellow star in the middle. The one to the left of the person reading the rules begins by rolling the dice, and then going clockwise around the table.
             </p>
+            <p>
+              After every round around the table, the players can choose to either vote someone out, or wait another round.
+            </p>
+            <p>
+              Remember to not trust anyone &mdash; the preppers will have a hard time winning without uncovering the nihilist and voting them out.
+            </p>
+            <img
+              src="/Assets/Gamedesign/skannede elementer/scan.rules.jpg"
+              alt="Game rules — scanned"
+              style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
+            />
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <img src="/Assets/Gamedesign/regler.kort-web.png" alt="Game Rules" style={{ width: "100%", height: "auto", display: "block" }} />
+        <section className="section-statement fade-in">
+          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
+            A game that turns preparedness into play.
+          </p>
         </section>
 
         <section className="section-with-heading fade-in">
@@ -106,20 +119,46 @@ export default function GamedesignPage() {
           </div>
         </section>
 
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading">Game elements</h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            <img
+              src="/Assets/Gamedesign/skannede elementer/scan.eventcards.jpg"
+              alt="Event cards — scanned"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+            <img
+              src="/Assets/Gamedesign/skannede elementer/supplycards.jpg"
+              alt="Supply cards — scanned"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
+        </section>
+
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading">Visual profile</h2>
+        </section>
+
         <section className="section-with-heading fade-in">
           <div className="section-heading">
             <h2>Aesthetic</h2>
           </div>
           <div className="section-content">
-            <p>The visual identity is built on the Oslo design system — clean, civic, instantly recognisable.</p>
+            <p>
+              The visual identity is built on the Oslo design system. Clean, civic, instantly recognisable, but adapted into a colourful profile that works especially well in a game format, where it helps reinforce the realistic tone while adding visual energy.
+            </p>
+            <img
+              src="/Assets/Gamedesign/skannede elementer/scan.visual.profile.jpg"
+              alt="Visual profile — scanned"
+              style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
+            />
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <img src="/Assets/Gamedesign/visuell identitet/oslo.designmanual.png" alt="Oslo Design Manual" style={{ width: "100%", height: "auto", display: "block" }} />
-        </section>
-
-        <section id="fonts-section" className="section-with-heading fade-in">
+        <section className="section-with-heading fade-in">
           <div className="section-heading">
             <h2>Fonts</h2>
           </div>
@@ -138,7 +177,7 @@ export default function GamedesignPage() {
           </div>
         </section>
 
-        <section id="color-section" className="section-with-heading fade-in">
+        <section className="section-with-heading fade-in">
           <div className="section-heading">
             <h2>Color system</h2>
           </div>
@@ -155,19 +194,40 @@ export default function GamedesignPage() {
           </div>
         </section>
 
-        <section id="testing-section" className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Testing &amp; prototyping</h2>
-          </div>
-          <div className="section-content">
-            <p>The game was prototyped and playtested in two iterations to balance accessibility with strategic depth.</p>
+        <section className="section-statement fade-in">
+          <h2 className="statement-text section-tabloid-heading">Testing &amp; prototyping</h2>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <img
+                src="/Assets/Gamedesign/prototype2.jpg"
+                alt="Prototype 2"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <img
+                src="/Assets/Gamedesign/prototype3.jpg"
+                alt="Prototype 3"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400 }}>
-          <div className="image-pair-row" style={{ alignItems: "stretch" }}>
-            <img src="/Assets/Gamedesign/prototype2.jpg" alt="Prototype 2" className="image-pair-large" style={{ width: "48%" }} />
-            <img src="/Assets/Gamedesign/prototype3.jpg" alt="Prototype 3" className="image-pair-small" style={{ width: "48%", marginTop: 0 }} />
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Credits</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              This was a two-week group project where my main contribution was concept development. I also wrote the rules and carried out user testing.
+            </p>
+            <p>
+              A huge thank you to Iver Raknes Finne, Marikken Antonsen, Bella Kjensli, and Hedvig Sunde.
+            </p>
           </div>
         </section>
       </main>

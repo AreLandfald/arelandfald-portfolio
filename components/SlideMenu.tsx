@@ -7,7 +7,7 @@ const projects = [
   { slug: "visual-identity", label: "Visual identity" },
   { slug: "website", label: "Course in Creative AI-coding" },
   { slug: "immersive-sound", label: "Immersive Sound Experience" },
-  { slug: "gamedesign", label: "Gamedesign" },
+  { slug: "gamedesign", label: "Game as experience" },
   { slug: "musical-instrument", label: "Synthesizer" },
   { slug: "service-design", label: "Service design" }
 ];
