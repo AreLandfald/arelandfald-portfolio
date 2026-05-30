@@ -80,19 +80,16 @@ export default function GamedesignPage() {
             <h2>Rules</h2>
           </div>
           <div className="section-content">
-            <p>Hand out one secret roll-card to each person.</p>
-            <p>Ps: there are 3 nihilists, and 4 preppers.</p>
-            <p>Once everyone has their card the game is ready to begin.</p>
-            <p>Everyone close your eyes.</p>
-            <p>Nihilists, open your eyes and acknowledge each other, and close your eyes again.</p>
             <p>
-              Everyone opens their eyes. All players start in the yellow star in the middle. The one to the left of the person reading the rules begins by rolling the dice, and then going clockwise around the table.
+              Hand out one secret roll-card to each person. Ps: there are 3 nihilists, and 4 preppers. Once everyone has their card the game is ready to begin.
             </p>
+            <ol style={{ paddingLeft: "1.5em", margin: 0 }}>
+              <li>Everyone close your eyes.</li>
+              <li>Nihilists, open your eyes and acknowledge each other, and close your eyes again.</li>
+              <li>Everyone opens their eyes.</li>
+            </ol>
             <p>
-              After every round around the table, the players can choose to either vote someone out, or wait another round.
-            </p>
-            <p>
-              Remember to not trust anyone &mdash; the preppers will have a hard time winning without uncovering the nihilist and voting them out.
+              All players start in the yellow star in the middle. The one to the left of the person reading the rules begins by rolling the dice, and then going clockwise around the table. After every round around the table, the players can choose to either vote someone out, or wait another round. Remember to not trust anyone &mdash; the preppers will have a hard time winning without uncovering the nihilist and voting them out.
             </p>
             <img
               src="/Assets/Gamedesign/skannede elementer/scan.rules.jpg"
