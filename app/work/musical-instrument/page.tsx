@@ -60,11 +60,12 @@ export default function MusicalInstrumentPage() {
             <p>
               As you move, different angles trigger different notes, creating a flowing melody while the synthesizer lights up in response.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 40 }}>
-              <img src="/Assets/Sound toys/instrument.ferdig2.jpg" alt="The synthesizer" style={{ width: "100%", height: "auto", display: "block" }} />
-              <img src="/Assets/Sound toys/are spiller.jpg" alt="Playing the synthesizer" style={{ width: "100%", height: "auto", display: "block" }} />
-            </div>
           </div>
+        </section>
+
+        <section className="image-pair-grid fade-in">
+          <img src="/Assets/Sound toys/instrument.ferdig2.jpg" alt="The synthesizer" className="image-pair-grid-a" />
+          <img src="/Assets/Sound toys/are spiller.jpg" alt="Playing the synthesizer" className="image-pair-grid-b" />
         </section>
 
         <section className="section-with-heading fade-in">
@@ -84,14 +85,19 @@ export default function MusicalInstrumentPage() {
 
         <section className="section-with-heading fade-in">
           <div className="section-heading">
-            <h2>Building the Instrument</h2>
+            <h2 style={{ lineHeight: 1 }}>Building the Instrument</h2>
           </div>
           <div className="section-content">
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
-              <img src="/Assets/Sound toys/bygging1.JPG" alt="Construction step 1" style={{ width: "100%", height: "auto", display: "block" }} />
-              <img src="/Assets/Sound toys/bygging2.JPG" alt="Construction step 2" style={{ width: "100%", height: "auto", display: "block" }} />
-              <img src="/Assets/Sound toys/bygging3.JPG" alt="Construction step 3" style={{ width: "100%", height: "auto", display: "block" }} />
-              <img src="/Assets/Sound toys/bygging4.JPG" alt="Construction step 4" style={{ width: "100%", height: "auto", display: "block" }} />
+              {[1, 2, 3, 4].map((n) => (
+                <div key={n} style={{ aspectRatio: "4 / 3", overflow: "hidden" }}>
+                  <img
+                    src={`/Assets/Sound toys/bygging${n}.JPG`}
+                    alt={`Construction step ${n}`}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -111,7 +117,7 @@ export default function MusicalInstrumentPage() {
           <h2 className="statement-text section-tabloid-heading">User Testing &amp; Prototyping</h2>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px", marginBottom: 200 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24, alignItems: "start" }}>
             <VideoPlayer src="/Assets/Sound toys/instrument.test.mp4" maxHeight="55vh" />
             <VideoPlayer src="/Assets/Sound toys/instrumentprototyping.mp4" maxHeight="55vh" />
