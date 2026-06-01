@@ -72,7 +72,39 @@ export default function GamedesignPage() {
         </section>
 
         <section className="section-statement fade-in">
-          <h2 className="statement-text section-tabloid-heading">How to play</h2>
+          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
+            A game that turns preparedness into play.
+          </p>
+        </section>
+
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <img
+                src="/Assets/Gamedesign/prototype2.jpg"
+                alt="Prototype 2"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <img
+                src="/Assets/Gamedesign/prototype3.jpg"
+                alt="Prototype 3"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Purpose</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              The game has an educational purpose: it introduces players to government emergency preparedness recommendations in an engaging way. At the same time it lightens a serious political context and lets people share a moment of humour and enjoyment in a difficult situation.
+            </p>
+          </div>
         </section>
 
         <section className="section-with-heading fade-in">
@@ -95,42 +127,6 @@ export default function GamedesignPage() {
               src="/Assets/Gamedesign/skannede elementer/scan.rules.jpg"
               alt="Game rules — scanned"
               style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
-            />
-          </div>
-        </section>
-
-        <section className="section-statement fade-in">
-          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            A game that turns preparedness into play.
-          </p>
-        </section>
-
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Purpose</h2>
-          </div>
-          <div className="section-content">
-            <p>
-              The game has an educational purpose: it introduces players to government emergency preparedness recommendations in an engaging way. At the same time it lightens a serious political context and lets people share a moment of humour and enjoyment in a difficult situation.
-            </p>
-          </div>
-        </section>
-
-        <section className="section-statement fade-in">
-          <h2 className="statement-text section-tabloid-heading">Game elements</h2>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            <img
-              src="/Assets/Gamedesign/skannede elementer/scan.eventcards.jpg"
-              alt="Event cards — scanned"
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
-            <img
-              src="/Assets/Gamedesign/skannede elementer/supplycards.jpg"
-              alt="Supply cards — scanned"
-              style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
         </section>
@@ -191,24 +187,21 @@ export default function GamedesignPage() {
           </div>
         </section>
 
-        <section className="section-statement fade-in">
-          <h2 className="statement-text section-tabloid-heading">Testing &amp; prototyping</h2>
-        </section>
-
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Game elements</h2>
+          </div>
+          <div className="section-content">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <img
-                src="/Assets/Gamedesign/prototype2.jpg"
-                alt="Prototype 2"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                src="/Assets/Gamedesign/skannede elementer/scan.eventcards.jpg"
+                alt="Event cards — scanned"
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
-            </div>
-            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
               <img
-                src="/Assets/Gamedesign/prototype3.jpg"
-                alt="Prototype 3"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                src="/Assets/Gamedesign/skannede elementer/supplycards.jpg"
+                alt="Supply cards — scanned"
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
           </div>
@@ -222,7 +215,7 @@ export default function GamedesignPage() {
             <p>
               This was a two-week group project where my main contribution was concept development. I also wrote the rules and carried out user testing.
             </p>
-            <p>
+            <p style={{ marginTop: 40, fontSize: "0.95rem", opacity: 0.75 }}>
               A huge thank you to Iver Raknes Finne, Marikken Antonsen, Bella Kjensli, and Hedvig Sunde.
             </p>
           </div>
