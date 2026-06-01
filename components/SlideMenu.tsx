@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const projects = [
-  { slug: "visual-identity", label: "Visual identity" },
-  { slug: "website", label: "Course in Creative AI-coding" },
+  { slug: "visual-identity", label: "Visual Identity & Branding" },
+  { slug: "website", label: "Creative AI-coding" },
   { slug: "immersive-sound", label: "Immersive Sound Experience" },
   { slug: "gamedesign", label: "Game as experience" },
   { slug: "musical-instrument", label: "Synthesizer" },

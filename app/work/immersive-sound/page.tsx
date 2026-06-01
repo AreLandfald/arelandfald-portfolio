@@ -64,7 +64,7 @@ export default function ImmersiveSoundPage() {
         <div className="hero-meta-overlay">
           <span>Type: Sound Installation</span>
           <span className="meta-divider">|</span>
-          <span>Year: 2024</span>
+          <span>Year: 2025 (4 weeks)</span>
           <span className="meta-divider">|</span>
           <span>Role: Designer</span>
           <span className="meta-divider">|</span>

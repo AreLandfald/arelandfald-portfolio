@@ -3,7 +3,7 @@ import FadeInObserver from "@/components/FadeInObserver";
 import SlideMenu from "@/components/SlideMenu";
 
 export const metadata: Metadata = {
-  title: "Course in Creative AI-coding",
+  title: "Creative AI-coding",
   description:
     "A four-week course at AHO (2025) on prompting as a craft — and on the questions that opened up along the way."
 };
@@ -21,7 +21,7 @@ export default function WebsitePage() {
           className="hero-image-full"
         />
         <div className="hero-title-overlay">
-          <h1 className="project-title-hero">Course in Creative AI-coding</h1>
+          <h1 className="project-title-hero">Creative AI-coding</h1>
         </div>
         <div className="hero-meta-overlay">
           <span>Type: Course</span>
@@ -129,23 +129,6 @@ export default function WebsitePage() {
           <div className="section-content">
             <p>
               A language model is built to satisfy. Any &ldquo;self-portrait&rdquo; it produces is a guess at what the user wants it to be &mdash; not the expression of an identity of its own. The failure was the finding.
-            </p>
-          </div>
-        </section>
-
-        <section className="section-statement fade-in">
-          <p className="statement-text" style={{ fontFamily: "GeistRegular, sans-serif" }}>
-            Hours buy what years used to.
-          </p>
-        </section>
-
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2>Reflection</h2>
-          </div>
-          <div className="section-content">
-            <p>
-              The course raised harder questions than it answered. About class &mdash; about what it means that someone with money for AI credits can now compress years of craft into hours. About the design profession, and what is left of it when the chisel changes hands.
             </p>
           </div>
         </section>

@@ -10,12 +10,17 @@ function fmt(t: number): string {
 }
 
 /**
- * Lightweight video player styled to match the Immersive Sound covers:
- * rounded corners, a single black play/pause pill, a thin progress bar.
+ * Video player styled to match the Immersive Sound covers: rounded
+ * corners, a single black play/pause pill, a thin progress bar.
  *
- * Audio is enabled (not muted) so it can't autoplay — the user clicks
- * the video or the play button to start. Playing this video pauses any
- * other <video>/<audio> on the page so only one source is audible.
+ * Wrapper width tracks the displayed video width so the progress bar
+ * never spills beyond the video frame. Implementation: aspect ratio is
+ * read from the video metadata, and the wrapper width is
+ * `min(100%, maxHeight * aspect)` — the same expression the browser
+ * effectively uses to size the video itself, so the two stay locked.
+ *
+ * Audio is enabled; playback is user-initiated. Starting one player
+ * pauses any other <video>/<audio> on the page.
  */
 export default function VideoPlayer({
   src,
@@ -28,12 +33,16 @@ export default function VideoPlayer({
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [aspect, setAspect] = useState<number>(16 / 9);
 
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
     const onTime = () => setTime(v.currentTime);
-    const onLoaded = () => setDuration(v.duration);
+    const onLoaded = () => {
+      setDuration(v.duration);
+      if (v.videoWidth && v.videoHeight) setAspect(v.videoWidth / v.videoHeight);
+    };
     const onPlay = () => setPlaying(true);
     const onPause = () => setPlaying(false);
     const onEnd = () => setPlaying(false);
@@ -76,22 +85,20 @@ export default function VideoPlayer({
   };
 
   const pct = duration ? (time / duration) * 100 : 0;
+  const wrapperWidth = `min(100%, calc(${maxHeight} * ${aspect}))`;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+    <div style={{ width: wrapperWidth, margin: "0 auto", maxWidth: "100%" }}>
       <div
         onClick={toggle}
         style={{
           position: "relative",
-          maxWidth: "100%",
-          maxHeight,
+          width: "100%",
           borderRadius: 16,
           overflow: "hidden",
-          isolation: "isolate",
           cursor: "pointer",
           background: "#000",
-          lineHeight: 0,
-          display: "inline-flex"
+          lineHeight: 0
         }}
       >
         <video
@@ -101,9 +108,7 @@ export default function VideoPlayer({
           preload="metadata"
           style={{
             display: "block",
-            maxWidth: "100%",
-            maxHeight,
-            width: "auto",
+            width: "100%",
             height: "auto",
             borderRadius: 16
           }}
@@ -147,7 +152,8 @@ export default function VideoPlayer({
           padding: "0 4px",
           display: "flex",
           alignItems: "center",
-          gap: 12
+          gap: 12,
+          boxSizing: "border-box"
         }}
       >
         <button

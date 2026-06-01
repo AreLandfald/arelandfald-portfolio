@@ -3,8 +3,8 @@ import FadeInObserver from "@/components/FadeInObserver";
 import SlideMenu from "@/components/SlideMenu";
 
 export const metadata: Metadata = {
-  title: "Visual identity / Diplom-Is",
-  description: "Visual identity redesign for Diplom-Is."
+  title: "Visual Identity & Branding",
+  description: "Visual identity and branding for Diplom-Is — a three-week redesign project (2025)."
 };
 
 const colors = [
@@ -27,12 +27,12 @@ export default function VisualIdentityPage() {
           className="hero-image-full"
         />
         <div className="hero-title-overlay">
-          <h1 className="project-title-hero">Visual identity</h1>
+          <h1 className="project-title-hero">Visual Identity &amp; Branding</h1>
         </div>
         <div className="hero-meta-overlay">
           <span>Type: Visual Identity</span>
           <span className="meta-divider">|</span>
-          <span>Year: 2024</span>
+          <span>Year: 2025 (3 weeks)</span>
           <span className="meta-divider">|</span>
           <span>Role: Designer</span>
           <span className="meta-divider">|</span>
@@ -135,7 +135,7 @@ export default function VisualIdentityPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400, marginBottom: 200 }}>
+        <section className="section-full fade-in" style={{ maxWidth: 1190, marginBottom: 200 }}>
           <video autoPlay loop muted playsInline style={{ width: "100%", height: "auto", display: "block" }}>
             <source src="/Assets/Diplomis/output.mp4" type="video/mp4" />
           </video>
@@ -155,9 +155,9 @@ export default function VisualIdentityPage() {
             <div id="color-system-section" className="color-grid-compact">
               {colors.map((c) => (
                 <div key={c.name} className="color-card">
-                  <div className="color-swatch" style={{ backgroundColor: c.hex, width: "100%", aspectRatio: "1/1", border: "1px solid #000" }}></div>
-                  <h3 className="color-name" style={{ fontSize: "0.95rem" }}>{c.name}</h3>
-                  {c.showHex !== false && <p className="color-hex" style={{ fontSize: "0.8rem" }}>{c.hex}</p>}
+                  <h3 className="color-name">{c.name}</h3>
+                  {c.showHex !== false ? <p className="color-hex">{c.hex}</p> : <p className="color-hex" aria-hidden="true">&nbsp;</p>}
+                  <div className="color-swatch" style={{ backgroundColor: c.hex }}></div>
                 </div>
               ))}
             </div>
@@ -183,7 +183,7 @@ export default function VisualIdentityPage() {
 
         <section className="image-pair-grid fade-in">
           <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" className="image-pair-grid-a" />
-          <img src="/Assets/Diplomis/instagram.diplomis2.jpg" alt="Instagram advertising" className="image-pair-grid-b" />
+          <img src="/Assets/Diplomis/diplomis.instagram.mockup.png" alt="Instagram mockup" className="image-pair-grid-b" />
         </section>
       </main>
     </>

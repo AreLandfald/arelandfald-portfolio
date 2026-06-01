@@ -856,18 +856,18 @@ section h2 {
 .color-grid-compact {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 40px;
-  max-width: 600px;
+  gap: 0;
+  margin-top: 0;
+  max-width: 100%;
 }
 @media (max-width: 480px) {
   .color-grid-compact { grid-template-columns: repeat(2, 1fr); }
 }
 
-.color-card { display: flex; flex-direction: column; gap: 12px; }
-.color-swatch { width: 100%; height: 120px; border: 1px solid #000; }
-.color-name { font-size: 1rem; font-weight: normal; margin: 0; letter-spacing: 0.02em; }
-.color-hex { font-size: 0.9rem; margin: 0; opacity: 0.7; font-family: 'GeistMono', monospace; }
+.color-card { display: flex; flex-direction: column; gap: 6px; }
+.color-swatch { width: 100%; height: auto; aspect-ratio: 1 / 1; border: none; }
+.color-name { font-size: 0.85rem; font-weight: 400; margin: 0; letter-spacing: 0.02em; }
+.color-hex { font-size: 0.75rem; margin: 0; opacity: 0.55; font-family: 'GeistMono', monospace; }
 
 /* Prototype grid */
 .prototype-grid {
@@ -1975,7 +1975,7 @@ section.image-pair-grid > .image-pair-grid-b {
   height: auto;
   display: block;
   max-width: 30%;
-  margin-top: 80px;
+  margin-top: 0;
 }
 @media (max-width: 768px) {
   section.image-pair-grid {

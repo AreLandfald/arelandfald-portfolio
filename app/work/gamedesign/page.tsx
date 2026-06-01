@@ -37,7 +37,7 @@ export default function GamedesignPage() {
           <span className="meta-divider">|</span>
           <span>Year: 2025 (two weeks)</span>
           <span className="meta-divider">|</span>
-          <span>Role: Game Designer</span>
+          <span>Role: Designer</span>
           <span className="meta-divider">|</span>
           <span>Client: None</span>
         </div>
@@ -77,7 +77,7 @@ export default function GamedesignPage() {
           </p>
         </section>
 
-        <section className="section-with-heading fade-in">
+        <section className="section-with-heading fade-in" style={{ marginBottom: 0 }}>
           <div className="section-heading">
             <h2>Purpose</h2>
           </div>
@@ -88,7 +88,7 @@ export default function GamedesignPage() {
           </div>
         </section>
 
-        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "120px 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
               <img
@@ -107,7 +107,7 @@ export default function GamedesignPage() {
           </div>
         </section>
 
-        <section className="section-with-heading fade-in">
+        <section className="section-with-heading fade-in" style={{ paddingTop: 0 }}>
           <div className="section-heading">
             <h2>Rules</h2>
           </div>
@@ -170,12 +170,12 @@ export default function GamedesignPage() {
             <h2>Color system</h2>
           </div>
           <div className="section-content">
-            <div className="color-grid-compact" style={{ maxWidth: "100%" }}>
+            <div className="color-grid-compact" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
               {colors.map((c) => (
                 <div key={c.hex + c.name} className="color-card">
-                  <div className="color-swatch" style={{ backgroundColor: c.hex, aspectRatio: "1/1" }}></div>
-                  <h3 className="color-name" style={{ fontSize: "0.95rem" }}>{c.name}</h3>
-                  <p className="color-hex" style={{ fontSize: "0.8rem" }}>{c.hex}</p>
+                  <h3 className="color-name">{c.name}</h3>
+                  <p className="color-hex">{c.hex}</p>
+                  <div className="color-swatch" style={{ backgroundColor: c.hex }}></div>
                 </div>
               ))}
             </div>

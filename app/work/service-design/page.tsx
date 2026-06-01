@@ -55,7 +55,7 @@ export default function ServiceDesignPage() {
         <div className="hero-meta-overlay">
           <span>Type: Service design</span>
           <span className="meta-divider">|</span>
-          <span>Year: 2025</span>
+          <span>Year: 2025 (4 weeks)</span>
           <span className="meta-divider">|</span>
           <span>Role: Designer</span>
           <span className="meta-divider">|</span>
