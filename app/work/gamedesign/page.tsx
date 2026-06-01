@@ -77,6 +77,17 @@ export default function GamedesignPage() {
           </p>
         </section>
 
+        <section className="section-with-heading fade-in">
+          <div className="section-heading">
+            <h2>Purpose</h2>
+          </div>
+          <div className="section-content">
+            <p>
+              The game has an educational purpose: it introduces players to government emergency preparedness recommendations in an engaging way. At the same time it lightens a serious political context and lets people share a moment of humour and enjoyment in a difficult situation.
+            </p>
+          </div>
+        </section>
+
         <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
@@ -98,17 +109,6 @@ export default function GamedesignPage() {
 
         <section className="section-with-heading fade-in">
           <div className="section-heading">
-            <h2>Purpose</h2>
-          </div>
-          <div className="section-content">
-            <p>
-              The game has an educational purpose: it introduces players to government emergency preparedness recommendations in an engaging way. At the same time it lightens a serious political context and lets people share a moment of humour and enjoyment in a difficult situation.
-            </p>
-          </div>
-        </section>
-
-        <section className="section-with-heading fade-in">
-          <div className="section-heading">
             <h2>Rules</h2>
           </div>
           <div className="section-content">
@@ -123,11 +123,6 @@ export default function GamedesignPage() {
             <p>
               All players start in the yellow star in the middle. The one to the left of the person reading the rules begins by rolling the dice, and then going clockwise around the table. After every round around the table, the players can choose to either vote someone out, or wait another round. Remember to not trust anyone &mdash; the preppers will have a hard time winning without uncovering the nihilist and voting them out.
             </p>
-            <img
-              src="/Assets/Gamedesign/skannede elementer/scan.rules.jpg"
-              alt="Game rules — scanned"
-              style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
-            />
           </div>
         </section>
 
@@ -192,15 +187,15 @@ export default function GamedesignPage() {
             <h2>Game elements</h2>
           </div>
           <div className="section-content">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-              <img
-                src="/Assets/Gamedesign/skannede elementer/scan.eventcards.jpg"
-                alt="Event cards — scanned"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
               <img
                 src="/Assets/Gamedesign/skannede elementer/supplycards.jpg"
                 alt="Supply cards — scanned"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+              <img
+                src="/Assets/Gamedesign/skannede elementer/scan.eventcards.jpg"
+                alt="Event cards — scanned"
                 style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
