@@ -109,6 +109,7 @@ export default function HomePage() {
       </Link>
 
       <div
+        className="landing-stage"
         style={{
           position: "fixed",
           inset: 0,
@@ -123,6 +124,7 @@ export default function HomePage() {
         }}
       >
         <div
+          className="landing-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",

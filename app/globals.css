@@ -2072,3 +2072,82 @@ section.image-pair-grid > .image-pair-grid-b {
   .story-card-image-container { width: 100%; height: 220px; }
   .story-card-content { padding: 20px; }
 }
+
+/* ============================================================
+   MOBILE — additive only.
+   No existing rule above this comment has been modified.
+   All mobile-specific tweaks live inside the block below.
+   ============================================================ */
+@media (max-width: 768px) {
+  /* --- HOMEPAGE ---------------------------------------------
+     Collapse the 3×4 mirrored grid into a single vertical column,
+     pair each image cell with its mirror label via `order`, and
+     let the body scroll (the existing `body.home-route` rule
+     pins it to 100vh on desktop, which doesn't fit 12 stacked
+     cards on a phone). */
+  body.home-route {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  body.home-route .landing-stage {
+    position: static !important;
+    height: auto !important;
+    min-height: 100vh;
+    padding: 72px 16px 72px !important;
+    display: block !important;
+  }
+  body.home-route .landing-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    aspect-ratio: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    gap: 8px;
+  }
+  /* Image cells (odd children) – full-width 16:9 tiles */
+  body.home-route .landing-cell:nth-child(2n + 1) {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    opacity: 1 !important;
+  }
+  /* Label cells (even children) – padded caption blocks */
+  body.home-route .landing-cell:nth-child(2n) {
+    min-height: 56px;
+    padding: 12px 16px 20px;
+    opacity: 1 !important;
+  }
+  /* Disable the desktop hover-dim transition on touch */
+  body.home-route .landing-cell { transition: none !important; }
+
+  /* Pair each project's image (odd DOM index) with its mirrored
+     label (matching even DOM index) so they appear together. */
+  body.home-route .landing-cell:nth-child(1)  { order: 1; }   /* musical  img */
+  body.home-route .landing-cell:nth-child(12) { order: 2; }   /* musical  lbl */
+  body.home-route .landing-cell:nth-child(3)  { order: 3; }   /* visual   img */
+  body.home-route .landing-cell:nth-child(10) { order: 4; }   /* visual   lbl */
+  body.home-route .landing-cell:nth-child(5)  { order: 5; }   /* immers.  img */
+  body.home-route .landing-cell:nth-child(8)  { order: 6; }   /* immers.  lbl */
+  body.home-route .landing-cell:nth-child(7)  { order: 7; }   /* game     img */
+  body.home-route .landing-cell:nth-child(6)  { order: 8; }   /* game     lbl */
+  body.home-route .landing-cell:nth-child(9)  { order: 9; }   /* site     img */
+  body.home-route .landing-cell:nth-child(4)  { order: 10; }  /* site     lbl */
+  body.home-route .landing-cell:nth-child(11) { order: 11; }  /* service  img */
+  body.home-route .landing-cell:nth-child(2)  { order: 12; }  /* service  lbl */
+
+  /* Bring the four fixed corner items in from 28px to 16px on
+     a phone so they don't crowd the small viewport. */
+  body.home-route .top-nav { top: 16px !important; right: 16px !important; }
+
+  /* --- SLIDE MENU touch targets ---------------------------- */
+  .menu-link,
+  .work-label,
+  .work-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* --- ABOUT page hero spacing on phones ------------------- */
+  .about-hero { padding: 5rem 20px 2rem; }
+}
+
