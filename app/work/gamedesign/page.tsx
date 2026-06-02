@@ -76,7 +76,7 @@ export default function GamedesignPage() {
             <img
               src="/Assets/Gamedesign/skannede elementer/the.board.jpg"
               alt="The board"
-              style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
+              style={{ width: "100%", height: "auto", display: "block", marginTop: 40, boxShadow: "0 6px 24px rgba(0,0,0,0.12)" }}
             />
           </div>
         </section>
@@ -118,7 +118,7 @@ export default function GamedesignPage() {
         </section>
 
         <section className="section-with-heading fade-in" style={{ paddingTop: 0 }}>
-          <div className="section-heading">
+          <div className="section-heading" style={{ top: 0 }}>
             <h2>Rules</h2>
           </div>
           <div className="section-content">
@@ -151,7 +151,7 @@ export default function GamedesignPage() {
             <img
               src="/Assets/Gamedesign/skannede elementer/scan.visual.profile.jpg"
               alt="Visual profile — scanned"
-              style={{ width: "100%", height: "auto", display: "block", marginTop: 40 }}
+              style={{ width: "100%", height: "auto", display: "block", marginTop: 40, boxShadow: "0 6px 24px rgba(0,0,0,0.12)" }}
             />
           </div>
         </section>
@@ -223,12 +223,12 @@ export default function GamedesignPage() {
               <img
                 src="/Assets/Gamedesign/skannede elementer/supplycards.jpg"
                 alt="Supply cards — scanned"
-                style={{ width: "100%", height: "auto", display: "block" }}
+                style={{ width: "100%", height: "auto", display: "block", boxShadow: "0 6px 24px rgba(0,0,0,0.12)" }}
               />
               <img
                 src="/Assets/Gamedesign/skannede elementer/scan.eventcards.jpg"
                 alt="Event cards — scanned"
-                style={{ width: "100%", height: "auto", display: "block" }}
+                style={{ width: "100%", height: "auto", display: "block", boxShadow: "0 6px 24px rgba(0,0,0,0.12)" }}
               />
             </div>
           </div>

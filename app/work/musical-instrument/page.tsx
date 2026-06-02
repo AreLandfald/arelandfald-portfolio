@@ -63,9 +63,23 @@ export default function MusicalInstrumentPage() {
           </div>
         </section>
 
-        <section className="image-pair-grid fade-in">
-          <img src="/Assets/Sound toys/instrument.ferdig2.jpg" alt="The synthesizer" className="image-pair-grid-a" />
-          <img src="/Assets/Sound toys/are spiller.jpg" alt="Playing the synthesizer" className="image-pair-grid-b" />
+        <section className="section-full fade-in" style={{ maxWidth: 1400, padding: "0 40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <img
+                src="/Assets/Sound toys/instrument.ferdig2.jpg"
+                alt="The synthesizer"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            <div style={{ aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <img
+                src="/Assets/Sound toys/are spiller.jpg"
+                alt="Playing the synthesizer"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
         </section>
 
         <section className="section-with-heading fade-in">
@@ -84,8 +98,8 @@ export default function MusicalInstrumentPage() {
         </section>
 
         <section className="section-with-heading fade-in">
-          <div className="section-heading">
-            <h2 style={{ lineHeight: 1 }}>Building the Instrument</h2>
+          <div className="section-heading" style={{ top: 76 }}>
+            <h2 style={{ lineHeight: 1, margin: 0 }}>Building the Instrument</h2>
           </div>
           <div className="section-content">
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
