@@ -192,10 +192,6 @@ export default function ImmersiveSoundPage() {
           </div>
         </section>
 
-        <section className="section-statement fade-in">
-          <h2 className="statement-text section-tabloid-heading">Jokum Was Real.</h2>
-        </section>
-
         <section className="section-with-heading fade-in">
           <div className="section-heading">
             <h2>Sources &amp; Background</h2>
