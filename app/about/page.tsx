@@ -7,158 +7,117 @@ export const metadata: Metadata = {
 };
 
 /**
- * About page uses the same .section-with-heading / .section-content
- * layout as the project pages: label absolutely positioned to the
- * page's far left, body text centred in a 800 px max column. Typography
- * comes straight from globals.css — no overrides. The only bespoke
- * piece is the hero, which is a text headline + portrait grid instead
- * of the project pages' full-bleed image hero.
+ * Split layout: full-height image on the left half (fixed while
+ * scrolling), text content on the right half. Right-side sections
+ * use the project pages' .section-with-heading / .section-content
+ * classes so labels, typography and column widths match the rest
+ * of the site exactly.
  */
 
 const education = [
   { year: "2024 — 2026", what: "Oslo School of Architecture and Design — MA Design (ongoing)" },
   { year: "2023 — 2024", what: "Kristiania — BA Screenwriting" },
-  { year: "2021",        what: "Den Skandinaviske Designhøjskole — Architecture and urbanism (precourse)" },
-  { year: "2018 — 2021", what: "Elvebakken videregående skole — Art, design and architecture" }
+  { year: "2021",        what: "Den Skandinaviske Designhøjskole — Architecture and urbanism (precourse)" }
 ];
 
-const languages = [
-  { level: "Fluent",   what: "Norwegian, English, Danish, Swedish" },
-  { level: "Advanced", what: "Spanish" }
-];
+const skills = ["Adobe Suite", "Figma", "Claude Code in VS Code", "Fusion 360"];
 
 export default function AboutPage() {
   return (
     <>
       <SlideMenu />
 
-      <section
-        style={{
-          maxWidth: 1132,
-          margin: "0 auto",
-          padding: "7rem 40px 5rem",
-          display: "grid",
-          gridTemplateColumns: "1fr auto",
-          gap: "1.5rem",
-          alignItems: "center",
-          background: "#fff",
-          color: "#000"
-        }}
-      >
-        <h1
+      <div className="about-split-left">
+        <img src="/Assets/aboutme.jpg" alt="Are Landfald" />
+      </div>
+
+      <div className="about-split-right">
+        {/* Hero */}
+        <section
           style={{
-            fontFamily: "'GeistRegular', sans-serif",
-            fontSize: "3.6rem",
-            fontWeight: 400,
-            letterSpacing: "0.05em",
-            lineHeight: 1.1,
-            color: "#000",
-            margin: 0
+            padding: "10rem 40px 5rem",
+            maxWidth: 800,
+            margin: "0 auto"
           }}
         >
-          Are Landfald
-        </h1>
-        <img
-          src="/Assets/aboutme.jpg"
-          alt="Are Landfald"
-          style={{
-            width: 240,
-            height: "auto",
-            aspectRatio: "3 / 4",
-            objectFit: "cover",
-            display: "block"
-          }}
-        />
-      </section>
-
-      <main className="project-main">
-        <section className="section-with-heading">
-          <div className="section-heading">
-            <h2>About</h2>
-          </div>
-          <div className="section-content">
-            <p>
+          <h1
+            style={{
+              fontFamily: "'GeistRegular', sans-serif",
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              fontWeight: 400,
+              letterSpacing: "0.04em",
+              lineHeight: 1.05,
+              textTransform: "uppercase",
+              margin: 0,
+              color: "#000"
+            }}
+          >
+            Are Landfald
+          </h1>
+          <div
+            style={{
+              marginTop: "3rem",
+              fontFamily: "'GeistThin', sans-serif",
+              fontSize: "1.32rem",
+              lineHeight: 1.8,
+              color: "#000"
+            }}
+          >
+            <p style={{ margin: 0 }}>
               I&apos;m a 23-year-old design student at the Oslo School of Architecture and Design (AHO), specialising in interaction design &mdash; with a background that spans service design and three-dimensional industrial design.
             </p>
-            <p>
+            <p style={{ margin: "1.5rem 0 0" }}>
               I&apos;m drawn to immersiveness and storytelling: design that pulls people in and makes them feel something. I adapt easily to different processes &mdash; user research and testing matter to me, but so does intuition and the ability to truly inhabit a brief.
             </p>
-            <p>
-              What interests me most is the lived experience of design &mdash; the moment someone actually encounters it.
-            </p>
           </div>
         </section>
 
-        <section className="section-with-heading">
-          <div className="section-heading">
-            <h2>Skills</h2>
-          </div>
-          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.8 }}>
-            <div>Adobe Suite</div>
-            <div>Figma</div>
-            <div>Claude Code in VS Code</div>
-            <div>Fusion 360</div>
-            <div>Microsoft MakeCode</div>
-          </div>
-        </section>
+        <main className="project-main" style={{ paddingBottom: "8rem" }}>
+          <section className="section-with-heading">
+            <div className="section-heading">
+              <h2>Skills</h2>
+            </div>
+            <div className="section-content">
+              {skills.map((s) => (
+                <div key={s}>{s}</div>
+              ))}
+            </div>
+          </section>
 
-        <section className="section-with-heading">
-          <div className="section-heading">
-            <h2>Languages</h2>
-          </div>
-          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
-            {languages.map((l, i) => (
-              <div
-                key={l.level}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "160px 1fr",
-                  gap: "2rem",
-                  padding: "1rem 0",
-                  borderTop: i === 0 ? "none" : "0.5px solid rgba(0,0,0,0.15)"
-                }}
-              >
-                <span>{l.level}</span>
-                <span>{l.what}</span>
-              </div>
-            ))}
-          </div>
-        </section>
+          <section className="section-with-heading">
+            <div className="section-heading">
+              <h2>Education</h2>
+            </div>
+            <div className="section-content">
+              {education.map((e) => (
+                <div
+                  key={e.year}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "160px 1fr",
+                    gap: "2rem",
+                    padding: "1rem 0"
+                  }}
+                >
+                  <span>{e.year}</span>
+                  <span>{e.what}</span>
+                </div>
+              ))}
+            </div>
+          </section>
 
-        <section className="section-with-heading">
-          <div className="section-heading">
-            <h2>Education</h2>
-          </div>
-          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
-            {education.map((e, i) => (
-              <div
-                key={e.year}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "160px 1fr",
-                  gap: "2rem",
-                  padding: "1rem 0",
-                  borderTop: i === 0 ? "none" : "0.5px solid rgba(0,0,0,0.15)"
-                }}
-              >
-                <span>{e.year}</span>
-                <span>{e.what}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-with-heading">
-          <div className="section-heading">
-            <h2>Contact</h2>
-          </div>
-          <div className="section-content">
-            <p>
-              <a href="mailto:are.landfald@gmail.com">are.landfald@gmail.com</a>
-            </p>
-          </div>
-        </section>
-      </main>
+          <section className="section-with-heading">
+            <div className="section-heading">
+              <h2>Contact</h2>
+            </div>
+            <div className="section-content">
+              <p>
+                <a href="mailto:are.landfald@gmail.com">are.landfald@gmail.com</a>
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
     </>
   );
 }

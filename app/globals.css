@@ -1917,6 +1917,43 @@ body.about-route .hero-image-full {
   filter: brightness(0.7);
 }
 
+/* Split layout: full-height fixed image on the left, scrollable content
+   on the right. Collapses to a stacked top image + content on narrow
+   viewports. */
+.about-split-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+.about-split-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.about-split-right {
+  margin-left: 50vw;
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 900px) {
+  .about-split-left {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+  }
+  .about-split-right {
+    margin-left: 0;
+  }
+}
+
 /* ============================================================
    LIGHT HERO — black text/nav over a bright hero image
    ============================================================ */
