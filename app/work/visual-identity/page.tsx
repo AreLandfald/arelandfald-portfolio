@@ -14,6 +14,16 @@ const colors = [
   { name: "Flavor-based", hex: "#FFFFFF", showHex: false }
 ];
 
+// Pick black or white text per swatch using YIQ brightness — keeps the
+// overlaid name + hex legible regardless of the background colour.
+function textOn(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq >= 140 ? "#000" : "#fff";
+}
+
 export default function VisualIdentityPage() {
   return (
     <>
@@ -153,13 +163,37 @@ export default function VisualIdentityPage() {
               Quicksand Regular: Diplom-Is has been Norway&apos;s favorite ice cream since 1930, crafted with care from the finest dairy. This lighter weight provides clarity and readability for body text and supporting information.
             </p>
             <div id="color-system-section" className="color-grid-compact">
-              {colors.map((c) => (
-                <div key={c.name} className="color-card">
-                  <h3 className="color-name">{c.name}</h3>
-                  {c.showHex !== false ? <p className="color-hex">{c.hex}</p> : <p className="color-hex" aria-hidden="true">&nbsp;</p>}
-                  <div className="color-swatch" style={{ backgroundColor: c.hex }}></div>
-                </div>
-              ))}
+              {colors.map((c) => {
+                const fg = textOn(c.hex);
+                return (
+                  <div
+                    key={c.name}
+                    className="color-swatch"
+                    style={{
+                      backgroundColor: c.hex,
+                      color: fg,
+                      padding: "14px 16px",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 2,
+                      lineHeight: 1.25
+                    }}
+                  >
+                    <span style={{ fontSize: "0.85rem", fontWeight: 400 }}>{c.name}</span>
+                    {c.showHex !== false && (
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          fontFamily: "'GeistMono', monospace",
+                          opacity: 0.85
+                        }}
+                      >
+                        {c.hex}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -183,7 +217,12 @@ export default function VisualIdentityPage() {
 
         <section className="image-pair-grid fade-in">
           <img src="/Assets/Diplomis/diplomis plakat mockup copy.jpg" alt="Poster mockup" className="image-pair-grid-a" />
-          <img src="/Assets/Diplomis/diplomis.instagram.mockup.png" alt="Instagram mockup" className="image-pair-grid-b" />
+          <img
+            src="/Assets/Diplomis/diplomis.instagram.mockup.png"
+            alt="Instagram mockup"
+            className="image-pair-grid-b"
+            style={{ flex: "0 0 20%", maxWidth: "20%" }}
+          />
         </section>
       </main>
     </>
