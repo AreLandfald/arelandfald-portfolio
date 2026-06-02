@@ -20,7 +20,7 @@ const education = [
   { year: "2021",        what: "Den Skandinaviske Designhøjskole — Architecture and urbanism (precourse)" }
 ];
 
-const skills = ["Adobe Suite", "Figma", "Claude Code in VS Code", "Fusion 360"];
+const skills = ["Adobe Suite", "Figma", "Claude Code in VS Code", "Fusion 360", "Sketchup", "Microsoft MakeCode"];
 
 const languages = [
   { level: "Fluent",   what: "Norwegian, English, Danish, Swedish" },
@@ -62,10 +62,13 @@ export default function AboutPage() {
             }}
           >
             <p style={{ margin: 0 }}>
-              I&apos;m a 23-year-old design student at the Oslo School of Architecture and Design (AHO), specialising in interaction design &mdash; with a background that spans service design and three-dimensional industrial design.
+              I&apos;m a 23-year-old design student at the Oslo School of Architecture and Design (AHO), specialising in interaction design &mdash; with a foundation that spans service design and three-dimensional industrial design.
             </p>
             <p style={{ margin: "1.5rem 0 0" }}>
-              I&apos;m drawn to immersiveness and storytelling: design that pulls people in and makes them feel something. I adapt easily to different processes &mdash; user research and testing matter to me, but so does intuition and the ability to truly inhabit a brief.
+              My work moves across disciplines and formats: from immersive sound installations and game design to visual identity, synthesizer design, and AI-driven creative coding. At the centre of it all is a single question &mdash; how does this feel to be inside of? The quality of immersion, the depth of experience, the moment someone is fully pulled in &mdash; this is where my design thinking begins and ends.
+            </p>
+            <p style={{ margin: "1.5rem 0 0" }}>
+              I ground my practice in research and user testing, while trusting intuition and deep creative empathy to find the idea that gives a project its direction.
             </p>
           </div>
         </div>
@@ -78,9 +81,7 @@ export default function AboutPage() {
             <h2>Skills</h2>
           </div>
           <div className="section-content">
-            {skills.map((s) => (
-              <div key={s}>{s}</div>
-            ))}
+            <p style={{ margin: 0 }}>{skills.join(", ")}</p>
           </div>
         </section>
 
@@ -88,15 +89,16 @@ export default function AboutPage() {
           <div className="section-heading">
             <h2>Languages</h2>
           </div>
-          <div className="section-content">
-            {languages.map((l) => (
+          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
+            {languages.map((l, i) => (
               <div
                 key={l.level}
                 style={{
                   display: "grid",
                   gridTemplateColumns: "160px 1fr",
                   gap: "2rem",
-                  padding: "1rem 0"
+                  padding: "1rem 0",
+                  borderTop: i === 0 ? "none" : "0.5px solid rgba(0,0,0,0.15)"
                 }}
               >
                 <span>{l.level}</span>
@@ -110,15 +112,16 @@ export default function AboutPage() {
           <div className="section-heading">
             <h2>Education</h2>
           </div>
-          <div className="section-content">
-            {education.map((e) => (
+          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
+            {education.map((e, i) => (
               <div
                 key={e.year}
                 style={{
                   display: "grid",
                   gridTemplateColumns: "160px 1fr",
                   gap: "2rem",
-                  padding: "1rem 0"
+                  padding: "1rem 0",
+                  borderTop: i === 0 ? "none" : "0.5px solid rgba(0,0,0,0.15)"
                 }}
               >
                 <span>{e.year}</span>
