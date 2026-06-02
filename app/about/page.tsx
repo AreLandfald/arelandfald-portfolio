@@ -22,6 +22,11 @@ const education = [
   { year: "2018 — 2021", what: "Elvebakken videregående skole — Art, design and architecture" }
 ];
 
+const languages = [
+  { level: "Fluent",   what: "Norwegian, English, Danish, Swedish" },
+  { level: "Advanced", what: "Spanish" }
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -34,7 +39,7 @@ export default function AboutPage() {
           padding: "7rem 40px 5rem",
           display: "grid",
           gridTemplateColumns: "1fr auto",
-          gap: "3rem",
+          gap: "1.5rem",
           alignItems: "center",
           background: "#fff",
           color: "#000"
@@ -54,10 +59,10 @@ export default function AboutPage() {
           Are Landfald
         </h1>
         <img
-          src="/Assets/bilde-av-meg-til-portefolje.jpg"
+          src="/Assets/aboutme.jpg"
           alt="Are Landfald"
           style={{
-            width: 200,
+            width: 240,
             height: "auto",
             aspectRatio: "3 / 4",
             objectFit: "cover",
@@ -86,9 +91,32 @@ export default function AboutPage() {
 
         <section className="section-with-heading">
           <div className="section-heading">
+            <h2>Languages</h2>
+          </div>
+          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
+            {languages.map((l, i) => (
+              <div
+                key={l.level}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "160px 1fr",
+                  gap: "2rem",
+                  padding: "1rem 0",
+                  borderTop: i === 0 ? "none" : "0.5px solid rgba(0,0,0,0.15)"
+                }}
+              >
+                <span>{l.level}</span>
+                <span>{l.what}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-with-heading">
+          <div className="section-heading">
             <h2>Education</h2>
           </div>
-          <div className="section-content">
+          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
             {education.map((e, i) => (
               <div
                 key={e.year}
@@ -96,7 +124,7 @@ export default function AboutPage() {
                   display: "grid",
                   gridTemplateColumns: "160px 1fr",
                   gap: "2rem",
-                  padding: "1.2rem 0",
+                  padding: "1rem 0",
                   borderTop: i === 0 ? "none" : "0.5px solid rgba(0,0,0,0.15)"
                 }}
               >
