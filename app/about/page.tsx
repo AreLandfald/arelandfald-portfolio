@@ -6,43 +6,34 @@ export const metadata: Metadata = {
   description: "About Are Landfald — design student at AHO."
 };
 
-const DIVIDER = "0.5px solid rgba(0,0,0,0.18)";
-const SUB_DIVIDER = "0.5px solid rgba(0,0,0,0.12)";
+/**
+ * Typography on this page mirrors the project pages exactly:
+ *   - Body / labels:  GeistThin, 1.32rem, line-height 1.8, weight 400
+ *     (matches .section-heading + .section-content from globals.css)
+ *   - Large headline: GeistRegular, 3.6rem, weight 400, letter-spacing
+ *     0.05em (matches .project-title-hero, with color overridden to
+ *     #000 because we're on a white background, not a hero overlay).
+ *
+ * Container width is sized so the right (content) cell of the
+ * 220px / 1fr grid lines up with the 800px text column used by
+ * .section-content on project pages — 220 label + 32 gap + 800 cell
+ * + 40 padding × 2 = 1132 px.
+ */
+
+const TEXT: React.CSSProperties = {
+  fontFamily: "'GeistThin', sans-serif",
+  fontSize: "1.32rem",
+  lineHeight: 1.8,
+  fontWeight: 400,
+  color: "#000",
+  margin: 0
+};
 
 const sectionStyle: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "220px 1fr",
   gap: "2rem",
-  marginTop: "6rem",
-  paddingTop: "2rem",
-  borderTop: DIVIDER
-};
-
-const labelStyle: React.CSSProperties = {
-  fontFamily: "'GeistRegular', sans-serif",
-  fontSize: "0.85rem",
-  fontWeight: 400,
-  margin: 0,
-  letterSpacing: "0.04em",
-  textTransform: "uppercase",
-  color: "#000"
-};
-
-const bodyStyle: React.CSSProperties = {
-  fontFamily: "'GeistThin', sans-serif",
-  fontSize: "1.05rem",
-  lineHeight: 1.85,
-  margin: 0,
-  color: "#000",
-  fontWeight: 100
-};
-
-const eduRowStyle: React.CSSProperties = {
-  display: "grid",
-  gridTemplateColumns: "140px 1fr",
-  gap: "2rem",
-  padding: "1.2rem 0",
-  borderTop: SUB_DIVIDER
+  marginTop: "7rem"
 };
 
 const education = [
@@ -58,12 +49,11 @@ export default function AboutPage() {
 
       <main
         style={{
-          maxWidth: 1400,
+          maxWidth: 1132,
           margin: "0 auto",
-          padding: "7rem 2rem 8rem",
+          padding: "7rem 40px 8rem",
           background: "#fff",
-          color: "#000",
-          fontFamily: "'GeistRegular', sans-serif"
+          color: "#000"
         }}
       >
         {/* HERO */}
@@ -72,21 +62,22 @@ export default function AboutPage() {
             display: "grid",
             gridTemplateColumns: "1fr auto",
             gap: "3rem",
-            alignItems: "end"
+            alignItems: "center",
+            marginBottom: "10rem"
           }}
         >
           <h1
             style={{
-              fontFamily: "'GeistThin', sans-serif",
-              fontWeight: 100,
-              fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
+              fontFamily: "'GeistRegular', sans-serif",
+              fontSize: "3.6rem",
+              fontWeight: 400,
+              letterSpacing: "0.05em",
               lineHeight: 1.1,
-              letterSpacing: "-0.005em",
-              margin: 0,
-              maxWidth: "20ch"
+              color: "#000",
+              margin: 0
             }}
           >
-            Design that stimulates curiosity, invites reflection, and feels grounded in its context.
+            Are Landfald
           </h1>
           <img
             src="/Assets/bilde-av-meg-til-portefolje.jpg"
@@ -101,17 +92,17 @@ export default function AboutPage() {
           />
         </section>
 
-        {/* BIO */}
-        <section style={{ ...sectionStyle, marginTop: "10rem" }}>
-          <h2 style={labelStyle}>Bio</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            <p style={bodyStyle}>
+        {/* ABOUT */}
+        <section style={sectionStyle}>
+          <h2 style={TEXT}>About</h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.6rem" }}>
+            <p style={TEXT}>
               I&apos;m a design student in the second year of the five-year Master&apos;s programme at the Oslo School of Architecture and Design (AHO). My work moves between digital and analogue tools, using both to create tangible and thoughtful experiences.
             </p>
-            <p style={bodyStyle}>
+            <p style={TEXT}>
               My process often starts with research, but intuition plays an equally important role. I&apos;m particularly strong in the conceptual phase of a project, where ideas are shaped, questioned and given direction through experimentation and exploration. I enjoy working both independently and collaboratively, depending on what the project calls for.
             </p>
-            <p style={bodyStyle}>
+            <p style={TEXT}>
               I&apos;m interested in taking time away from my studies to gain practical experience, and to better understand how design practices are shaped by cultural context.
             </p>
           </div>
@@ -119,17 +110,19 @@ export default function AboutPage() {
 
         {/* EDUCATION */}
         <section style={sectionStyle}>
-          <h2 style={labelStyle}>Education</h2>
-          <div>
-            {education.map((e, i) => (
+          <h2 style={TEXT}>Education</h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+            {education.map((e) => (
               <div
                 key={e.year}
-                style={{ ...eduRowStyle, ...(i === 0 ? { borderTop: "none", paddingTop: 0 } : null) }}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "160px 1fr",
+                  gap: "2rem"
+                }}
               >
-                <span style={{ ...bodyStyle, fontFamily: "'GeistMono', monospace", fontSize: "0.95rem" }}>
-                  {e.year}
-                </span>
-                <span style={bodyStyle}>{e.what}</span>
+                <span style={TEXT}>{e.year}</span>
+                <span style={TEXT}>{e.what}</span>
               </div>
             ))}
           </div>
@@ -137,17 +130,11 @@ export default function AboutPage() {
 
         {/* CONTACT */}
         <section style={sectionStyle}>
-          <h2 style={labelStyle}>Contact</h2>
+          <h2 style={TEXT}>Contact</h2>
           <div>
             <a
               href="mailto:are.landfald@gmail.com"
-              style={{
-                ...bodyStyle,
-                color: "#000",
-                textDecoration: "none",
-                borderBottom: "0.5px solid rgba(0,0,0,0.3)",
-                paddingBottom: 2
-              }}
+              style={{ ...TEXT, color: "#000", textDecoration: "underline" }}
             >
               are.landfald@gmail.com
             </a>
