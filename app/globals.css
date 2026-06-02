@@ -2151,3 +2151,141 @@ section.image-pair-grid > .image-pair-grid-b {
   .about-hero { padding: 5rem 20px 2rem; }
 }
 
+/* ============================================================
+   MOBILE — page-specific fixes (additive, !important to defeat
+   inline styles where required). No existing rule modified.
+   ============================================================ */
+@media (max-width: 768px) {
+  /* ---------- ALL PROJECT PAGES ---------- */
+
+  /* Hero: stop the absolutely-positioned title from overlapping
+     the absolutely-positioned meta line. Title floats above,
+     meta stacks vertically below it. */
+  .hero-title-overlay {
+    bottom: 120px !important;
+  }
+  .hero-meta-overlay {
+    bottom: 20px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+
+  /* Section heading: match section-content's 20px side padding so
+     the label and the body text share the same left edge. */
+  .section-with-heading .section-heading {
+    padding: 0 20px;
+  }
+
+  /* Universal safety: prevent horizontal overflow from any
+     full-width section and clamp inline-sized image containers. */
+  section.section-full {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    overflow-x: hidden;
+    max-width: 100% !important;
+  }
+  section.section-full > div {
+    max-width: 100% !important;
+    overflow-x: hidden;
+  }
+  section.section-full img,
+  section.section-full video {
+    max-width: 100% !important;
+  }
+
+  /* ---------- SYNTHESIZER (/work/musical-instrument) ---------- */
+
+  /* "How to use" flex row (ferdig2 + are spiller) — stack vertically
+     at full width without forcing a fixed height. */
+  section.section-full > div:has(> img[src*="instrument.ferdig2"]) {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+  section.section-full > div:has(> img[src*="instrument.ferdig2"]) > img {
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* "The finished product" 2-col grid (ferdig1 + ferdig3) — stack. */
+  section.section-full > div:has(> img[src*="instrument.ferdig1"]) {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---------- VISUAL IDENTITY (/work/visual-identity) ---------- */
+
+  /* Instagram mockup has inline `flex: 0 0 20%; max-width: 20%` —
+     defeat it so it fills the column when image-pair-grid stacks. */
+  section.image-pair-grid > .image-pair-grid-b {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* ---------- CREATIVE AI-CODING (/work/website) ---------- */
+
+  /* "Presentation day" 2-col grid (match1 + match2) — stack. */
+  section.section-full > div:has(> img[src*="match1"]) {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---------- IMMERSIVE SOUND (/work/immersive-sound) ---------- */
+
+  /* Background mockup row (height: 528px, width: auto) — stack and
+     unfreeze the height so the images fit any viewport. */
+  section.section-full > div:has(> img[src*="mockup.echoes"]) {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+  section.section-full > div:has(> img[src*="mockup.echoes"]) > img {
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Sources & Background books — defeat fixed 420px height +
+     object-fit: cover so the full image is visible. Grid columns
+     remain 1fr 1fr per spec. */
+  div:has(> img[src*="fra.nattmann"]) > img {
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* ---------- GAME AS EXPERIENCE (/work/gamedesign) ---------- */
+
+  /* Purpose-section prototype pair: drop the forced 3:2 aspect +
+     cover crop, stack vertically, show the full image. */
+  section.section-full > div:has(img[src*="prototype2"]) {
+    grid-template-columns: 1fr !important;
+  }
+  section.section-full > div:has(img[src*="prototype2"]) > div {
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+  }
+  section.section-full > div:has(img[src*="prototype2"]) img {
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* ---------- SERVICE DESIGN (/work/service-design) ---------- */
+
+  /* Cap the giant opening statement and the tabloid headings so
+     the page doesn't require excessive scrolling on a phone. */
+  .statement-text { font-size: 1.4rem !important; }
+  .section-tabloid-heading { font-size: 1.4rem !important; }
+
+  /* Poster rows: first image full-width, the other two side-by-side
+     beneath it, equal 12px gap horizontally and vertically. */
+  .poster-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  .poster-row img:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+
