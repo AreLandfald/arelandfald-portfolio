@@ -97,7 +97,10 @@ export default function WebsitePage() {
               <a href="https://al.groise.no/" target="_blank" rel="noopener noreferrer">
                 al.groise.no
               </a>
-              . The brief I set myself: get ChatGPT&nbsp;5.0 to make a self-portrait of itself.
+              .
+            </p>
+            <p>
+              My goal: get ChatGPT&nbsp;5.0 to make a self-portrait of itself.
             </p>
             <p>
               A second question ran beneath it: can a website function as a medium for a self-portrait? I hadn&apos;t seen it done.
