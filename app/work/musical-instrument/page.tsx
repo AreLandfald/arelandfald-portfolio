@@ -98,16 +98,17 @@ export default function MusicalInstrumentPage() {
             <h2 style={{ margin: 0 }}>Building the Instrument</h2>
           </div>
           <div className="section-content">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 32, padding: 16 }}>
-              {[1, 2, 3, 4].map((n) => (
-                <div key={n} style={{ aspectRatio: "4 / 3", overflow: "hidden" }}>
-                  <img
-                    src={`/Assets/Sound toys/bygging${n}.JPG`}
-                    alt={`Construction step ${n}`}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  />
-                </div>
-              ))}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
+              <img
+                src="/Assets/Sound toys/bygging4.JPG"
+                alt="Construction step"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+              <img
+                src="/Assets/Sound toys/bygging3.JPG"
+                alt="Construction step"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
             </div>
           </div>
         </section>
