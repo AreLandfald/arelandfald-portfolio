@@ -91,6 +91,19 @@ export default function AboutPage() {
 
         <section className="section-with-heading">
           <div className="section-heading">
+            <h2>Skills</h2>
+          </div>
+          <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.8 }}>
+            <div>Adobe Suite</div>
+            <div>Figma</div>
+            <div>Claude Code in VS Code</div>
+            <div>Fusion 360</div>
+            <div>Microsoft MakeCode</div>
+          </div>
+        </section>
+
+        <section className="section-with-heading">
+          <div className="section-heading">
             <h2>Languages</h2>
           </div>
           <div className="section-content" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
